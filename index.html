@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WakaSafe – Stay Connected. With Your Loved Ones.</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #0b1426;
@@ -19,6 +19,7 @@
     --gray: #8a9bb5;
     --card: rgba(255,255,255,0.04);
     --border: rgba(255,255,255,0.08);
+    --font: 'Inter', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,11 +29,11 @@
   body {
     background: var(--navy);
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font);
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+  h1, h2, h3, h4 { font-family: var(--font); }
 
   /* ===== NOISE OVERLAY ===== */
   body::before {
@@ -63,7 +64,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 1.3rem;
     font-weight: 800;
     letter-spacing: -0.5px;
@@ -87,6 +88,7 @@
     padding: 3px 10px;
     border-radius: 20px;
     letter-spacing: 0.5px;
+    font-family: var(--font);
   }
 
   /* ===== HERO ===== */
@@ -125,6 +127,7 @@
     text-transform: uppercase;
     margin-bottom: 24px;
     animation: fadeUp 0.6s ease both;
+    font-family: var(--font);
   }
 
   .hero-eyebrow::before {
@@ -137,11 +140,12 @@
 
   .hero h1 {
     font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-    font-weight: 800;
+    font-weight: 900;
     line-height: 1.1;
-    letter-spacing: -1.5px;
+    letter-spacing: -2px;
     margin-bottom: 20px;
     animation: fadeUp 0.6s 0.1s ease both;
+    font-family: var(--font);
   }
 
   .hero h1 .accent { color: var(--orange); }
@@ -154,6 +158,8 @@
     max-width: 480px;
     margin-bottom: 36px;
     animation: fadeUp 0.6s 0.2s ease both;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   .hero-pills {
@@ -175,6 +181,7 @@
     font-size: 0.8rem;
     font-weight: 500;
     color: rgba(255,255,255,0.75);
+    font-family: var(--font);
   }
 
   .pill-dot {
@@ -195,7 +202,7 @@
     border: none;
     padding: 14px 28px;
     border-radius: 12px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-weight: 700;
     font-size: 0.9rem;
     cursor: pointer;
@@ -214,7 +221,7 @@
     border: 1.5px solid var(--border);
     padding: 14px 28px;
     border-radius: 12px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
@@ -268,7 +275,6 @@
     position: relative;
   }
 
-  /* App status bar */
   .app-status {
     display: flex;
     justify-content: space-between;
@@ -276,6 +282,7 @@
     font-size: 0.55rem;
     color: var(--gray);
     margin-bottom: 8px;
+    font-family: var(--font);
   }
 
   .app-header {
@@ -286,14 +293,13 @@
   }
 
   .app-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 1rem;
     font-weight: 800;
   }
 
   .app-title span { color: var(--teal); }
 
-  /* Screen slides */
   .screen-slide {
     display: none;
     animation: screenIn 0.4s ease both;
@@ -306,7 +312,6 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
-  /* Welcome card */
   .welcome-card {
     background: rgba(255,255,255,0.06);
     border-radius: 14px;
@@ -316,7 +321,7 @@
   }
 
   .welcome-name {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 3px;
@@ -327,6 +332,7 @@
     color: var(--teal);
     font-weight: 700;
     letter-spacing: 1px;
+    font-family: var(--font);
   }
 
   .stats-row {
@@ -344,8 +350,8 @@
     text-align: center;
   }
 
-  .stat-label { font-size: 0.48rem; color: var(--gray); margin-bottom: 2px; }
-  .stat-val { font-size: 0.62rem; font-weight: 700; font-family: 'Syne', sans-serif; }
+  .stat-label { font-size: 0.48rem; color: var(--gray); margin-bottom: 2px; font-family: var(--font); }
+  .stat-val { font-size: 0.62rem; font-weight: 700; font-family: var(--font); }
 
   .sub-banner {
     background: rgba(0,212,170,0.08);
@@ -358,11 +364,10 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    font-family: var(--font);
   }
 
-  .contacts-section {
-    margin-bottom: 12px;
-  }
+  .contacts-section { margin-bottom: 12px; }
 
   .contacts-header {
     display: flex;
@@ -371,6 +376,7 @@
     margin-bottom: 8px;
     font-size: 0.65rem;
     font-weight: 600;
+    font-family: var(--font);
   }
 
   .add-btn {
@@ -382,6 +388,7 @@
     font-size: 0.5rem;
     font-weight: 700;
     cursor: pointer;
+    font-family: var(--font);
   }
 
   .contact-card {
@@ -394,6 +401,7 @@
     font-size: 0.58rem;
     border: 1px solid var(--border);
     margin-bottom: 6px;
+    font-family: var(--font);
   }
 
   .start-btn-big {
@@ -403,7 +411,7 @@
     width: 100%;
     padding: 14px;
     border-radius: 12px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.5px;
@@ -411,17 +419,14 @@
     margin-bottom: 10px;
   }
 
-  /* Form screen */
   .form-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.9rem;
     font-weight: 800;
     margin-bottom: 14px;
   }
 
-  .form-field {
-    margin-bottom: 10px;
-  }
+  .form-field { margin-bottom: 10px; }
 
   .form-label {
     font-size: 0.55rem;
@@ -430,6 +435,7 @@
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    font-family: var(--font);
   }
 
   .form-input {
@@ -443,6 +449,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    font-family: var(--font);
   }
 
   .form-input.filled {
@@ -463,14 +470,13 @@
     width: 100%;
     padding: 12px;
     border-radius: 10px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.7rem;
     font-weight: 800;
     cursor: pointer;
     margin-top: 8px;
   }
 
-  /* PIN screen */
   .pin-modal {
     background: rgba(13, 25, 50, 0.98);
     border-radius: 18px;
@@ -481,7 +487,7 @@
   }
 
   .pin-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.95rem;
     font-weight: 800;
     margin-bottom: 6px;
@@ -491,6 +497,7 @@
     font-size: 0.55rem;
     color: var(--gray);
     margin-bottom: 18px;
+    font-family: var(--font);
   }
 
   .pin-dots {
@@ -507,6 +514,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 1.2rem;
     background: rgba(0,212,170,0.06);
+    font-family: var(--font);
   }
 
   .pin-dot.filled::after {
@@ -520,6 +528,7 @@
     color: var(--gray);
     margin-bottom: 14px;
     letter-spacing: 1px;
+    font-family: var(--font);
   }
 
   .activate-btn {
@@ -529,13 +538,12 @@
     width: 100%;
     padding: 12px;
     border-radius: 10px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.7rem;
     font-weight: 800;
     cursor: pointer;
   }
 
-  /* Active journey screen */
   .active-card {
     background: linear-gradient(135deg, #7a3500, #5c2800);
     border-radius: 14px;
@@ -553,6 +561,7 @@
     align-items: center;
     gap: 6px;
     margin-bottom: 6px;
+    font-family: var(--font);
   }
 
   .active-dot {
@@ -563,7 +572,7 @@
   }
 
   .active-route {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.85rem;
     font-weight: 700;
     margin-bottom: 4px;
@@ -573,10 +582,11 @@
     font-size: 0.55rem;
     color: rgba(255,255,255,0.6);
     margin-bottom: 10px;
+    font-family: var(--font);
   }
 
   .timer-big {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 1.4rem;
     font-weight: 800;
     color: var(--orange2);
@@ -591,7 +601,7 @@
     width: 100%;
     padding: 11px;
     border-radius: 10px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.65rem;
     font-weight: 800;
     cursor: pointer;
@@ -604,7 +614,7 @@
     width: 100%;
     padding: 13px;
     border-radius: 10px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.8rem;
     font-weight: 800;
     cursor: pointer;
@@ -619,7 +629,6 @@
     50% { box-shadow: 0 4px 30px rgba(229,57,53,0.7); }
   }
 
-  /* Log screen */
   .log-section {
     background: rgba(255,255,255,0.03);
     border-radius: 12px;
@@ -634,6 +643,7 @@
     font-weight: 700;
     margin-bottom: 10px;
     text-transform: uppercase;
+    font-family: var(--font);
   }
 
   .log-item {
@@ -643,6 +653,7 @@
     margin-bottom: 8px;
     font-size: 0.56rem;
     line-height: 1.5;
+    font-family: var(--font);
   }
 
   .log-dot {
@@ -662,12 +673,12 @@
     border-radius: 4px;
     display: inline-block;
     margin-left: 4px;
+    font-family: var(--font);
   }
 
   .sent-tag { background: rgba(34,197,94,0.2); color: #22c55e; }
   .failed-tag { background: rgba(229,57,53,0.2); color: var(--red); }
 
-  /* Phone glow ring */
   .phone-glow {
     position: absolute;
     inset: -20px;
@@ -677,7 +688,6 @@
     z-index: -1;
   }
 
-  /* Floating elements around phone */
   .float-badge {
     position: absolute;
     background: var(--navy2);
@@ -687,6 +697,7 @@
     font-size: 0.7rem;
     white-space: nowrap;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    font-family: var(--font);
   }
 
   .float-badge-1 {
@@ -715,8 +726,8 @@
   }
 
   .badge-icon { margin-right: 5px; }
-  .badge-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.75rem; }
-  .badge-label { font-size: 0.58rem; color: var(--gray); display: block; }
+  .badge-val { font-family: var(--font); font-weight: 700; font-size: 0.75rem; }
+  .badge-label { font-size: 0.58rem; color: var(--gray); display: block; font-family: var(--font); }
 
   /* ===== SECTION STYLES ===== */
   section { padding: 100px 5%; }
@@ -731,6 +742,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    font-family: var(--font);
   }
 
   .section-label::before {
@@ -744,9 +756,10 @@
   .section-title {
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     font-weight: 800;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
     margin-bottom: 16px;
-    line-height: 1.15;
+    line-height: 1.1;
+    font-family: var(--font);
   }
 
   .section-sub {
@@ -754,6 +767,8 @@
     color: var(--gray);
     line-height: 1.7;
     max-width: 600px;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   /* ===== HOW IT WORKS ===== */
@@ -809,9 +824,9 @@
   .step-card:hover::before { opacity: 1; }
 
   .step-number {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 3.5rem;
-    font-weight: 800;
+    font-weight: 900;
     color: rgba(255,255,255,0.04);
     position: absolute;
     top: 10px; right: 20px;
@@ -828,7 +843,7 @@
   }
 
   .step-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 10px;
@@ -838,6 +853,8 @@
     font-size: 0.88rem;
     color: var(--gray);
     line-height: 1.7;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   /* ===== JOURNEY FLOW ANIMATION ===== */
@@ -911,7 +928,7 @@
   .flow-step:hover .flow-circle { transform: scale(1.1); }
 
   .flow-step-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.85rem;
     font-weight: 700;
     margin-bottom: 6px;
@@ -922,6 +939,8 @@
     color: var(--gray);
     line-height: 1.5;
     padding: 0 8px;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   /* ===== FEATURES ===== */
@@ -957,7 +976,7 @@
   }
 
   .feat-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 8px;
@@ -967,6 +986,8 @@
     font-size: 0.85rem;
     color: var(--gray);
     line-height: 1.65;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   /* ===== PIN SECURITY SECTION ===== */
@@ -1010,7 +1031,7 @@
   }
 
   .pin-type-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.95rem;
     font-weight: 700;
     margin-bottom: 5px;
@@ -1020,9 +1041,10 @@
     font-size: 0.82rem;
     color: var(--gray);
     line-height: 1.6;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
-  /* PIN demo visual */
   .pin-demo {
     background: linear-gradient(135deg, var(--navy3), #0a1525);
     border-radius: 24px;
@@ -1044,7 +1066,7 @@
   }
 
   .demo-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 1rem;
     font-weight: 800;
     margin-bottom: 6px;
@@ -1054,6 +1076,8 @@
     font-size: 0.8rem;
     color: var(--gray);
     margin-bottom: 28px;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   .pin-boxes {
@@ -1073,6 +1097,7 @@
     font-weight: 700;
     color: var(--teal);
     transition: all 0.3s;
+    font-family: var(--font);
   }
 
   .pin-box.active {
@@ -1082,7 +1107,7 @@
     transform: scale(1.05);
   }
 
-  .demo-hint { font-size: 0.7rem; color: var(--gray); margin-bottom: 24px; }
+  .demo-hint { font-size: 0.7rem; color: var(--gray); margin-bottom: 24px; font-family: var(--font); }
 
   .demo-activate {
     background: linear-gradient(135deg, var(--teal), #009977);
@@ -1090,7 +1115,7 @@
     border: none;
     padding: 14px 40px;
     border-radius: 12px;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-weight: 800;
     font-size: 0.85rem;
     cursor: pointer;
@@ -1140,10 +1165,11 @@
     color: white;
     font-weight: 700;
     font-size: 0.8rem;
+    font-family: var(--font);
   }
 
-  .sms-from { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: #1a1a1a; }
-  .sms-channel { font-size: 0.65rem; color: #888; }
+  .sms-from { font-family: var(--font); font-weight: 700; font-size: 0.85rem; color: #1a1a1a; }
+  .sms-channel { font-size: 0.65rem; color: #888; font-family: var(--font); }
 
   .sms-bubble {
     background: rgba(0,0,0,0.06);
@@ -1153,14 +1179,16 @@
     color: #1a1a1a;
     line-height: 1.7;
     margin-bottom: 8px;
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   .sms-bubble strong { font-weight: 700; display: block; margin-bottom: 8px; font-size: 0.8rem; }
   .sms-bubble .link { color: #1a73e8; text-decoration: underline; font-size: 0.7rem; }
   .sms-bubble .footer { font-size: 0.68rem; color: #666; margin-top: 8px; font-style: italic; }
-  .sms-bubble .map-thumb { background: #d8ead8; border-radius: 8px; height: 60px; margin-top: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #555; }
+  .sms-bubble .map-thumb { background: #d8ead8; border-radius: 8px; height: 60px; margin-top: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #555; font-family: var(--font); }
 
-  .sms-time { font-size: 0.6rem; color: #999; text-align: right; }
+  .sms-time { font-size: 0.6rem; color: #999; text-align: right; font-family: var(--font); }
 
   /* ===== OFFLINE BADGE ===== */
   .offline-strip {
@@ -1191,7 +1219,7 @@
   .offline-badge-icon { font-size: 2rem; }
 
   .offline-badge-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 0.9rem;
     font-weight: 700;
   }
@@ -1199,6 +1227,8 @@
   .offline-badge-sub {
     font-size: 0.75rem;
     color: var(--gray);
+    font-family: var(--font);
+    font-weight: 400;
   }
 
   /* ===== CTA SECTION ===== */
@@ -1241,6 +1271,7 @@
     transition: all 0.3s;
     text-decoration: none;
     color: white;
+    font-family: var(--font);
   }
 
   .store-btn:hover {
@@ -1250,8 +1281,8 @@
   }
 
   .store-icon { font-size: 1.8rem; }
-  .store-sub { font-size: 0.62rem; color: var(--gray); display: block; }
-  .store-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; display: block; }
+  .store-sub { font-size: 0.62rem; color: var(--gray); display: block; font-family: var(--font); }
+  .store-name { font-family: var(--font); font-weight: 700; font-size: 0.95rem; display: block; }
 
   /* ===== FOOTER ===== */
   footer {
@@ -1260,12 +1291,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: gap;
+    flex-wrap: wrap;
     gap: 20px;
   }
 
-  .footer-text { font-size: 0.8rem; color: var(--gray); }
-  .footer-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; }
+  .footer-text { font-size: 0.8rem; color: var(--gray); font-family: var(--font); }
+  .footer-brand { font-family: var(--font); font-weight: 800; font-size: 1.1rem; }
   .footer-brand span { color: var(--orange); }
 
   /* ===== ANIMATIONS ===== */
@@ -1279,7 +1310,6 @@
     50% { transform: scale(1.4); opacity: 0.6; }
   }
 
-  /* Scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -1318,7 +1348,6 @@
     footer { flex-direction: column; text-align: center; }
   }
 
-  /* ===== TYPING ANIMATION ===== */
   .typing-text::after {
     content: '|';
     animation: blink 0.7s step-end infinite;
@@ -1329,7 +1358,6 @@
     50% { opacity: 0; }
   }
 
-  /* SMS interval demo */
   .interval-demo {
     display: flex;
     gap: 8px;
@@ -1347,6 +1375,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    font-family: var(--font);
   }
 
   .interval-chip.selected, .interval-chip:hover {
@@ -1354,7 +1383,6 @@
     border-color: var(--teal);
   }
 
-  /* Road divider */
   .road-divider {
     height: 60px;
     background: linear-gradient(90deg,
@@ -1421,7 +1449,6 @@
     <div class="phone-wrap">
       <div class="phone-glow"></div>
 
-      <!-- Floating badges -->
       <div class="float-badge float-badge-1">
         <div class="badge-icon">📍</div>
         <div>
@@ -1580,12 +1607,12 @@
           <div class="screen-slide" id="s5">
             <div style="text-align:center;padding:20px 0 10px">
               <div style="font-size:2.5rem;margin-bottom:10px">✅</div>
-              <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--teal)">Journey Ended Safely</div>
+              <div style="font-family:var(--font);font-size:1rem;font-weight:800;color:var(--teal)">Journey Ended Safely</div>
               <div style="font-size:0.65rem;color:var(--gray);margin-top:4px">Jun 06, 2026 · 09:53 PM</div>
             </div>
             <div style="background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:12px;padding:12px;margin-bottom:12px">
-              <div style="font-size:0.62rem;color:var(--gray);margin-bottom:6px;font-weight:600">JOURNEY SUMMARY</div>
-              <div style="font-size:0.65rem;line-height:2">
+              <div style="font-size:0.62rem;color:var(--gray);margin-bottom:6px;font-weight:600;font-family:var(--font)">JOURNEY SUMMARY</div>
+              <div style="font-size:0.65rem;line-height:2;font-family:var(--font)">
                 <div>🗺 <strong>ijebu → lagos</strong></div>
                 <div>🚌 Bus · ADSEWDF</div>
                 <div>⏱ Duration: <strong>12:43</strong></div>
@@ -1598,7 +1625,6 @@
         </div>
       </div>
 
-      <!-- Screen progress dots -->
       <div style="display:flex;justify-content:center;gap:5px;margin-top:10px">
         <div class="sdot active" style="width:20px;height:4px;border-radius:2px;background:var(--teal);transition:all 0.3s"></div>
         <div class="sdot" style="width:8px;height:4px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s"></div>
@@ -1606,7 +1632,7 @@
         <div class="sdot" style="width:8px;height:4px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s"></div>
         <div class="sdot" style="width:8px;height:4px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s"></div>
       </div>
-      <div style="text-align:center;margin-top:8px;font-size:0.62rem;color:var(--gray)">Tap phone to advance →</div>
+      <div style="text-align:center;margin-top:8px;font-size:0.62rem;color:var(--gray);font-family:var(--font)">Tap phone to advance →</div>
     </div>
   </div>
 </section>
@@ -1769,10 +1795,10 @@
     </div>
     <div class="demo-hint">HINT: 2580</div>
     <button class="demo-activate" id="demoActivateBtn" onclick="demoActivate()">🚀 Activate Journey</button>
-    <div id="demoResult" style="margin-top:16px;font-size:0.8rem;color:var(--teal);height:20px;font-weight:600"></div>
+    <div id="demoResult" style="margin-top:16px;font-size:0.8rem;color:var(--teal);height:20px;font-weight:600;font-family:var(--font)"></div>
 
     <div style="margin-top:28px;border-top:1px solid var(--border);padding-top:20px">
-      <div style="font-size:0.7rem;color:var(--gray);margin-bottom:12px">Set your SMS interval:</div>
+      <div style="font-size:0.7rem;color:var(--gray);margin-bottom:12px;font-family:var(--font)">Set your SMS interval:</div>
       <div class="interval-demo">
         <div class="interval-chip" onclick="selectInterval(this)">Every 5 min</div>
         <div class="interval-chip selected" onclick="selectInterval(this)">Every 15 min</div>
@@ -1793,19 +1819,19 @@
       <div style="margin-top:30px;display:flex;flex-direction:column;gap:12px" class="reveal reveal-delay-2">
         <div style="display:flex;align-items:center;gap:12px">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.2);display:flex;align-items:center;justify-content:center">📍</div>
-          <span style="font-size:0.88rem;color:var(--gray)">Google Maps link to real-time GPS location</span>
+          <span style="font-size:0.88rem;color:var(--gray);font-family:var(--font)">Google Maps link to real-time GPS location</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(244,124,32,0.1);border:1px solid rgba(244,124,32,0.2);display:flex;align-items:center;justify-content:center">🚌</div>
-          <span style="font-size:0.88rem;color:var(--gray)">Vehicle type and plate number included</span>
+          <span style="font-size:0.88rem;color:var(--gray);font-family:var(--font)">Vehicle type and plate number included</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);display:flex;align-items:center;justify-content:center">⏱</div>
-          <span style="font-size:0.88rem;color:var(--gray)">ETA, elapsed time, and exact timestamp</span>
+          <span style="font-size:0.88rem;color:var(--gray);font-family:var(--font)">ETA, elapsed time, and exact timestamp</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(229,57,53,0.1);border:1px solid rgba(229,57,53,0.2);display:flex;align-items:center;justify-content:center">✅</div>
-          <span style="font-size:0.88rem;color:var(--gray)">No receiver app required — pure SMS</span>
+          <span style="font-size:0.88rem;color:var(--gray);font-family:var(--font)">No receiver app required — pure SMS</span>
         </div>
       </div>
     </div>
@@ -1936,7 +1962,6 @@
 </footer>
 
 <script>
-  // ===== PHONE SCREEN CYCLING =====
   let currentScreen = 1;
   const totalScreens = 5;
 
@@ -1948,7 +1973,6 @@
     cur.classList.remove('active');
     document.getElementById('s' + next).classList.add('active');
 
-    // Update progress dots
     const dots = document.querySelectorAll('.sdot');
     dots.forEach((d, i) => {
       d.style.width = i === next - 1 ? '20px' : '8px';
@@ -1972,7 +1996,6 @@
     });
   }
 
-  // ===== JOURNEY TIMER =====
   let elapsed = 54;
   setInterval(() => {
     elapsed++;
@@ -1982,7 +2005,6 @@
     if (el) el.textContent = mins + ':' + secs;
   }, 1000);
 
-  // ===== PHONE TIME =====
   function updatePhoneTime() {
     const now = new Date();
     const h = now.getHours().toString().padStart(2, '0');
@@ -1993,12 +2015,10 @@
   updatePhoneTime();
   setInterval(updatePhoneTime, 30000);
 
-  // ===== PIN DEMO =====
   let pinDemoActivated = false;
 
   function demoActivate() {
     if (pinDemoActivated) {
-      // Reset
       const boxes = document.querySelectorAll('#pinBoxes .pin-box');
       boxes.forEach((b, i) => {
         b.classList.remove('active');
@@ -2017,7 +2037,6 @@
       return;
     }
 
-    // Animate PIN entry
     const box4 = document.querySelectorAll('#pinBoxes .pin-box')[3];
     box4.classList.remove('active');
     box4.textContent = '●';
@@ -2029,7 +2048,6 @@
       document.getElementById('demoActivateBtn').textContent = '↩ Reset Demo';
       pinDemoActivated = true;
 
-      // Pulse all boxes green
       document.querySelectorAll('#pinBoxes .pin-box').forEach(b => {
         b.style.borderColor = 'var(--teal)';
         b.style.background = 'rgba(0,212,170,0.15)';
@@ -2043,7 +2061,6 @@
     el.classList.add('selected');
   }
 
-  // ===== SCROLL REVEAL =====
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -2054,7 +2071,6 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Flow steps observer
   const flowObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -2069,12 +2085,10 @@
   const flowEl = document.getElementById('flowSteps');
   if (flowEl) flowObserver.observe(flowEl);
 
-  // ===== AUTO-CYCLE PHONE =====
   let autoCycle = setInterval(() => {
     nextScreen();
   }, 3500);
 
-  // Pause auto-cycle on interaction
   document.getElementById('mainPhone').addEventListener('click', () => {
     clearInterval(autoCycle);
   });
@@ -2082,6 +2096,3 @@
 
 </body>
 </html>
-
-
-

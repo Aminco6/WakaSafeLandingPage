@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy – WakaSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0b1426;
+    --navy2:  #0e1c35;
+    --navy3:  #132040;
+    --orange: #f47c20;
+    --teal:   #00d4aa;
+    --purple: #a855f7;
+    --blue:   #3b82f6;
+    --green:  #22c55e;
+    --red:    #e53935;
+    --white:  #ffffff;
+    --gray:   #8a9bb5;
+    --border: rgba(255,255,255,0.08);
+    --card:   rgba(255,255,255,0.04);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3,h4 { font-family:'Syne',sans-serif; }
+
+  /* ── PROGRESS BAR ── */
+  #readProgress {
+    position:fixed; top:0; left:0; height:3px;
+    background:linear-gradient(90deg,var(--teal),var(--purple));
+    z-index:999; width:0%; transition:width .1s;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position:sticky; top:0; z-index:200;
+    padding:16px 5%;
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(11,20,38,.94);
+    backdrop-filter:blur(22px);
+    border-bottom:1px solid var(--border);
+  }
+
+  .nav-logo {
+    display:flex; align-items:center; gap:10px;
+    font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;
+    text-decoration:none; color:var(--white);
+  }
+  .nav-logo span { color:var(--orange); }
+
+  .logo-icon {
+    width:34px; height:34px;
+    background:linear-gradient(135deg,#1a3a6e,#0e2552);
+    border-radius:8px; border:1.5px solid rgba(244,124,32,.4);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  .nav-right { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .nav-date  { font-size:.72rem; color:var(--gray); }
+  .nav-badge {
+    background:rgba(168,85,247,.15); border:1px solid rgba(168,85,247,.3);
+    color:var(--purple); font-size:.65rem; font-weight:700;
+    padding:3px 10px; border-radius:20px; letter-spacing:.5px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background:linear-gradient(160deg,var(--navy3) 0%,var(--navy) 65%);
+    border-bottom:1px solid var(--border);
+    padding:72px 5% 60px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; left:-180px; bottom:-120px;
+    width:550px; height:550px;
+    background:radial-gradient(circle,rgba(168,85,247,.07) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero::after {
+    content:'';
+    position:absolute; right:-120px; top:-80px;
+    width:500px; height:500px;
+    background:radial-gradient(circle,rgba(0,212,170,.06) 0%,transparent 70%);
+    pointer-events:none;
+  }
+
+  .hero-inner { max-width:800px; position:relative; z-index:1; }
+
+  .hero-eyebrow {
+    display:inline-flex; align-items:center; gap:7px;
+    background:rgba(168,85,247,.1); border:1px solid rgba(168,85,247,.25);
+    border-radius:20px; padding:4px 14px;
+    font-size:.72rem; font-weight:700; color:var(--purple);
+    letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;
+  }
+
+  .hero h1 {
+    font-size:clamp(2rem,4.5vw,3.2rem);
+    font-weight:800; letter-spacing:-1.2px; line-height:1.1;
+    margin-bottom:16px;
+  }
+  .hero h1 .accent { color:var(--teal); }
+
+  .hero-sub {
+    font-size:.97rem; color:var(--gray);
+    max-width:580px; margin-bottom:30px; line-height:1.7;
+  }
+
+  .hero-meta { display:flex; flex-wrap:wrap; gap:20px; }
+  .meta-item  { display:flex; align-items:center; gap:7px; font-size:.78rem; color:var(--gray); }
+  .meta-dot   { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    display:flex; gap:0;
+    border-bottom:1px solid var(--border);
+    overflow-x:auto;
+  }
+
+  .trust-item {
+    flex:1; min-width:160px;
+    display:flex; flex-direction:column; align-items:center;
+    gap:8px; padding:28px 20px;
+    border-right:1px solid var(--border);
+    text-align:center;
+    transition:background .2s;
+  }
+  .trust-item:last-child { border-right:none; }
+  .trust-item:hover { background:var(--card); }
+
+  .trust-icon { font-size:1.6rem; }
+  .trust-title { font-family:'Syne',sans-serif; font-size:.82rem; font-weight:700; }
+  .trust-sub   { font-size:.7rem; color:var(--gray); line-height:1.4; }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display:grid;
+    grid-template-columns:270px 1fr;
+    gap:0;
+    max-width:1200px;
+    margin:0 auto;
+    padding:52px 5% 90px;
+    align-items:start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position:sticky; top:80px;
+    padding-right:36px;
+  }
+
+  .sidebar-section { margin-bottom:28px; }
+
+  .sidebar-label {
+    font-size:.6rem; font-weight:700;
+    color:var(--gray); letter-spacing:1.5px;
+    text-transform:uppercase; margin-bottom:10px;
+    padding-bottom:8px; border-bottom:1px solid var(--border);
+  }
+
+  .toc-list { list-style:none; display:flex; flex-direction:column; gap:2px; }
+
+  .toc-list a {
+    display:flex; align-items:center; gap:8px;
+    padding:7px 10px; border-radius:8px;
+    font-size:.78rem; color:var(--gray);
+    text-decoration:none; transition:all .2s;
+    border-left:2px solid transparent;
+  }
+  .toc-list a:hover,
+  .toc-list a.active {
+    color:var(--white); background:var(--card);
+    border-left-color:var(--teal); padding-left:14px;
+  }
+  .toc-list a .toc-num {
+    font-size:.6rem; font-weight:800;
+    color:var(--orange); min-width:16px;
+  }
+  .toc-list a .toc-icon { font-size:.85rem; }
+
+  /* quick facts card */
+  .quick-facts {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:18px;
+  }
+  .qf-row {
+    display:flex; align-items:flex-start; gap:10px;
+    padding:8px 0; border-bottom:1px solid var(--border);
+    font-size:.75rem; line-height:1.5;
+  }
+  .qf-row:last-child { border-bottom:none; padding-bottom:0; }
+  .qf-icon  { font-size:1rem; flex-shrink:0; margin-top:1px; }
+  .qf-label { font-weight:600; color:var(--white); display:block; }
+  .qf-val   { color:var(--gray); display:block; }
+
+  /* ── CONTENT ── */
+  .content { min-width:0; }
+
+  /* summary banner */
+  .summary-banner {
+    background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(168,85,247,.06));
+    border:1px solid rgba(0,212,170,.2);
+    border-radius:18px; padding:28px 30px; margin-bottom:52px;
+  }
+  .summary-banner h3 {
+    font-size:1rem; font-weight:800; margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .summary-banner h3::before {
+    content:'🛡️'; font-size:1.1rem;
+  }
+  .summary-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .summary-item {
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:.82rem; color:rgba(255,255,255,.8); line-height:1.5;
+  }
+  .summary-item::before {
+    content:'✓'; color:var(--teal); font-weight:700;
+    flex-shrink:0; margin-top:1px;
+  }
+
+  /* section */
+  .pp-section {
+    margin-bottom:56px;
+    scroll-margin-top:100px;
+  }
+
+  .section-header {
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:22px; padding-bottom:16px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .section-icon {
+    width:42px; height:42px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; flex-shrink:0;
+  }
+
+  .section-meta { flex:1; }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    letter-spacing:-.3px; margin-bottom:2px;
+  }
+  .section-subtitle { font-size:.72rem; color:var(--gray); }
+
+  .pp-section p {
+    font-size:.92rem; color:rgba(255,255,255,.78);
+    margin-bottom:14px; line-height:1.75;
+  }
+  .pp-section p:last-child { margin-bottom:0; }
+
+  /* data table */
+  .data-table {
+    width:100%; border-collapse:collapse;
+    margin:18px 0; font-size:.85rem;
+    border-radius:12px; overflow:hidden;
+  }
+  .data-table thead th {
+    background:rgba(255,255,255,.06);
+    padding:12px 16px; text-align:left;
+    font-family:'Syne',sans-serif; font-size:.72rem;
+    font-weight:700; color:var(--gray);
+    letter-spacing:.8px; text-transform:uppercase;
+    border-bottom:1px solid var(--border);
+  }
+  .data-table tbody tr {
+    border-bottom:1px solid rgba(255,255,255,.05);
+    transition:background .15s;
+  }
+  .data-table tbody tr:last-child { border-bottom:none; }
+  .data-table tbody tr:hover { background:rgba(255,255,255,.03); }
+  .data-table td {
+    padding:12px 16px; color:rgba(255,255,255,.75);
+    vertical-align:top; line-height:1.55;
+  }
+  .data-table td:first-child { font-weight:600; color:var(--white); }
+
+  /* clause list */
+  .clause-list {
+    list-style:none;
+    display:flex; flex-direction:column; gap:8px;
+    margin:14px 0;
+  }
+  .clause-list li {
+    display:flex; gap:12px; align-items:flex-start;
+    font-size:.9rem; color:rgba(255,255,255,.75);
+    padding:12px 16px; background:var(--card);
+    border-radius:10px; border:1px solid var(--border);
+    line-height:1.6; transition:border-color .2s;
+  }
+  .clause-list li:hover { border-color:rgba(255,255,255,.14); }
+  .clause-list li .li-icon { flex-shrink:0; font-size:.9rem; margin-top:1px; }
+
+  /* permission card */
+  .perm-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:14px;
+    margin:18px 0;
+  }
+  .perm-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:18px;
+    transition:all .3s;
+  }
+  .perm-card:hover {
+    border-color:rgba(0,212,170,.25);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.2);
+  }
+  .perm-header {
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:10px;
+  }
+  .perm-icon {
+    width:36px; height:36px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem; flex-shrink:0;
+  }
+  .perm-name { font-family:'Syne',sans-serif; font-size:.88rem; font-weight:700; }
+  .perm-required {
+    font-size:.6rem; font-weight:700; padding:2px 8px;
+    border-radius:10px; margin-left:auto;
+  }
+  .perm-desc { font-size:.78rem; color:var(--gray); line-height:1.55; }
+
+  /* callout boxes */
+  .box {
+    border-radius:12px; padding:18px 20px;
+    margin:18px 0; font-size:.88rem;
+    color:rgba(255,255,255,.82); line-height:1.7;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .box-icon { font-size:1.3rem; flex-shrink:0; margin-top:1px; }
+  .box-body { flex:1; }
+  .box-title { font-family:'Syne',sans-serif; font-weight:700; font-size:.88rem; margin-bottom:5px; }
+
+  .box-teal   { background:rgba(0,212,170,.07); border:1px solid rgba(0,212,170,.22); border-left:3px solid var(--teal); }
+  .box-orange { background:rgba(244,124,32,.07); border:1px solid rgba(244,124,32,.22); border-left:3px solid var(--orange); }
+  .box-red    { background:rgba(229,57,53,.07); border:1px solid rgba(229,57,53,.22); border-left:3px solid var(--red); }
+  .box-blue   { background:rgba(59,130,246,.07); border:1px solid rgba(59,130,246,.22); border-left:3px solid var(--blue); }
+  .box-purple { background:rgba(168,85,247,.07); border:1px solid rgba(168,85,247,.22); border-left:3px solid var(--purple); }
+  .box-green  { background:rgba(34,197,94,.07); border:1px solid rgba(34,197,94,.22); border-left:3px solid var(--green); }
+
+  .box-teal   .box-title { color:var(--teal); }
+  .box-orange .box-title { color:var(--orange); }
+  .box-red    .box-title { color:var(--red); }
+  .box-blue   .box-title { color:#60a5fa; }
+  .box-purple .box-title { color:var(--purple); }
+  .box-green  .box-title { color:var(--green); }
+
+  /* sub heading */
+  .sub-heading {
+    font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700;
+    color:var(--white); margin:24px 0 10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .sub-heading::before {
+    content:'';
+    display:block; width:3px; height:16px;
+    background:var(--teal); border-radius:2px;
+    flex-shrink:0;
+  }
+
+  /* retention table visual */
+  .retention-list {
+    display:flex; flex-direction:column; gap:10px; margin:16px 0;
+  }
+  .ret-item {
+    display:flex; align-items:center; gap:14px;
+    padding:14px 18px;
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px;
+  }
+  .ret-dot {
+    width:10px; height:10px; border-radius:50%; flex-shrink:0;
+  }
+  .ret-label {
+    font-weight:600; font-size:.85rem; flex:1;
+  }
+  .ret-period {
+    font-size:.75rem; color:var(--gray);
+    background:rgba(255,255,255,.06); padding:3px 12px;
+    border-radius:20px; border:1px solid var(--border);
+  }
+
+  /* rights grid */
+  .rights-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:14px; margin:18px 0;
+  }
+  .right-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:18px;
+    text-align:center; transition:all .3s;
+    cursor:default;
+  }
+  .right-card:hover {
+    border-color:rgba(168,85,247,.3);
+    transform:translateY(-3px);
+  }
+  .right-icon { font-size:1.6rem; margin-bottom:10px; }
+  .right-title {
+    font-family:'Syne',sans-serif; font-size:.85rem;
+    font-weight:700; margin-bottom:6px;
+  }
+  .right-desc { font-size:.75rem; color:var(--gray); line-height:1.5; }
+
+  /* contact card */
+  .contact-cards {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px; margin-top:20px;
+  }
+  .contact-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:22px; transition:all .3s;
+  }
+  .contact-card:hover {
+    border-color:rgba(0,212,170,.25);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.2);
+  }
+  .contact-card-icon { font-size:1.8rem; margin-bottom:12px; }
+  .contact-card-title {
+    font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem;
+    margin-bottom:6px;
+  }
+  .contact-card-val {
+    font-size:.82rem; color:var(--teal);
+    text-decoration:none; display:block;
+    margin-bottom:4px;
+  }
+  .contact-card-val:hover { text-decoration:underline; }
+  .contact-card-sub { font-size:.75rem; color:var(--gray); }
+
+  /* divider */
+  hr.divider {
+    border:none; border-top:1px solid var(--border); margin:52px 0;
+  }
+
+  /* acceptance */
+  .acceptance {
+    background:linear-gradient(135deg,var(--navy3),#0a1525);
+    border:1px solid var(--border); border-radius:20px;
+    padding:40px 32px; text-align:center; margin-top:60px;
+    position:relative; overflow:hidden;
+  }
+  .acceptance::before {
+    content:'';
+    position:absolute; top:-80px; left:50%;
+    transform:translateX(-50%);
+    width:400px; height:300px;
+    background:radial-gradient(circle,rgba(168,85,247,.08) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .acceptance h3 {
+    font-size:1.2rem; font-weight:800; margin-bottom:10px;
+    position:relative;
+  }
+  .acceptance p {
+    font-size:.88rem; color:var(--gray); max-width:520px;
+    margin:0 auto 28px; line-height:1.7; position:relative;
+  }
+  .btn-teal {
+    background:linear-gradient(135deg,var(--teal),#009977);
+    color:var(--navy); border:none;
+    padding:13px 32px; border-radius:12px;
+    font-family:'Syne',sans-serif; font-weight:800; font-size:.87rem;
+    cursor:pointer; transition:all .2s; margin:5px;
+    box-shadow:0 8px 24px rgba(0,212,170,.25);
+  }
+  .btn-teal:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,212,170,.35); }
+  .btn-outline {
+    background:transparent; color:var(--gray);
+    border:1.5px solid var(--border); padding:13px 28px;
+    border-radius:12px;
+    font-family:'Syne',sans-serif; font-weight:600; font-size:.87rem;
+    cursor:pointer; transition:all .2s; margin:5px;
+  }
+  .btn-outline:hover { border-color:rgba(255,255,255,.25); color:var(--white); }
+
+  /* footer */
+  footer {
+    border-top:1px solid var(--border);
+    padding:32px 5%;
+    display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-brand { font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; }
+  .footer-brand span { color:var(--orange); }
+  .footer-links { display:flex; gap:20px; }
+  .footer-links a {
+    font-size:.75rem; color:var(--gray);
+    text-decoration:none; transition:color .2s;
+  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-text { font-size:.75rem; color:var(--gray); }
+
+  /* scroll reveal */
+  .reveal {
+    opacity:0; transform:translateY(22px);
+    transition:all .65s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-d1 { transition-delay:.1s; }
+  .reveal-d2 { transition-delay:.2s; }
+  .reveal-d3 { transition-delay:.3s; }
+
+  /* responsive */
+  @media(max-width:900px){
+    .layout { grid-template-columns:1fr; padding:32px 5% 60px; }
+    .sidebar { position:static; padding-right:0; margin-bottom:36px; }
+    .toc-list { flex-direction:row; flex-wrap:wrap; }
+    .toc-list a { padding:5px 10px; border-left:none; border-bottom:2px solid transparent; font-size:.72rem; }
+    .toc-list a:hover,.toc-list a.active { border-left-color:transparent; border-bottom-color:var(--teal); padding-left:10px; }
+    .perm-grid,.summary-grid { grid-template-columns:1fr; }
+    .trust-strip { flex-wrap:wrap; }
+    .trust-item { min-width:50%; }
+  }
+  @media(max-width:600px){
+    .hero { padding:52px 5% 40px; }
+    .acceptance { padding:28px 18px; }
+    footer { flex-direction:column; text-align:center; }
+    .footer-links { justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<div id="readProgress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.25C17.25 23.15 21 18.25 21 13V7L12 2z" fill="#f47c20" opacity=".9"/>
+        <circle cx="12" cy="9" r="2" fill="white"/>
+        <path d="M8 18c1-2 2-3 4-3s3 1 4 3" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    Waka<span>Safe</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-date">Last updated: June 2026</span>
+    <span class="nav-badge">PRIVACY</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🔒 Privacy Document</div>
+    <h1>Privacy <span class="accent">Policy</span></h1>
+    <p class="hero-sub">
+      WakaSafe is built on trust. This policy explains exactly what data we collect, why we collect it, how we use it, and how you can control it. We believe in complete transparency — no hidden clauses, no surprises.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="meta-dot" style="background:var(--teal)"></div>Effective: June 2026</div>
+      <div class="meta-item"><div class="meta-dot" style="background:var(--orange)"></div>Version 1.0</div>
+      <div class="meta-item"><div class="meta-dot" style="background:var(--purple)"></div>Voddic LTD, Nigeria</div>
+      <div class="meta-item"><div class="meta-dot" style="background:var(--green)"></div>No data sold. Ever.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <div class="trust-icon">🚫</div>
+    <div class="trust-title">No Data Selling</div>
+    <div class="trust-sub">We never sell your personal information to anyone</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">📍</div>
+    <div class="trust-title">Location When Active</div>
+    <div class="trust-sub">GPS only accessed during live journeys</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">📱</div>
+    <div class="trust-title">SMS for Safety Only</div>
+    <div class="trust-sub">No marketing or promotional SMS, ever</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">🔐</div>
+    <div class="trust-title">Encrypted Storage</div>
+    <div class="trust-sub">Industry-standard encryption at rest and in transit</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">🗑️</div>
+    <div class="trust-title">Delete Anytime</div>
+    <div class="trust-sub">Request full account deletion at any time</div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Contents</div>
+      <ul class="toc-list" id="toc">
+        <li><a href="#s1" class="toc-link"><span class="toc-icon">ℹ️</span><span class="toc-num">01</span>Introduction</a></li>
+        <li><a href="#s2" class="toc-link"><span class="toc-icon">📋</span><span class="toc-num">02</span>Information We Collect</a></li>
+        <li><a href="#s3" class="toc-link"><span class="toc-icon">⚙️</span><span class="toc-num">03</span>How We Use Information</a></li>
+        <li><a href="#s4" class="toc-link"><span class="toc-icon">📍</span><span class="toc-num">04</span>Background Location</a></li>
+        <li><a href="#s5" class="toc-link"><span class="toc-icon">📱</span><span class="toc-num">05</span>SMS Permission</a></li>
+        <li><a href="#s6" class="toc-link"><span class="toc-icon">👥</span><span class="toc-num">06</span>Contact Permission</a></li>
+        <li><a href="#s7" class="toc-link"><span class="toc-icon">💳</span><span class="toc-num">07</span>Subscription & Payments</a></li>
+        <li><a href="#s8" class="toc-link"><span class="toc-icon">🤝</span><span class="toc-num">08</span>Data Sharing</a></li>
+        <li><a href="#s9" class="toc-link"><span class="toc-icon">🗃️</span><span class="toc-num">09</span>Data Retention</a></li>
+        <li><a href="#s10" class="toc-link"><span class="toc-icon">🔒</span><span class="toc-num">10</span>Security</a></li>
+        <li><a href="#s11" class="toc-link"><span class="toc-icon">⚖️</span><span class="toc-num">11</span>Your Rights</a></li>
+        <li><a href="#s12" class="toc-link"><span class="toc-icon">👶</span><span class="toc-num">12</span>Children's Privacy</a></li>
+        <li><a href="#s13" class="toc-link"><span class="toc-icon">🔗</span><span class="toc-num">13</span>Third-Party Services</a></li>
+        <li><a href="#s14" class="toc-link"><span class="toc-icon">🔄</span><span class="toc-num">14</span>Policy Changes</a></li>
+        <li><a href="#s15" class="toc-link"><span class="toc-icon">✉️</span><span class="toc-num">15</span>Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Quick Facts</div>
+      <div class="quick-facts">
+        <div class="qf-row">
+          <div class="qf-icon">🏢</div>
+          <div><span class="qf-label">Controller</span><span class="qf-val">Voddic LTD, Nigeria</span></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-icon">📧</div>
+          <div><span class="qf-label">Contact</span><span class="qf-val">support@wakasafe.com</span></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-icon">🌐</div>
+          <div><span class="qf-label">Website</span><span class="qf-val">wakasafe.com</span></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-icon">⚖️</div>
+          <div><span class="qf-label">Jurisdiction</span><span class="qf-val">Nigerian Law</span></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-icon">🔞</div>
+          <div><span class="qf-label">Min. Age</span><span class="qf-val">13 years</span></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-icon">🗓️</div>
+          <div><span class="qf-label">Last Update</span><span class="qf-val">June 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- Summary banner -->
+    <div class="summary-banner reveal">
+      <h3>Privacy at a Glance</h3>
+      <div class="summary-grid">
+        <div class="summary-item">We only collect data necessary to provide safety tracking services</div>
+        <div class="summary-item">Your location is accessed only during an active journey</div>
+        <div class="summary-item">SMS is sent on your behalf — only for safety notifications</div>
+        <div class="summary-item">We never sell, rent, or trade your personal information</div>
+        <div class="summary-item">Emergency contacts are only used to send you safety updates</div>
+        <div class="summary-item">You can request account deletion at any time</div>
+        <div class="summary-item">All payment processing is handled by Paystack — we store no card data</div>
+        <div class="summary-item">We comply with applicable Nigerian data protection regulations</div>
+      </div>
+    </div>
+
+    <!-- S1: Introduction -->
+    <div class="pp-section reveal" id="s1">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">ℹ️</div>
+        <div class="section-meta">
+          <div class="section-title">Introduction</div>
+          <div class="section-subtitle">Who we are and why this policy matters</div>
+        </div>
+      </div>
+      <p>WakaSafe is a personal safety and journey-monitoring application developed by <strong>Voddic LTD</strong>, a technology company based in Nigeria. WakaSafe is designed to help users keep trusted contacts informed during travel and emergency situations — operating primarily through offline SMS-based GPS location sharing.</p>
+      <p>This Privacy Policy explains in clear terms what personal information we collect from you when you use the WakaSafe application, how that information is used, stored, protected, and shared. It also describes your rights with respect to your personal data.</p>
+      <div class="box box-teal">
+        <div class="box-icon">🛡️</div>
+        <div class="box-body">
+          <div class="box-title">Your Consent</div>
+          By downloading, installing, registering for, or using WakaSafe, you confirm that you have read and understood this Privacy Policy and agree to the collection and use of your information as described herein. If you do not agree, please do not use the application.
+        </div>
+      </div>
+      <p>This policy applies to the WakaSafe Android application and all associated services operated by Voddic LTD. It does not apply to third-party services integrated into WakaSafe, such as Paystack, which have their own separate privacy policies.</p>
+    </div>
+
+    <!-- S2: Information We Collect -->
+    <div class="pp-section reveal" id="s2">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">📋</div>
+        <div class="section-meta">
+          <div class="section-title">Information We Collect</div>
+          <div class="section-subtitle">What data WakaSafe gathers and why</div>
+        </div>
+      </div>
+      <p>We collect only the information necessary to deliver WakaSafe's core safety services. Below is a complete breakdown of every category of data we may collect.</p>
+
+      <h3 class="sub-heading">Account Information</h3>
+      <p>When you create a WakaSafe account, we collect the following to identify you and manage your access to the service:</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Data Field</th><th>Purpose</th><th>Required?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Full name</td><td>Personalise your dashboard and safety messages</td><td>✓ Yes</td></tr>
+          <tr><td>Phone number</td><td>Primary account identifier and SMS communications</td><td>✓ Yes</td></tr>
+          <tr><td>Password (encrypted)</td><td>Secure account authentication</td><td>✓ Yes</td></tr>
+          <tr><td>Google account info</td><td>Alternative sign-in method via Google Sign-In</td><td>Optional</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-heading">Emergency Contacts</h3>
+      <p>To enable journey safety notifications, WakaSafe stores the following information about your emergency contacts:</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">👤</span><strong>Contact name</strong> — Used to identify and display the contact within the app</li>
+        <li><span class="li-icon">📞</span><strong>Contact phone number</strong> — Used exclusively to send automated SMS safety updates on your behalf. Emergency contacts are never used for any other purpose.</li>
+      </ul>
+      <div class="box box-orange">
+        <div class="box-icon">⚠️</div>
+        <div class="box-body">
+          <div class="box-title">Your Responsibility</div>
+          You must obtain prior consent from every individual before adding them as an emergency contact. By adding a number, you confirm that person has agreed to receive location SMS updates from WakaSafe on your behalf.
+        </div>
+      </div>
+
+      <h3 class="sub-heading">Location Information</h3>
+      <p>WakaSafe collects your GPS location under the following specific circumstances only:</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">🚀</span>When you start a journey and location access is required to record your starting point</li>
+        <li><span class="li-icon">🔄</span>At each SMS interval during an active journey to capture and transmit your current coordinates</li>
+        <li><span class="li-icon">🆘</span>When you activate an SOS or distress emergency alert, to include your precise location in the emergency message</li>
+        <li><span class="li-icon">🌙</span>In the background while a journey is marked as active, so your contacts continue receiving updates even if you are not actively using the app</li>
+      </ul>
+      <div class="box box-teal">
+        <div class="box-icon">✅</div>
+        <div class="box-body">
+          <div class="box-title">Location is NOT used for:</div>
+          Advertising, profiling, behaviour analysis, marketing, or any purpose other than providing real-time safety updates to your designated emergency contacts.
+        </div>
+      </div>
+
+      <h3 class="sub-heading">SMS Information</h3>
+      <p>WakaSafe sends SMS messages directly from your device. The application uses your device's SMS capability to dispatch the following types of messages:</p>
+      <table class="data-table">
+        <thead><tr><th>SMS Type</th><th>Trigger</th><th>Recipients</th></tr></thead>
+        <tbody>
+          <tr><td>Journey Start</td><td>Activating a journey with your start PIN</td><td>All emergency contacts</td></tr>
+          <tr><td>Location Update</td><td>At each user-set interval during an active journey</td><td>All emergency contacts</td></tr>
+          <tr><td>Journey End</td><td>Ending a journey with your end PIN</td><td>All emergency contacts</td></tr>
+          <tr><td>SOS Emergency</td><td>Pressing SOS button or using distress PIN</td><td>All emergency contacts</td></tr>
+        </tbody>
+      </table>
+      <p><strong>WakaSafe does not read, access, or process any personal SMS conversations or messages</strong> unrelated to WakaSafe's own operations. SMS permission is strictly one-directional — outbound only.</p>
+
+      <h3 class="sub-heading">Device Information</h3>
+      <p>For security, fraud prevention, and service improvement purposes, we may collect limited technical information about your device, including:</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">📱</span>Device model and manufacturer</li>
+        <li><span class="li-icon">🤖</span>Android OS version</li>
+        <li><span class="li-icon">🔖</span>WakaSafe app version number</li>
+        <li><span class="li-icon">🔑</span>Unique device identifiers required for security and fraud prevention purposes</li>
+      </ul>
+    </div>
+
+    <!-- S3: How We Use Information -->
+    <div class="pp-section reveal" id="s3">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">⚙️</div>
+        <div class="section-meta">
+          <div class="section-title">How We Use Your Information</div>
+          <div class="section-subtitle">The specific purposes behind every data use</div>
+        </div>
+      </div>
+      <p>We use the information we collect for clearly defined purposes only. We do not use your data for any purpose not listed here without first obtaining your explicit consent.</p>
+      <table class="data-table">
+        <thead><tr><th>Purpose</th><th>Data Used</th><th>Legal Basis</th></tr></thead>
+        <tbody>
+          <tr><td>Create and manage your account</td><td>Name, phone, password</td><td>Contract performance</td></tr>
+          <tr><td>Verify active subscription status</td><td>Account info, payment records</td><td>Contract performance</td></tr>
+          <tr><td>Deliver journey monitoring services</td><td>Location data, journey details</td><td>Contract performance</td></tr>
+          <tr><td>Send emergency alerts to contacts</td><td>Location, contact numbers</td><td>Vital interests / consent</td></tr>
+          <tr><td>Notify emergency contacts of journey status</td><td>Location, contact numbers</td><td>Consent</td></tr>
+          <tr><td>Improve app reliability and performance</td><td>Device info, crash reports</td><td>Legitimate interests</td></tr>
+          <tr><td>Detect and prevent abuse or fraud</td><td>Device identifiers, usage patterns</td><td>Legitimate interests</td></tr>
+          <tr><td>Provide customer support</td><td>Account info, communications</td><td>Contract performance</td></tr>
+          <tr><td>Comply with legal obligations</td><td>Any relevant data</td><td>Legal obligation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- S4: Background Location -->
+    <div class="pp-section reveal" id="s4">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">📍</div>
+        <div class="section-meta">
+          <div class="section-title">Background Location Usage</div>
+          <div class="section-subtitle">When and why WakaSafe accesses location in the background</div>
+        </div>
+      </div>
+      <p>WakaSafe requests background location access solely to support the core safety function of the application. Background location is a critical feature for traveler safety in areas with unreliable network conditions — it ensures your contacts continue to receive updates even if your phone screen is off or you are unable to interact with the app.</p>
+      <div class="box box-blue">
+        <div class="box-icon">📍</div>
+        <div class="box-body">
+          <div class="box-title">Google Play Store Disclosure</div>
+          WakaSafe collects location data to enable emergency contact notifications during active journeys, even when the app is closed or not in use. This background location access is required for the application's primary safety function and is disclosed to Google Play in accordance with their background location policy.
+        </div>
+      </div>
+      <h3 class="sub-heading">Background location is ONLY active when:</h3>
+      <ul class="clause-list">
+        <li><span class="li-icon">✅</span>A journey has been explicitly started by you using your start PIN</li>
+        <li><span class="li-icon">✅</span>The SMS interval timer is actively running and scheduled updates are pending</li>
+        <li><span class="li-icon">✅</span>An SOS emergency alert has been triggered</li>
+      </ul>
+      <h3 class="sub-heading">Background location is NEVER used for:</h3>
+      <ul class="clause-list">
+        <li><span class="li-icon">🚫</span>Advertising, targeting, or user profiling</li>
+        <li><span class="li-icon">🚫</span>Passive monitoring when no journey is active</li>
+        <li><span class="li-icon">🚫</span>Sharing your location with Voddic LTD without your direct action</li>
+        <li><span class="li-icon">🚫</span>Any commercial purpose beyond delivering safety notifications</li>
+      </ul>
+      <p>Background location access automatically ceases when a journey is ended (via end PIN or distress PIN) or if the application is manually closed during a non-active state.</p>
+    </div>
+
+    <!-- S5: SMS Permission -->
+    <div class="pp-section reveal" id="s5">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">📱</div>
+        <div class="section-meta">
+          <div class="section-title">SMS Permission Usage</div>
+          <div class="section-subtitle">How WakaSafe uses your device's SMS capability</div>
+        </div>
+      </div>
+      <p>WakaSafe requires SEND_SMS permission to deliver its core safety function: broadcasting your location and journey status to emergency contacts without requiring an internet connection.</p>
+      <div class="perm-grid">
+        <div class="perm-card">
+          <div class="perm-header">
+            <div class="perm-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">✅</div>
+            <div class="perm-name">Permitted SMS Uses</div>
+          </div>
+          <div class="perm-desc">
+            Journey start notifications · Periodic location updates · Journey completion messages · SOS emergency alerts to designated contacts
+          </div>
+        </div>
+        <div class="perm-card">
+          <div class="perm-header">
+            <div class="perm-icon" style="background:rgba(229,57,53,.1);border:1px solid rgba(229,57,53,.2)">🚫</div>
+            <div class="perm-name">Prohibited SMS Uses</div>
+          </div>
+          <div class="perm-desc">
+            Advertising · Promotions · Marketing · Reading personal messages · Mass communications · Any purpose outside safety notifications
+          </div>
+        </div>
+      </div>
+      <div class="box box-orange">
+        <div class="box-icon">💰</div>
+        <div class="box-body">
+          <div class="box-title">SMS Charges Are Your Responsibility</div>
+          All SMS messages sent by WakaSafe are dispatched from your device using your SIM card and airtime balance. Standard SMS charges from your mobile network operator (MTN, Airtel, Glo, 9mobile, etc.) will apply to every message sent. WakaSafe is not responsible for any charges incurred.
+        </div>
+      </div>
+    </div>
+
+    <!-- S6: Contact Permission -->
+    <div class="pp-section reveal" id="s6">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2)">👥</div>
+        <div class="section-meta">
+          <div class="section-title">Contact Permission Usage</div>
+          <div class="section-subtitle">Optional access to your device address book</div>
+        </div>
+      </div>
+      <p>Access to your device's contacts is entirely <strong>optional</strong>. WakaSafe may request READ_CONTACTS permission solely as a convenience feature — to allow you to select emergency contacts directly from your address book rather than typing phone numbers manually.</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">📖</span>Contact access is only used to display a selectable list of contacts within the emergency contact setup screen</li>
+        <li><span class="li-icon">🔒</span>Voddic does not upload, sync, or store your full contact list on our servers</li>
+        <li><span class="li-icon">💾</span>Only the name and number of contacts you explicitly select and save as emergency contacts are retained</li>
+        <li><span class="li-icon">🚫</span>Your contacts are never shared with, sold to, or accessed by advertisers or any third party</li>
+        <li><span class="li-icon">❌</span>You can deny this permission and manually enter emergency contact numbers instead — full app functionality is retained</li>
+      </ul>
+    </div>
+
+    <!-- S7: Subscription & Payments -->
+    <div class="pp-section reveal" id="s7">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">💳</div>
+        <div class="section-meta">
+          <div class="section-title">Subscription &amp; Payment Information</div>
+          <div class="section-subtitle">How we handle billing and financial data</div>
+        </div>
+      </div>
+      <p>WakaSafe operates a subscription model to sustain and improve the service. All payment transactions are processed through <strong>Paystack</strong>, a PCI-DSS compliant payment processing platform widely used across Africa.</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">🔐</span>WakaSafe does not store, access, or process your payment card details directly</li>
+        <li><span class="li-icon">🧾</span>Transaction reference numbers and subscription status records are maintained to verify your active subscription</li>
+        <li><span class="li-icon">🏦</span>All payment data is governed by Paystack's Privacy Policy — we encourage you to review it at paystack.com</li>
+        <li><span class="li-icon">📅</span>Subscription expiry dates are stored to enforce access controls within the app</li>
+      </ul>
+      <div class="box box-blue">
+        <div class="box-icon">ℹ️</div>
+        <div class="box-body">
+          <div class="box-title">What We Keep</div>
+          We only retain a record that payment was made, when it expires, and the transaction reference from Paystack. No card numbers, CVVs, or banking details are ever stored on WakaSafe's servers.
+        </div>
+      </div>
+    </div>
+
+    <!-- S8: Data Sharing -->
+    <div class="pp-section reveal" id="s8">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">🤝</div>
+        <div class="section-meta">
+          <div class="section-title">Data Sharing</div>
+          <div class="section-subtitle">Who can access your information and under what conditions</div>
+        </div>
+      </div>
+      <div class="box box-green">
+        <div class="box-icon">🚫</div>
+        <div class="box-body">
+          <div class="box-title">We Do Not Sell Your Data</div>
+          WakaSafe does not sell, rent, lease, or otherwise commercially share your personal information with any third party for their own marketing or commercial purposes. This is an absolute commitment.
+        </div>
+      </div>
+      <p>Your information may only be shared in the following limited and clearly defined circumstances:</p>
+      <table class="data-table">
+        <thead><tr><th>Recipient</th><th>Data Shared</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Your emergency contacts</td><td>GPS location, journey details, vehicle info</td><td>Core safety service — initiated by you</td></tr>
+          <tr><td>Paystack</td><td>Payment transaction data</td><td>Subscription payment processing</td></tr>
+          <tr><td>Cloud infrastructure providers</td><td>Encrypted account and journey data</td><td>Hosting and service delivery</td></tr>
+          <tr><td>Law enforcement / legal authorities</td><td>As legally required</td><td>Legal obligation or court order</td></tr>
+          <tr><td>Business successors</td><td>User data in the event of a merger/acquisition</td><td>Business continuity — users will be notified</td></tr>
+        </tbody>
+      </table>
+      <p>Any third-party service providers we engage are contractually required to process your data only for the purposes we specify and in accordance with applicable data protection law.</p>
+    </div>
+
+    <!-- S9: Data Retention -->
+    <div class="pp-section reveal" id="s9">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">🗃️</div>
+        <div class="section-meta">
+          <div class="section-title">Data Retention</div>
+          <div class="section-subtitle">How long we keep different types of your data</div>
+        </div>
+      </div>
+      <p>We retain your personal information only for as long as is necessary to provide the WakaSafe service, fulfil the purposes described in this policy, and comply with applicable legal obligations.</p>
+      <div class="retention-list">
+        <div class="ret-item">
+          <div class="ret-dot" style="background:var(--teal)"></div>
+          <div class="ret-label">Account Information</div>
+          <div class="ret-period">Until account deletion</div>
+        </div>
+        <div class="ret-item">
+          <div class="ret-dot" style="background:var(--orange)"></div>
+          <div class="ret-label">Journey History &amp; Broadcast Logs</div>
+          <div class="ret-period">12 months from journey date</div>
+        </div>
+        <div class="ret-item">
+          <div class="ret-dot" style="background:var(--blue)"></div>
+          <div class="ret-label">Location Data</div>
+          <div class="ret-period">Purged after journey ends</div>
+        </div>
+        <div class="ret-item">
+          <div class="ret-dot" style="background:var(--purple)"></div>
+          <div class="ret-label">Emergency Contact Details</div>
+          <div class="ret-period">Until removed by user or account deleted</div>
+        </div>
+        <div class="ret-item">
+          <div class="ret-dot" style="background:var(--green)"></div>
+          <div class="ret-label">Subscription Records</div>
+          <div class="ret-period">7 years (financial/legal compliance)</div>
+        </div>
+        <div class="ret-item">
+          <div class="ret-dot" style="background:var(--gray)"></div>
+          <div class="ret-label">Device &amp; Technical Logs</div>
+          <div class="ret-period">90 days from collection</div>
+        </div>
+      </div>
+      <p>Upon account deletion, all personal data associated with your account will be permanently removed from our active systems within <strong>30 days</strong>, except where retention is required by law. Backups may retain data for up to <strong>90 additional days</strong> before being purged from archival systems.</p>
+    </div>
+
+    <!-- S10: Security -->
+    <div class="pp-section reveal" id="s10">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">🔒</div>
+        <div class="section-meta">
+          <div class="section-title">Security</div>
+          <div class="section-subtitle">How we protect your personal information</div>
+        </div>
+      </div>
+      <p>Voddic LTD implements industry-standard technical and organisational security measures to protect your personal information from unauthorised access, disclosure, alteration, or destruction.</p>
+      <div class="perm-grid">
+        <div class="perm-card">
+          <div class="perm-header">
+            <div class="perm-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">🔐</div>
+            <div class="perm-name">Encryption</div>
+          </div>
+          <div class="perm-desc">All data transmitted between the app and our servers is encrypted using TLS. Passwords and sensitive credentials are hashed and never stored in plain text.</div>
+        </div>
+        <div class="perm-card">
+          <div class="perm-header">
+            <div class="perm-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">🛡️</div>
+            <div class="perm-name">Secure Authentication</div>
+          </div>
+          <div class="perm-desc">Account access is protected by encrypted passwords and optional Google Sign-In. Journey activation uses PIN-based verification to prevent unauthorised use.</div>
+        </div>
+        <div class="perm-card">
+          <div class="perm-header">
+            <div class="perm-icon" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2)">👮</div>
+            <div class="perm-name">Access Controls</div>
+          </div>
+          <div class="perm-desc">Access to personal data within Voddic's systems is restricted to authorised personnel who require it to operate, maintain, or improve the service.</div>
+        </div>
+        <div class="perm-card">
+          <div class="perm-header">
+            <div class="perm-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">👁️</div>
+            <div class="perm-name">Server Monitoring</div>
+          </div>
+          <div class="perm-desc">Our backend infrastructure is continuously monitored for anomalies, intrusion attempts, and security vulnerabilities. Security patches are applied promptly.</div>
+        </div>
+      </div>
+      <div class="box box-red">
+        <div class="box-icon">⚠️</div>
+        <div class="box-body">
+          <div class="box-title">No Absolute Security Guarantee</div>
+          No method of transmission over the internet or method of electronic storage is 100% secure. While we strive to protect your personal information using commercially acceptable means, Voddic LTD cannot guarantee absolute security. In the event of a data breach that affects your rights, we will notify you as required by applicable law.
+        </div>
+      </div>
+    </div>
+
+    <!-- S11: Your Rights -->
+    <div class="pp-section reveal" id="s11">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2)">⚖️</div>
+        <div class="section-meta">
+          <div class="section-title">Your Rights</div>
+          <div class="section-subtitle">What you can request regarding your personal data</div>
+        </div>
+      </div>
+      <p>Under applicable Nigerian data protection regulations (including the Nigeria Data Protection Act 2023), you have the following rights regarding your personal data held by Voddic LTD:</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <div class="right-icon">👁️</div>
+          <div class="right-title">Right of Access</div>
+          <div class="right-desc">Request a copy of all personal data we hold about you</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon">✏️</div>
+          <div class="right-title">Right to Rectification</div>
+          <div class="right-desc">Correct inaccurate or incomplete personal information</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon">🗑️</div>
+          <div class="right-title">Right to Erasure</div>
+          <div class="right-desc">Request deletion of your account and personal data</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon">📦</div>
+          <div class="right-title">Data Portability</div>
+          <div class="right-desc">Receive your data in a structured, machine-readable format</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon">🚫</div>
+          <div class="right-title">Right to Object</div>
+          <div class="right-desc">Object to processing based on our legitimate interests</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon">⏸️</div>
+          <div class="right-title">Right to Restrict</div>
+          <div class="right-desc">Request we limit how we process your personal data</div>
+        </div>
+      </div>
+      <p>To exercise any of these rights, contact us at <strong>support@wakasafe.com</strong>. We will respond to all verifiable requests within <strong>30 days</strong>. We may need to verify your identity before processing certain requests.</p>
+    </div>
+
+    <!-- S12: Children's Privacy -->
+    <div class="pp-section reveal" id="s12">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">👶</div>
+        <div class="section-meta">
+          <div class="section-title">Children's Privacy</div>
+          <div class="section-subtitle">Our policy regarding users under the age of 13</div>
+        </div>
+      </div>
+      <p>WakaSafe is not directed at or intended for children under the age of <strong>13 years</strong>. We do not knowingly collect personal information from children under 13.</p>
+      <p>Users between the ages of 13 and 17 must have explicit parental or legal guardian consent before creating a WakaSafe account and using the application.</p>
+      <div class="box box-red">
+        <div class="box-icon">🚫</div>
+        <div class="box-body">
+          <div class="box-title">If We Discover a Child's Data Was Collected</div>
+          If Voddic LTD becomes aware that personal information has been collected from a child under 13 without verifiable parental consent, we will take immediate steps to delete that information from our systems. If you believe we may have inadvertently collected data from a child under 13, please contact us immediately at support@wakasafe.com.
+        </div>
+      </div>
+    </div>
+
+    <!-- S13: Third-Party Services -->
+    <div class="pp-section reveal" id="s13">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">🔗</div>
+        <div class="section-meta">
+          <div class="section-title">Third-Party Services</div>
+          <div class="section-subtitle">External services integrated into WakaSafe</div>
+        </div>
+      </div>
+      <p>WakaSafe integrates with a limited number of third-party services required to operate the application. Each service has its own privacy policy governing data it processes:</p>
+      <table class="data-table">
+        <thead><tr><th>Service</th><th>Purpose</th><th>Data Involved</th></tr></thead>
+        <tbody>
+          <tr><td>Paystack</td><td>Subscription payment processing</td><td>Payment transaction data</td></tr>
+          <tr><td>Google Sign-In</td><td>Optional authentication method</td><td>Google account name and email</td></tr>
+          <tr><td>Google Maps (link generation)</td><td>Generating clickable GPS map links in SMS</td><td>Latitude/longitude coordinates</td></tr>
+          <tr><td>Cloud hosting provider</td><td>Backend server infrastructure</td><td>Encrypted account and journey data</td></tr>
+        </tbody>
+      </table>
+      <div class="box box-blue">
+        <div class="box-icon">ℹ️</div>
+        <div class="box-body">
+          <div class="box-title">Third-Party Responsibility</div>
+          Voddic is not responsible for the privacy practices of these third-party services. We encourage you to review their respective privacy policies. The Google Maps coordinate links embedded in SMS messages do not require a Google account to view and do not collect data from your emergency contacts.
+        </div>
+      </div>
+    </div>
+
+    <!-- S14: Policy Changes -->
+    <div class="pp-section reveal" id="s14">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">🔄</div>
+        <div class="section-meta">
+          <div class="section-title">Changes to This Policy</div>
+          <div class="section-subtitle">How we handle updates to our privacy practices</div>
+        </div>
+      </div>
+      <p>Voddic LTD may update this Privacy Policy periodically to reflect changes in our data practices, new features, or evolving legal requirements. We are committed to keeping you informed of any significant changes.</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">📅</span>The "Last Updated" date at the top of this page will always reflect when the policy was most recently revised</li>
+        <li><span class="li-icon">🔔</span>We will notify registered users of material changes via in-app notification or SMS</li>
+        <li><span class="li-icon">⏳</span>Significant changes will be accompanied by a reasonable notice period before taking effect</li>
+        <li><span class="li-icon">✅</span>Your continued use of WakaSafe following the effective date of any revised policy constitutes your acceptance of the changes</li>
+        <li><span class="li-icon">🗑️</span>If you do not agree to a revised policy, you may discontinue use of the application and request account deletion</li>
+      </ul>
+    </div>
+
+    <!-- S15: Contact -->
+    <div class="pp-section reveal" id="s15">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2)">✉️</div>
+        <div class="section-meta">
+          <div class="section-title">Contact Us</div>
+          <div class="section-subtitle">Reach out with any privacy questions or data requests</div>
+        </div>
+      </div>
+      <p>If you have any questions, concerns, complaints, or requests regarding this Privacy Policy or the way WakaSafe handles your personal data, please don't hesitate to contact us. We take every inquiry seriously and are committed to resolving privacy concerns promptly.</p>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-card-icon">📧</div>
+          <div class="contact-card-title">Email Support</div>
+          <a href="mailto:support@wakasafe.com" class="contact-card-val">support@wakasafe.com</a>
+          <div class="contact-card-sub">Response within 3 business days</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🌐</div>
+          <div class="contact-card-title">Website</div>
+          <a href="https://wakasafe.com" class="contact-card-val" target="_blank">wakasafe.com</a>
+          <div class="contact-card-sub">Visit for latest updates and support</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🏢</div>
+          <div class="contact-card-title">Data Controller</div>
+          <span class="contact-card-val">Voddic LTD</span>
+          <div class="contact-card-sub">Nigeria · voddic.com.ng</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">📱</div>
+          <div class="contact-card-title">In-App Support</div>
+          <span class="contact-card-val">Settings → Contact Support</span>
+          <div class="contact-card-sub">Available within the WakaSafe app</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Acceptance -->
+    <div class="acceptance reveal">
+      <h3>You have reviewed our Privacy Policy</h3>
+      <p>By using WakaSafe, you acknowledge that you have read and understood how we collect, use, and protect your personal data. Your trust means everything to us.</p>
+      <button class="btn-teal" id="acceptBtn">✓ I Understand &amp; Accept</button>
+      <button class="btn-outline" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Waka<span>Safe</span></div>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="#">Terms &amp; Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="mailto:support@wakasafe.com">Contact</a>
+  </div>
+  <div class="footer-text">© 2026 Voddic LTD · All rights reserved.</div>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+    document.getElementById('readProgress').style.width = pct + '%';
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Active TOC
+  const sections = document.querySelectorAll('.pp-section');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const tocObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => tocObs.observe(s));
+
+  // Accept button
+  document.getElementById('acceptBtn').addEventListener('click', function () {
+    this.textContent = '✓ Policy Accepted';
+    this.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    this.style.boxShadow = '0 8px 24px rgba(34,197,94,.3)';
+    this.disabled = true;
+  });
+</script>
+</body>
+</html>

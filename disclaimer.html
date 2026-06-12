@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclaimer – WakaSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0b1426;
+    --navy2:  #0e1c35;
+    --navy3:  #132040;
+    --orange: #f47c20;
+    --teal:   #00d4aa;
+    --amber:  #f59e0b;
+    --blue:   #3b82f6;
+    --green:  #22c55e;
+    --red:    #e53935;
+    --white:  #ffffff;
+    --gray:   #8a9bb5;
+    --border: rgba(255,255,255,0.08);
+    --card:   rgba(255,255,255,0.04);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3,h4 { font-family:'Syne',sans-serif; }
+
+  /* ── PROGRESS BAR ── */
+  #readProgress {
+    position:fixed; top:0; left:0; height:3px;
+    background:linear-gradient(90deg, var(--amber), var(--red));
+    z-index:999; width:0%; transition:width .1s;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position:sticky; top:0; z-index:200;
+    padding:16px 5%;
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(11,20,38,.94);
+    backdrop-filter:blur(22px);
+    border-bottom:1px solid var(--border);
+  }
+
+  .nav-logo {
+    display:flex; align-items:center; gap:10px;
+    font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;
+    text-decoration:none; color:var(--white);
+  }
+  .nav-logo span { color:var(--orange); }
+
+  .logo-icon {
+    width:34px; height:34px;
+    background:linear-gradient(135deg,#1a3a6e,#0e2552);
+    border-radius:8px; border:1.5px solid rgba(244,124,32,.4);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+
+  .nav-right { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .nav-date  { font-size:.72rem; color:var(--gray); }
+  .nav-badge {
+    background:rgba(245,158,11,.15); border:1px solid rgba(245,158,11,.35);
+    color:var(--amber); font-size:.65rem; font-weight:700;
+    padding:3px 10px; border-radius:20px; letter-spacing:.5px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background:linear-gradient(160deg, var(--navy3) 0%, var(--navy) 65%);
+    border-bottom:1px solid var(--border);
+    padding:72px 5% 60px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; right:-150px; top:-100px;
+    width:600px; height:600px;
+    background:radial-gradient(circle, rgba(245,158,11,.07) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero::after {
+    content:'';
+    position:absolute; left:-100px; bottom:-80px;
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(229,57,53,.05) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  .hero-inner { max-width:820px; position:relative; z-index:1; }
+
+  .hero-eyebrow {
+    display:inline-flex; align-items:center; gap:7px;
+    background:rgba(245,158,11,.1); border:1px solid rgba(245,158,11,.28);
+    border-radius:20px; padding:4px 14px;
+    font-size:.72rem; font-weight:700; color:var(--amber);
+    letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;
+  }
+  .hero-eyebrow::before {
+    content:''; width:7px; height:7px;
+    background:var(--amber); border-radius:50%;
+    animation:pulse 1.5s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:.5; transform:scale(1.5); }
+  }
+
+  .hero h1 {
+    font-size:clamp(2rem,4.5vw,3.2rem);
+    font-weight:800; letter-spacing:-1.2px; line-height:1.1;
+    margin-bottom:16px;
+  }
+  .hero h1 .accent { color:var(--amber); }
+
+  .hero-sub {
+    font-size:.97rem; color:var(--gray);
+    max-width:600px; margin-bottom:30px; line-height:1.7;
+  }
+
+  .hero-meta { display:flex; flex-wrap:wrap; gap:20px; }
+  .meta-item  { display:flex; align-items:center; gap:7px; font-size:.78rem; color:var(--gray); }
+  .meta-dot   { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+  /* ── ALERT BANNER ── */
+  .alert-banner {
+    background:linear-gradient(135deg, rgba(229,57,53,.12), rgba(245,158,11,.08));
+    border-top:3px solid var(--red);
+    border-bottom:1px solid rgba(229,57,53,.2);
+    padding:28px 5%;
+    display:flex; align-items:flex-start; gap:18px;
+  }
+  .alert-icon { font-size:2rem; flex-shrink:0; margin-top:2px; }
+  .alert-title {
+    font-family:'Syne',sans-serif; font-size:1rem; font-weight:800;
+    color:#ef5350; margin-bottom:6px;
+  }
+  .alert-text {
+    font-size:.9rem; color:rgba(255,255,255,.8); line-height:1.65; max-width:860px;
+  }
+  .alert-text strong { color:var(--white); }
+
+  /* ── NOT-LIST ── */
+  .not-grid {
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:14px;
+  }
+  .not-badge {
+    display:flex; align-items:center; gap:6px;
+    background:rgba(229,57,53,.1); border:1px solid rgba(229,57,53,.25);
+    border-radius:20px; padding:5px 14px;
+    font-size:.75rem; color:#ef9a9a; font-weight:600;
+  }
+  .not-badge::before { content:'✗'; font-weight:800; color:var(--red); }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:0;
+    max-width:1200px;
+    margin:0 auto;
+    padding:52px 5% 90px;
+    align-items:start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position:sticky; top:80px;
+    padding-right:34px;
+  }
+
+  .sidebar-label {
+    font-size:.6rem; font-weight:700;
+    color:var(--gray); letter-spacing:1.5px; text-transform:uppercase;
+    margin-bottom:10px; padding-bottom:8px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .toc-list { list-style:none; display:flex; flex-direction:column; gap:2px; margin-bottom:28px; }
+  .toc-list a {
+    display:flex; align-items:center; gap:8px;
+    padding:7px 10px; border-radius:8px;
+    font-size:.78rem; color:var(--gray);
+    text-decoration:none; transition:all .2s;
+    border-left:2px solid transparent;
+  }
+  .toc-list a:hover, .toc-list a.active {
+    color:var(--white); background:var(--card);
+    border-left-color:var(--amber); padding-left:14px;
+  }
+  .toc-list a .toc-num {
+    font-size:.6rem; font-weight:800; color:var(--amber); min-width:16px;
+  }
+  .toc-list a .toc-emoji { font-size:.85rem; }
+
+  /* key reminder card */
+  .reminder-card {
+    background:rgba(245,158,11,.06);
+    border:1px solid rgba(245,158,11,.2);
+    border-radius:14px; padding:18px;
+  }
+  .reminder-title {
+    font-family:'Syne',sans-serif; font-size:.8rem; font-weight:700;
+    color:var(--amber); margin-bottom:12px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .reminder-item {
+    display:flex; align-items:flex-start; gap:8px;
+    font-size:.75rem; color:rgba(255,255,255,.7);
+    line-height:1.5; margin-bottom:8px;
+    padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.05);
+  }
+  .reminder-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .reminder-item .ri { flex-shrink:0; font-size:.85rem; margin-top:1px; }
+
+  /* ── CONTENT ── */
+  .content { min-width:0; }
+
+  /* section */
+  .dis-section {
+    margin-bottom:54px;
+    scroll-margin-top:100px;
+  }
+
+  .section-header {
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:22px; padding-bottom:16px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .section-icon {
+    width:44px; height:44px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.25rem; flex-shrink:0;
+  }
+
+  .section-meta { flex:1; }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    letter-spacing:-.3px; margin-bottom:2px;
+  }
+  .section-subtitle { font-size:.72rem; color:var(--gray); }
+
+  .dis-section p {
+    font-size:.92rem; color:rgba(255,255,255,.78);
+    margin-bottom:14px; line-height:1.75;
+  }
+  .dis-section p:last-child { margin-bottom:0; }
+
+  /* sub heading */
+  .sub-heading {
+    font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700;
+    color:var(--white); margin:24px 0 10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .sub-heading::before {
+    content:''; display:block;
+    width:3px; height:16px;
+    background:var(--amber); border-radius:2px; flex-shrink:0;
+  }
+
+  /* clause list */
+  .clause-list {
+    list-style:none; display:flex; flex-direction:column; gap:8px; margin:14px 0;
+  }
+  .clause-list li {
+    display:flex; gap:12px; align-items:flex-start;
+    font-size:.9rem; color:rgba(255,255,255,.75);
+    padding:12px 16px; background:var(--card);
+    border-radius:10px; border:1px solid var(--border);
+    line-height:1.6; transition:border-color .2s;
+  }
+  .clause-list li:hover { border-color:rgba(255,255,255,.14); }
+  .clause-list li .li-icon { flex-shrink:0; font-size:.9rem; margin-top:1px; }
+
+  /* two-col list */
+  .two-col {
+    display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0;
+  }
+  .two-col li {
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:.88rem; color:rgba(255,255,255,.75);
+    padding:11px 14px; background:var(--card);
+    border-radius:10px; border:1px solid var(--border);
+    line-height:1.5; transition:border-color .2s;
+  }
+  .two-col li:hover { border-color:rgba(255,255,255,.14); }
+  .two-col li .li-icon { flex-shrink:0; font-size:.85rem; }
+
+  /* callout boxes */
+  .box {
+    border-radius:12px; padding:18px 20px;
+    margin:18px 0; font-size:.88rem;
+    color:rgba(255,255,255,.82); line-height:1.7;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .box-icon { font-size:1.3rem; flex-shrink:0; margin-top:1px; }
+  .box-body  { flex:1; }
+  .box-title {
+    font-family:'Syne',sans-serif; font-weight:700;
+    font-size:.88rem; margin-bottom:5px;
+  }
+
+  .box-amber  { background:rgba(245,158,11,.07); border:1px solid rgba(245,158,11,.22); border-left:3px solid var(--amber); }
+  .box-red    { background:rgba(229,57,53,.07);  border:1px solid rgba(229,57,53,.22);  border-left:3px solid var(--red);   }
+  .box-teal   { background:rgba(0,212,170,.07);  border:1px solid rgba(0,212,170,.22);  border-left:3px solid var(--teal);  }
+  .box-blue   { background:rgba(59,130,246,.07); border:1px solid rgba(59,130,246,.22); border-left:3px solid var(--blue);  }
+  .box-green  { background:rgba(34,197,94,.07);  border:1px solid rgba(34,197,94,.22);  border-left:3px solid var(--green); }
+
+  .box-amber .box-title { color:var(--amber); }
+  .box-red   .box-title { color:#ef5350; }
+  .box-teal  .box-title { color:var(--teal); }
+  .box-blue  .box-title { color:#60a5fa; }
+  .box-green .box-title { color:var(--green); }
+
+  /* limitation grid */
+  .limit-grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:14px; margin:18px 0;
+  }
+  .limit-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:20px;
+    transition:all .3s; cursor:default;
+  }
+  .limit-card:hover {
+    border-color:rgba(245,158,11,.3);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+  }
+  .limit-icon { font-size:1.7rem; margin-bottom:10px; }
+  .limit-title {
+    font-family:'Syne',sans-serif; font-size:.88rem;
+    font-weight:700; margin-bottom:6px;
+  }
+  .limit-desc { font-size:.78rem; color:var(--gray); line-height:1.55; }
+
+  /* liability table */
+  .data-table {
+    width:100%; border-collapse:collapse;
+    margin:18px 0; font-size:.85rem;
+    border-radius:12px; overflow:hidden;
+  }
+  .data-table thead th {
+    background:rgba(255,255,255,.06);
+    padding:12px 16px; text-align:left;
+    font-family:'Syne',sans-serif; font-size:.7rem;
+    font-weight:700; color:var(--gray);
+    letter-spacing:.8px; text-transform:uppercase;
+    border-bottom:1px solid var(--border);
+  }
+  .data-table tbody tr {
+    border-bottom:1px solid rgba(255,255,255,.05);
+    transition:background .15s;
+  }
+  .data-table tbody tr:last-child { border-bottom:none; }
+  .data-table tbody tr:hover { background:rgba(255,255,255,.03); }
+  .data-table td {
+    padding:12px 16px; color:rgba(255,255,255,.75);
+    vertical-align:top; line-height:1.55;
+  }
+  .data-table td:first-child { font-weight:600; color:var(--white); }
+  .data-table .status-no  { color:#ef5350; font-weight:700; }
+  .data-table .status-yes { color:var(--green); font-weight:700; }
+
+  /* responsibility checklist */
+  .resp-list {
+    display:flex; flex-direction:column; gap:10px; margin:16px 0;
+  }
+  .resp-item {
+    display:flex; align-items:flex-start; gap:14px;
+    padding:14px 18px;
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; transition:all .2s;
+  }
+  .resp-item:hover { border-color:rgba(245,158,11,.25); }
+  .resp-num {
+    width:28px; height:28px; border-radius:8px;
+    background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.25);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Syne',sans-serif; font-size:.7rem; font-weight:800;
+    color:var(--amber); flex-shrink:0;
+  }
+  .resp-title { font-weight:600; font-size:.88rem; margin-bottom:3px; }
+  .resp-desc  { font-size:.8rem; color:var(--gray); line-height:1.5; }
+
+  /* acceptance section */
+  .acc-section {
+    background:linear-gradient(135deg, rgba(245,158,11,.06), rgba(229,57,53,.04));
+    border:1px solid rgba(245,158,11,.18);
+    border-radius:18px; padding:28px 30px; margin:18px 0;
+  }
+  .acc-title {
+    font-family:'Syne',sans-serif; font-size:1rem; font-weight:800;
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .acc-items {
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .acc-item {
+    display:flex; align-items:flex-start; gap:12px;
+    font-size:.9rem; color:rgba(255,255,255,.8); line-height:1.6;
+  }
+  .acc-check {
+    width:22px; height:22px; border-radius:6px;
+    background:rgba(245,158,11,.15); border:1px solid rgba(245,158,11,.3);
+    display:flex; align-items:center; justify-content:center;
+    font-size:.75rem; color:var(--amber); font-weight:700;
+    flex-shrink:0; margin-top:1px;
+  }
+
+  /* contact card */
+  .contact-strip {
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px;
+  }
+  .contact-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:22px; transition:all .3s;
+  }
+  .contact-card:hover {
+    border-color:rgba(245,158,11,.25);
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(0,0,0,.2);
+  }
+  .contact-card-icon { font-size:1.8rem; margin-bottom:12px; }
+  .contact-card-title {
+    font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; margin-bottom:6px;
+  }
+  .contact-card-val {
+    font-size:.82rem; color:var(--teal);
+    text-decoration:none; display:block; margin-bottom:4px;
+  }
+  .contact-card-val:hover { text-decoration:underline; }
+  .contact-card-sub { font-size:.75rem; color:var(--gray); }
+
+  /* divider */
+  hr.divider { border:none; border-top:1px solid var(--border); margin:52px 0; }
+
+  /* final cta */
+  .final-cta {
+    background:linear-gradient(135deg, var(--navy3), #0a1525);
+    border:1px solid var(--border); border-radius:20px;
+    padding:40px 32px; text-align:center; margin-top:60px;
+    position:relative; overflow:hidden;
+  }
+  .final-cta::before {
+    content:'';
+    position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+    width:400px; height:300px;
+    background:radial-gradient(circle, rgba(245,158,11,.07) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .final-cta h3 {
+    font-size:1.25rem; font-weight:800; margin-bottom:10px; position:relative;
+  }
+  .final-cta p {
+    font-size:.88rem; color:var(--gray); max-width:520px;
+    margin:0 auto 28px; line-height:1.7; position:relative;
+  }
+  .btn-amber {
+    background:linear-gradient(135deg, var(--amber), #d97706);
+    color:var(--navy); border:none;
+    padding:13px 32px; border-radius:12px;
+    font-family:'Syne',sans-serif; font-weight:800; font-size:.87rem;
+    cursor:pointer; transition:all .2s; margin:5px;
+    box-shadow:0 8px 24px rgba(245,158,11,.25);
+  }
+  .btn-amber:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(245,158,11,.38); }
+  .btn-outline {
+    background:transparent; color:var(--gray);
+    border:1.5px solid var(--border); padding:13px 28px;
+    border-radius:12px;
+    font-family:'Syne',sans-serif; font-weight:600; font-size:.87rem;
+    cursor:pointer; transition:all .2s; margin:5px;
+  }
+  .btn-outline:hover { border-color:rgba(255,255,255,.25); color:var(--white); }
+
+  /* footer */
+  footer {
+    border-top:1px solid var(--border);
+    padding:32px 5%;
+    display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-brand { font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; }
+  .footer-brand span { color:var(--orange); }
+  .footer-links { display:flex; gap:20px; }
+  .footer-links a {
+    font-size:.75rem; color:var(--gray);
+    text-decoration:none; transition:color .2s;
+  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-text { font-size:.75rem; color:var(--gray); }
+
+  /* scroll reveal */
+  .reveal {
+    opacity:0; transform:translateY(22px);
+    transition:all .65s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-d1 { transition-delay:.1s; }
+  .reveal-d2 { transition-delay:.2s; }
+  .reveal-d3 { transition-delay:.3s; }
+
+  /* responsive */
+  @media(max-width:900px){
+    .layout { grid-template-columns:1fr; padding:32px 5% 60px; }
+    .sidebar { position:static; padding-right:0; margin-bottom:36px; }
+    .toc-list { flex-direction:row; flex-wrap:wrap; }
+    .toc-list a { padding:5px 10px; border-left:none; border-bottom:2px solid transparent; font-size:.72rem; }
+    .toc-list a:hover,.toc-list a.active { border-left-color:transparent; border-bottom-color:var(--amber); padding-left:10px; }
+    .two-col, .contact-strip { grid-template-columns:1fr; }
+  }
+  @media(max-width:600px){
+    .hero { padding:52px 5% 40px; }
+    .not-grid { gap:7px; }
+    .limit-grid { grid-template-columns:1fr 1fr; }
+    footer { flex-direction:column; text-align:center; }
+    .footer-links { justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<div id="readProgress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.25C17.25 23.15 21 18.25 21 13V7L12 2z" fill="#f47c20" opacity=".9"/>
+        <circle cx="12" cy="9" r="2" fill="white"/>
+        <path d="M8 18c1-2 2-3 4-3s3 1 4 3" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    Waka<span>Safe</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-date">Last updated: June 2026</span>
+    <span class="nav-badge">⚠ DISCLAIMER</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">⚠️ Legal Notice</div>
+    <h1>Important <span class="accent">Disclaimer</span></h1>
+    <p class="hero-sub">
+      Please read this disclaimer carefully. It sets out the limitations of WakaSafe, what the application can and cannot guarantee, and the responsibilities you accept as a user. Your safety matters — but so does understanding what this tool is and is not.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="meta-dot" style="background:var(--amber)"></div>Effective: June 2026</div>
+      <div class="meta-item"><div class="meta-dot" style="background:var(--orange)"></div>Version 1.0</div>
+      <div class="meta-item"><div class="meta-dot" style="background:var(--red)"></div>Not an Emergency Service</div>
+      <div class="meta-item"><div class="meta-dot" style="background:var(--blue)"></div>Voddic LTD, Nigeria</div>
+    </div>
+  </div>
+</div>
+
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <div class="alert-icon">🚨</div>
+  <div>
+    <div class="alert-title">Critical Notice — Read Before Using WakaSafe</div>
+    <div class="alert-text">
+      WakaSafe is a <strong>personal safety and journey-monitoring tool</strong> that helps you share travel updates and emergency alerts with trusted contacts. It is <strong>NOT</strong> a substitute for official emergency services. In any life-threatening situation, always contact the appropriate emergency authorities as your first course of action.
+    </div>
+    <div class="not-grid">
+      <div class="not-badge">Law Enforcement Agency</div>
+      <div class="not-badge">Emergency Response Provider</div>
+      <div class="not-badge">Rescue Service</div>
+      <div class="not-badge">Ambulance Service</div>
+      <div class="not-badge">Security Company</div>
+      <div class="not-badge">Government Agency</div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Contents</div>
+    <ul class="toc-list" id="toc">
+      <li><a href="#s1" class="toc-link"><span class="toc-emoji">📌</span><span class="toc-num">01</span>Important Notice</a></li>
+      <li><a href="#s2" class="toc-link"><span class="toc-emoji">🚑</span><span class="toc-num">02</span>No Emergency Guarantee</a></li>
+      <li><a href="#s3" class="toc-link"><span class="toc-emoji">📡</span><span class="toc-num">03</span>Network Limitations</a></li>
+      <li><a href="#s4" class="toc-link"><span class="toc-emoji">👤</span><span class="toc-num">04</span>User Responsibility</a></li>
+      <li><a href="#s5" class="toc-link"><span class="toc-emoji">🆘</span><span class="toc-num">05</span>Emergency Situations</a></li>
+      <li><a href="#s6" class="toc-link"><span class="toc-emoji">📍</span><span class="toc-num">06</span>Location Accuracy</a></li>
+      <li><a href="#s7" class="toc-link"><span class="toc-emoji">💳</span><span class="toc-num">07</span>Subscription Services</a></li>
+      <li><a href="#s8" class="toc-link"><span class="toc-emoji">⚖️</span><span class="toc-num">08</span>Limitation of Liability</a></li>
+      <li><a href="#s9" class="toc-link"><span class="toc-emoji">✅</span><span class="toc-num">09</span>Acceptance</a></li>
+      <li><a href="#s10" class="toc-link"><span class="toc-emoji">✉️</span><span class="toc-num">10</span>Contact</a></li>
+    </ul>
+
+    <div class="sidebar-label">Key Reminders</div>
+    <div class="reminder-card">
+      <div class="reminder-title">⚠️ Always Remember</div>
+      <div class="reminder-item">
+        <div class="ri">📞</div>
+        <div>Call <strong>199</strong> (Police) or <strong>112</strong> (Emergency) in life-threatening situations first</div>
+      </div>
+      <div class="reminder-item">
+        <div class="ri">📶</div>
+        <div>SMS delivery depends on your mobile network — maintain airtime balance</div>
+      </div>
+      <div class="reminder-item">
+        <div class="ri">🔋</div>
+        <div>Keep your device charged during journeys</div>
+      </div>
+      <div class="reminder-item">
+        <div class="ri">👥</div>
+        <div>Ensure your emergency contacts know they are listed and will act on alerts</div>
+      </div>
+      <div class="reminder-item">
+        <div class="ri">📍</div>
+        <div>GPS location may not be 100% precise — do not rely on it exclusively</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- S1 -->
+    <div class="dis-section reveal" id="s1">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)">📌</div>
+        <div class="section-meta">
+          <div class="section-title">Important Notice</div>
+          <div class="section-subtitle">What WakaSafe is — and what it is not</div>
+        </div>
+      </div>
+      <p>WakaSafe is a personal safety and journey-monitoring application developed by Voddic LTD. It is designed to help users proactively share travel updates and emergency alerts with trusted emergency contacts via offline SMS — empowering families and friends to monitor the safety of their loved ones during travel in Nigeria and beyond.</p>
+      <p>However, it is critically important that every user fully understands the nature and limitations of this application before relying on it in any safety-related situation.</p>
+      <div class="box box-red">
+        <div class="box-icon">🚨</div>
+        <div class="box-body">
+          <div class="box-title">WakaSafe Is NOT Any of the Following</div>
+          WakaSafe is not a law enforcement agency, not an emergency response provider, not a rescue service, not an ambulance dispatch system, not a security company, and not a government-operated safety service. It does not connect you to any of these services. It only sends SMS messages to contacts you have personally designated.
+        </div>
+      </div>
+      <p>The application is a supplementary personal safety tool. It should always be used in conjunction with — never as a replacement for — good personal safety judgment and access to official emergency services.</p>
+    </div>
+
+    <!-- S2 -->
+    <div class="dis-section reveal" id="s2">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(229,57,53,.1);border:1px solid rgba(229,57,53,.2)">🚑</div>
+        <div class="section-meta">
+          <div class="section-title">No Guarantee of Emergency Response</div>
+          <div class="section-subtitle">The limitations of what WakaSafe can deliver</div>
+        </div>
+      </div>
+      <p>While WakaSafe is designed to send location updates, journey notifications, and SOS emergency alerts to your emergency contacts, Voddic LTD makes <strong>no guarantee</strong> of any outcome resulting from those communications.</p>
+      <p>The following outcomes are explicitly outside the scope of what WakaSafe guarantees or can control:</p>
+
+      <table class="data-table">
+        <thead><tr><th>Outcome</th><th>Guaranteed?</th><th>Why Not</th></tr></thead>
+        <tbody>
+          <tr><td>SMS message delivery</td><td class="status-no">✗ No</td><td>Dependent on carrier networks and recipient device status</td></tr>
+          <tr><td>Push notification delivery</td><td class="status-no">✗ No</td><td>Requires internet connection and app installation on receiver end</td></tr>
+          <tr><td>Mobile network availability</td><td class="status-no">✗ No</td><td>Outside Voddic's control — depends on carrier infrastructure</td></tr>
+          <tr><td>Internet service availability</td><td class="status-no">✗ No</td><td>Subject to ISP outages, data depletion, or area coverage gaps</td></tr>
+          <tr><td>Emergency contact will respond</td><td class="status-no">✗ No</td><td>Human response cannot be guaranteed by a software application</td></tr>
+          <tr><td>Physical rescue or intervention</td><td class="status-no">✗ No</td><td>WakaSafe does not dispatch or coordinate any emergency response</td></tr>
+          <tr><td>Journey tracking will be uninterrupted</td><td class="status-no">✗ No</td><td>Device battery, signal, or app state may interrupt the process</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box box-amber">
+        <div class="box-icon">⚠️</div>
+        <div class="box-body">
+          <div class="box-title">Take Reasonable Precautions</div>
+          Users should always exercise reasonable personal safety precautions during travel. WakaSafe is a tool to increase the likelihood of help reaching you — it is not a guarantee that help will arrive. Inform your emergency contacts in advance that they are listed on your WakaSafe account and explain what receiving an alert means.
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="dis-section reveal" id="s3">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">📡</div>
+        <div class="section-meta">
+          <div class="section-title">Network &amp; Technical Limitations</div>
+          <div class="section-subtitle">Factors that can affect WakaSafe's performance</div>
+        </div>
+      </div>
+      <p>WakaSafe relies on a combination of mobile network infrastructure, device hardware, GPS satellite availability, and in some features, internet connectivity. Many of these dependencies are outside Voddic LTD's control.</p>
+      <p>Delays, failures, or interruptions to WakaSafe's core functions may occur due to the following:</p>
+
+      <div class="limit-grid">
+        <div class="limit-card">
+          <div class="limit-icon">📶</div>
+          <div class="limit-title">Poor Network Coverage</div>
+          <div class="limit-desc">SMS delivery relies on your carrier's signal. Rural areas, tunnels, or densely built environments may result in weak or no coverage.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-icon">🔄</div>
+          <div class="limit-title">Network Congestion</div>
+          <div class="limit-desc">During peak usage periods or public emergencies, mobile networks may become congested, delaying or preventing SMS delivery.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-icon">📱</div>
+          <div class="limit-title">Device Malfunction</div>
+          <div class="limit-desc">Hardware failures, software crashes, OS interruptions, or low battery conditions on your device can prevent WakaSafe from functioning correctly.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-icon">🛰️</div>
+          <div class="limit-title">GPS Signal Limitations</div>
+          <div class="limit-desc">GPS accuracy is affected by your device's hardware, weather, surrounding terrain, tall buildings, and the availability of satellite signals.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-icon">⏱️</div>
+          <div class="limit-title">SMS Delivery Delays</div>
+          <div class="limit-desc">SMS messages may be delayed in transit between carriers due to routing issues, capacity constraints, or international SMS handling.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-icon">🌐</div>
+          <div class="limit-title">Internet Outages</div>
+          <div class="limit-desc">Features requiring internet connectivity may be unavailable during data outages, even though core SMS tracking continues to function offline.</div>
+        </div>
+      </div>
+      <div class="box box-teal">
+        <div class="box-icon">ℹ️</div>
+        <div class="box-body">
+          <div class="box-title">What "Offline-First" Means</div>
+          WakaSafe's core SMS location sharing feature is designed to work without an active internet/data connection. However, it still requires a basic mobile network signal (2G minimum) to transmit SMS messages. In areas with absolutely no mobile signal, no SMS can be sent regardless of data or offline capabilities.
+        </div>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="dis-section reveal" id="s4">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">👤</div>
+        <div class="section-meta">
+          <div class="section-title">User Responsibility</div>
+          <div class="section-subtitle">What you are responsible for as a WakaSafe user</div>
+        </div>
+      </div>
+      <p>By using WakaSafe, you accept full responsibility for ensuring the application is configured correctly and used appropriately. The effectiveness of WakaSafe's safety features depends significantly on how well you manage the following:</p>
+
+      <div class="resp-list">
+        <div class="resp-item">
+          <div class="resp-num">01</div>
+          <div>
+            <div class="resp-title">Provide Accurate Journey Information</div>
+            <div class="resp-desc">Enter correct and truthful origin, destination, vehicle details, and plate number when starting a journey. Inaccurate information reduces the usefulness of your updates to emergency contacts.</div>
+          </div>
+        </div>
+        <div class="resp-item">
+          <div class="resp-num">02</div>
+          <div>
+            <div class="resp-title">Maintain Sufficient Airtime Balance</div>
+            <div class="resp-desc">WakaSafe sends SMS messages directly from your SIM card. You must maintain adequate airtime or SMS credits throughout your journey. A depleted airtime balance will prevent location updates from being sent.</div>
+          </div>
+        </div>
+        <div class="resp-item">
+          <div class="resp-num">03</div>
+          <div>
+            <div class="resp-title">Keep Emergency Contact Information Up to Date</div>
+            <div class="resp-desc">Regularly verify that the phone numbers saved as emergency contacts are active, correct, and belong to people who understand their role and will respond to alerts.</div>
+          </div>
+        </div>
+        <div class="resp-item">
+          <div class="resp-num">04</div>
+          <div>
+            <div class="resp-title">Keep Your Device Charged and Operational</div>
+            <div class="resp-desc">WakaSafe cannot function on a dead device. Ensure your phone is adequately charged before and during journeys, particularly long-distance travel. Consider carrying a power bank.</div>
+          </div>
+        </div>
+        <div class="resp-item">
+          <div class="resp-num">05</div>
+          <div>
+            <div class="resp-title">Use the Application Lawfully</div>
+            <div class="resp-desc">You are solely responsible for ensuring your use of WakaSafe complies with all applicable Nigerian laws and regulations, including the Nigeria Communications Act and the Cybercrimes Act.</div>
+          </div>
+        </div>
+        <div class="resp-item">
+          <div class="resp-num">06</div>
+          <div>
+            <div class="resp-title">Safeguard Your PINs</div>
+            <div class="resp-desc">Your start PIN, end PIN, and distress PIN must be memorised and kept strictly confidential. Voddic is not responsible for consequences arising from lost, forgotten, or shared PINs.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5 -->
+    <div class="dis-section reveal" id="s5">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(229,57,53,.1);border:1px solid rgba(229,57,53,.2)">🆘</div>
+        <div class="section-meta">
+          <div class="section-title">Emergency Situations</div>
+          <div class="section-subtitle">What to do in life-threatening circumstances</div>
+        </div>
+      </div>
+      <div class="box box-red">
+        <div class="box-icon">🚨</div>
+        <div class="box-body">
+          <div class="box-title">In a Life-Threatening Emergency — Contact Authorities First</div>
+          WakaSafe's SOS feature notifies your personal emergency contacts only. It does not connect to the police, ambulance services, NEMA, or any government emergency response system. In any situation where life is at risk, your first action should always be to contact the appropriate emergency authorities if at all possible.
+        </div>
+      </div>
+      <p>WakaSafe should never be considered a replacement for any of the following:</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">🚔</span><strong>Police assistance</strong> — Nigeria Police Force Emergency: <strong>199</strong></li>
+        <li><span class="li-icon">🏥</span><strong>Medical assistance</strong> — National Emergency Management: <strong>112</strong></li>
+        <li><span class="li-icon">🚒</span><strong>Fire and rescue services</strong> — Available through state emergency management agencies</li>
+        <li><span class="li-icon">🛡️</span><strong>Professional security services</strong> — Contracted security firms or estate security</li>
+        <li><span class="li-icon">🏛️</span><strong>Government emergency agencies</strong> — NEMA and state equivalents</li>
+      </ul>
+      <div class="box box-amber">
+        <div class="box-icon">💡</div>
+        <div class="box-body">
+          <div class="box-title">Best Practice for Travelers</div>
+          Use WakaSafe alongside — not instead of — saving local emergency numbers in your phone. Brief your emergency contacts in advance about what WakaSafe alerts mean and what actions they should take when they receive one. A prepared emergency contact is a more effective one.
+        </div>
+      </div>
+    </div>
+
+    <!-- S6 -->
+    <div class="dis-section reveal" id="s6">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">📍</div>
+        <div class="section-meta">
+          <div class="section-title">Location Accuracy</div>
+          <div class="section-subtitle">Understanding the limitations of GPS data</div>
+        </div>
+      </div>
+      <p>WakaSafe transmits your GPS coordinates in each location update SMS. However, the accuracy of this location data depends on a range of factors outside of Voddic's control, and <strong>location information may not always be precise or current</strong>.</p>
+      <p>The following conditions can significantly reduce GPS accuracy:</p>
+      <ul class="two-col">
+        <li><span class="li-icon">🌧️</span>Adverse weather conditions (rain, storms, cloud cover)</li>
+        <li><span class="li-icon">⛰️</span>Mountainous or hilly terrain</li>
+        <li><span class="li-icon">🏢</span>Tall buildings or urban canyons</li>
+        <li><span class="li-icon">📱</span>Device hardware limitations or older chipsets</li>
+        <li><span class="li-icon">🌲</span>Dense forest cover or vegetation</li>
+        <li><span class="li-icon">📶</span>Weak mobile network signal in rural areas</li>
+        <li><span class="li-icon">🛰️</span>Satellite availability and orbital positioning</li>
+        <li><span class="li-icon">🔋</span>Battery-saver mode limiting GPS function</li>
+      </ul>
+      <div class="box box-amber">
+        <div class="box-icon">⚠️</div>
+        <div class="box-body">
+          <div class="box-title">Do Not Rely Solely on WakaSafe Location Data</div>
+          Neither you nor your emergency contacts should make critical safety decisions based exclusively on the location data transmitted by WakaSafe. Treat shared coordinates as an approximate indicator, not an exact position. GPS accuracy can range from a few metres to several hundred metres depending on conditions.
+        </div>
+      </div>
+    </div>
+
+    <!-- S7 -->
+    <div class="dis-section reveal" id="s7">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">💳</div>
+        <div class="section-meta">
+          <div class="section-title">Subscription Services</div>
+          <div class="section-subtitle">What paid plans do and do not guarantee</div>
+        </div>
+      </div>
+      <p>WakaSafe offers subscription plans that unlock access to the full range of safety features. Purchasing a subscription enhances your experience and enables active journey tracking, but it does not alter the fundamental technical limitations described in this disclaimer.</p>
+      <p>Specifically, a paid WakaSafe subscription does <strong>NOT</strong> guarantee:</p>
+      <ul class="clause-list">
+        <li><span class="li-icon">🚫</span>Continuous or uninterrupted service availability at all times</li>
+        <li><span class="li-icon">🚫</span>Delivery of any specific SMS, notification, or emergency alert</li>
+        <li><span class="li-icon">🚫</span>A minimum level of mobile network performance or coverage</li>
+        <li><span class="li-icon">🚫</span>A response from any emergency contact or emergency service</li>
+        <li><span class="li-icon">🚫</span>Specific GPS accuracy thresholds</li>
+        <li><span class="li-icon">🚫</span>Immunity from technical failures, bugs, or service downtime</li>
+      </ul>
+      <div class="box box-blue">
+        <div class="box-icon">ℹ️</div>
+        <div class="box-body">
+          <div class="box-title">Planned Maintenance &amp; Downtime</div>
+          Voddic LTD may periodically perform maintenance on the WakaSafe backend infrastructure. Where possible, we will notify users in advance via in-app notification. Subscription periods are not automatically extended to account for planned maintenance windows unless the downtime is significant and prolonged.
+        </div>
+      </div>
+    </div>
+
+    <!-- S8 -->
+    <div class="dis-section reveal" id="s8">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(229,57,53,.1);border:1px solid rgba(229,57,53,.2)">⚖️</div>
+        <div class="section-meta">
+          <div class="section-title">Limitation of Liability</div>
+          <div class="section-subtitle">The extent of Voddic LTD's legal responsibility</div>
+        </div>
+      </div>
+      <p>To the maximum extent permitted by applicable Nigerian law, WakaSafe, its owners (Voddic LTD), directors, developers, employees, agents, and partners expressly disclaim liability for any harm, loss, or damage of any kind arising from your use of or inability to use the application.</p>
+
+      <h3 class="sub-heading">Voddic LTD shall NOT be held liable for:</h3>
+      <ul class="two-col">
+        <li><span class="li-icon">❌</span>Personal injury or bodily harm</li>
+        <li><span class="li-icon">❌</span>Loss of life</li>
+        <li><span class="li-icon">❌</span>Property damage or loss</li>
+        <li><span class="li-icon">❌</span>Loss of data or journey records</li>
+        <li><span class="li-icon">❌</span>Delayed or failed SMS notifications</li>
+        <li><span class="li-icon">❌</span>Failed or inaccurate location updates</li>
+        <li><span class="li-icon">❌</span>Missed or undelivered emergency alerts</li>
+        <li><span class="li-icon">❌</span>Emergency contact's failure to respond</li>
+        <li><span class="li-icon">❌</span>Network or carrier-level failures</li>
+        <li><span class="li-icon">❌</span>Device failure or malfunction</li>
+        <li><span class="li-icon">❌</span>Indirect, special, or consequential damages</li>
+        <li><span class="li-icon">❌</span>Any outcome resulting from reliance on the app</li>
+      </ul>
+
+      <div class="box box-red">
+        <div class="box-icon">⚖️</div>
+        <div class="box-body">
+          <div class="box-title">Maximum Liability Cap</div>
+          In any event where Voddic LTD is found liable under applicable law, the total aggregate liability shall not exceed the total subscription fees paid by you to Voddic LTD in the three (3) calendar months immediately preceding the event giving rise to the claim.
+        </div>
+      </div>
+      <p>Nothing in this disclaimer shall exclude or limit liability for death or personal injury caused by Voddic LTD's own negligence, fraud, or any other liability that cannot be excluded or limited under Nigerian law.</p>
+    </div>
+
+    <!-- S9 -->
+    <div class="dis-section reveal" id="s9">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">✅</div>
+        <div class="section-meta">
+          <div class="section-title">Acceptance of Disclaimer</div>
+          <div class="section-subtitle">What you agree to by using WakaSafe</div>
+        </div>
+      </div>
+      <p>By creating a WakaSafe account, activating a journey, using the SOS emergency feature, or accessing any other feature of the application, you confirm and acknowledge the following:</p>
+
+      <div class="acc-section">
+        <div class="acc-title">✅ Your Acknowledgements</div>
+        <div class="acc-items">
+          <div class="acc-item">
+            <div class="acc-check">1</div>
+            <div>You have read this Disclaimer in full and understand its contents.</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-check">2</div>
+            <div>You understand and accept the technical limitations of WakaSafe, including limitations on SMS delivery, GPS accuracy, and network availability.</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-check">3</div>
+            <div>You acknowledge that WakaSafe is not an emergency service and does not replace official emergency response providers.</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-check">4</div>
+            <div>You accept full personal responsibility for your use of the application and for any outcomes arising from that use.</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-check">5</div>
+            <div>You agree that Voddic LTD is not liable for any harm, loss, or damage — direct or indirect — arising from your reliance on WakaSafe's features.</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-check">6</div>
+            <div>You confirm that you have obtained prior consent from all individuals added as emergency contacts and that they are aware of their role.</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-check">7</div>
+            <div>You will continue to use official emergency services and take personal safety precautions alongside your use of WakaSafe.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S10 -->
+    <div class="dis-section reveal" id="s10">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">✉️</div>
+        <div class="section-meta">
+          <div class="section-title">Contact Us</div>
+          <div class="section-subtitle">Reach WakaSafe support for any questions or concerns</div>
+        </div>
+      </div>
+      <p>If you have questions about this Disclaimer, wish to report a technical issue, or require clarification on any aspect of WakaSafe's limitations and responsibilities, please reach us through the following channels:</p>
+      <div class="contact-strip">
+        <div class="contact-card">
+          <div class="contact-card-icon">📧</div>
+          <div class="contact-card-title">Email Support</div>
+          <a href="mailto:support@wakasafe.com" class="contact-card-val">support@wakasafe.com</a>
+          <div class="contact-card-sub">Responses within 3 business days</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🌐</div>
+          <div class="contact-card-title">Official Website</div>
+          <a href="https://www.wakasafe.com" target="_blank" class="contact-card-val">www.wakasafe.com</a>
+          <div class="contact-card-sub">Latest updates, FAQs and help articles</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🏢</div>
+          <div class="contact-card-title">Developer</div>
+          <span class="contact-card-val">Voddic LTD</span>
+          <div class="contact-card-sub">voddic.com.ng · Nigeria</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">📱</div>
+          <div class="contact-card-title">In-App Support</div>
+          <span class="contact-card-val">Settings → Contact Support</span>
+          <div class="contact-card-sub">Available within the WakaSafe app</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Final CTA -->
+    <div class="final-cta reveal">
+      <h3>I have read and understand this Disclaimer</h3>
+      <p>By continuing to use WakaSafe, you confirm that you have read, understood, and accepted all terms of this Disclaimer. Stay safe — and waka safe.</p>
+      <button class="btn-amber" id="acceptBtn">⚠️ I Understand &amp; Accept</button>
+      <button class="btn-outline" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Waka<span>Safe</span></div>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="#">Terms &amp; Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Disclaimer</a>
+    <a href="mailto:support@wakasafe.com">Contact</a>
+  </div>
+  <div class="footer-text">© 2026 Voddic LTD · All rights reserved.</div>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+    document.getElementById('readProgress').style.width = pct + '%';
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Active TOC
+  const sections = document.querySelectorAll('.dis-section');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const tocObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => tocObs.observe(s));
+
+  // Accept button
+  document.getElementById('acceptBtn').addEventListener('click', function () {
+    this.textContent = '✓ Disclaimer Accepted';
+    this.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    this.style.color = '#fff';
+    this.style.boxShadow = '0 8px 24px rgba(34,197,94,.3)';
+    this.disabled = true;
+  });
+</script>
+</body>
+</html>
