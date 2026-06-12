@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy – WakaSafe</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy:   #0b1426;
@@ -20,6 +20,7 @@
     --gray:   #8a9bb5;
     --border: rgba(255,255,255,0.08);
     --card:   rgba(255,255,255,0.04);
+    --font:   'Inter', sans-serif;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -28,12 +29,12 @@
   body {
     background: var(--navy);
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font);
     line-height: 1.75;
     overflow-x: hidden;
   }
 
-  h1,h2,h3,h4 { font-family:'Syne',sans-serif; }
+  h1, h2, h3, h4 { font-family: var(--font); }
 
   /* ── PROGRESS BAR ── */
   #readProgress {
@@ -54,8 +55,9 @@
 
   .nav-logo {
     display:flex; align-items:center; gap:10px;
-    font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;
+    font-family: var(--font); font-size:1.2rem; font-weight:800;
     text-decoration:none; color:var(--white);
+    letter-spacing: -0.5px;
   }
   .nav-logo span { color:var(--orange); }
 
@@ -68,11 +70,12 @@
   }
 
   .nav-right { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-  .nav-date  { font-size:.72rem; color:var(--gray); }
+  .nav-date  { font-size:.72rem; color:var(--gray); font-family: var(--font); }
   .nav-badge {
     background:rgba(168,85,247,.15); border:1px solid rgba(168,85,247,.3);
     color:var(--purple); font-size:.65rem; font-weight:700;
     padding:3px 10px; border-radius:20px; letter-spacing:.5px;
+    font-family: var(--font);
   }
 
   /* ── HERO ── */
@@ -105,22 +108,25 @@
     border-radius:20px; padding:4px 14px;
     font-size:.72rem; font-weight:700; color:var(--purple);
     letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;
+    font-family: var(--font);
   }
 
   .hero h1 {
     font-size:clamp(2rem,4.5vw,3.2rem);
-    font-weight:800; letter-spacing:-1.2px; line-height:1.1;
+    font-weight:900; letter-spacing:-2px; line-height:1.1;
     margin-bottom:16px;
+    font-family: var(--font);
   }
   .hero h1 .accent { color:var(--teal); }
 
   .hero-sub {
     font-size:.97rem; color:var(--gray);
     max-width:580px; margin-bottom:30px; line-height:1.7;
+    font-family: var(--font); font-weight: 400;
   }
 
   .hero-meta { display:flex; flex-wrap:wrap; gap:20px; }
-  .meta-item  { display:flex; align-items:center; gap:7px; font-size:.78rem; color:var(--gray); }
+  .meta-item  { display:flex; align-items:center; gap:7px; font-size:.78rem; color:var(--gray); font-family: var(--font); }
   .meta-dot   { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 
   /* ── TRUST STRIP ── */
@@ -142,8 +148,8 @@
   .trust-item:hover { background:var(--card); }
 
   .trust-icon { font-size:1.6rem; }
-  .trust-title { font-family:'Syne',sans-serif; font-size:.82rem; font-weight:700; }
-  .trust-sub   { font-size:.7rem; color:var(--gray); line-height:1.4; }
+  .trust-title { font-family: var(--font); font-size:.82rem; font-weight:700; }
+  .trust-sub   { font-size:.7rem; color:var(--gray); line-height:1.4; font-family: var(--font); font-weight: 400; }
 
   /* ── LAYOUT ── */
   .layout {
@@ -169,6 +175,7 @@
     color:var(--gray); letter-spacing:1.5px;
     text-transform:uppercase; margin-bottom:10px;
     padding-bottom:8px; border-bottom:1px solid var(--border);
+    font-family: var(--font);
   }
 
   .toc-list { list-style:none; display:flex; flex-direction:column; gap:2px; }
@@ -179,6 +186,7 @@
     font-size:.78rem; color:var(--gray);
     text-decoration:none; transition:all .2s;
     border-left:2px solid transparent;
+    font-family: var(--font);
   }
   .toc-list a:hover,
   .toc-list a.active {
@@ -188,6 +196,7 @@
   .toc-list a .toc-num {
     font-size:.6rem; font-weight:800;
     color:var(--orange); min-width:16px;
+    font-family: var(--font);
   }
   .toc-list a .toc-icon { font-size:.85rem; }
 
@@ -200,11 +209,12 @@
     display:flex; align-items:flex-start; gap:10px;
     padding:8px 0; border-bottom:1px solid var(--border);
     font-size:.75rem; line-height:1.5;
+    font-family: var(--font);
   }
   .qf-row:last-child { border-bottom:none; padding-bottom:0; }
   .qf-icon  { font-size:1rem; flex-shrink:0; margin-top:1px; }
   .qf-label { font-weight:600; color:var(--white); display:block; }
-  .qf-val   { color:var(--gray); display:block; }
+  .qf-val   { color:var(--gray); display:block; font-weight: 400; }
 
   /* ── CONTENT ── */
   .content { min-width:0; }
@@ -218,6 +228,7 @@
   .summary-banner h3 {
     font-size:1rem; font-weight:800; margin-bottom:14px;
     display:flex; align-items:center; gap:10px;
+    font-family: var(--font); letter-spacing: -0.3px;
   }
   .summary-banner h3::before {
     content:'🛡️'; font-size:1.1rem;
@@ -228,6 +239,7 @@
   .summary-item {
     display:flex; align-items:flex-start; gap:10px;
     font-size:.82rem; color:rgba(255,255,255,.8); line-height:1.5;
+    font-family: var(--font); font-weight: 400;
   }
   .summary-item::before {
     content:'✓'; color:var(--teal); font-weight:700;
@@ -255,13 +267,15 @@
   .section-meta { flex:1; }
   .section-title {
     font-size:1.1rem; font-weight:700;
-    letter-spacing:-.3px; margin-bottom:2px;
+    letter-spacing:-.5px; margin-bottom:2px;
+    font-family: var(--font);
   }
-  .section-subtitle { font-size:.72rem; color:var(--gray); }
+  .section-subtitle { font-size:.72rem; color:var(--gray); font-family: var(--font); }
 
   .pp-section p {
     font-size:.92rem; color:rgba(255,255,255,.78);
     margin-bottom:14px; line-height:1.75;
+    font-family: var(--font); font-weight: 400;
   }
   .pp-section p:last-child { margin-bottom:0; }
 
@@ -274,7 +288,7 @@
   .data-table thead th {
     background:rgba(255,255,255,.06);
     padding:12px 16px; text-align:left;
-    font-family:'Syne',sans-serif; font-size:.72rem;
+    font-family: var(--font); font-size:.72rem;
     font-weight:700; color:var(--gray);
     letter-spacing:.8px; text-transform:uppercase;
     border-bottom:1px solid var(--border);
@@ -288,6 +302,7 @@
   .data-table td {
     padding:12px 16px; color:rgba(255,255,255,.75);
     vertical-align:top; line-height:1.55;
+    font-family: var(--font); font-weight: 400;
   }
   .data-table td:first-child { font-weight:600; color:var(--white); }
 
@@ -303,6 +318,7 @@
     padding:12px 16px; background:var(--card);
     border-radius:10px; border:1px solid var(--border);
     line-height:1.6; transition:border-color .2s;
+    font-family: var(--font); font-weight: 400;
   }
   .clause-list li:hover { border-color:rgba(255,255,255,.14); }
   .clause-list li .li-icon { flex-shrink:0; font-size:.9rem; margin-top:1px; }
@@ -331,12 +347,13 @@
     display:flex; align-items:center; justify-content:center;
     font-size:1rem; flex-shrink:0;
   }
-  .perm-name { font-family:'Syne',sans-serif; font-size:.88rem; font-weight:700; }
+  .perm-name { font-family: var(--font); font-size:.88rem; font-weight:700; }
   .perm-required {
     font-size:.6rem; font-weight:700; padding:2px 8px;
     border-radius:10px; margin-left:auto;
+    font-family: var(--font);
   }
-  .perm-desc { font-size:.78rem; color:var(--gray); line-height:1.55; }
+  .perm-desc { font-size:.78rem; color:var(--gray); line-height:1.55; font-family: var(--font); font-weight: 400; }
 
   /* callout boxes */
   .box {
@@ -344,10 +361,11 @@
     margin:18px 0; font-size:.88rem;
     color:rgba(255,255,255,.82); line-height:1.7;
     display:flex; gap:14px; align-items:flex-start;
+    font-family: var(--font); font-weight: 400;
   }
   .box-icon { font-size:1.3rem; flex-shrink:0; margin-top:1px; }
   .box-body { flex:1; }
-  .box-title { font-family:'Syne',sans-serif; font-weight:700; font-size:.88rem; margin-bottom:5px; }
+  .box-title { font-family: var(--font); font-weight:700; font-size:.88rem; margin-bottom:5px; }
 
   .box-teal   { background:rgba(0,212,170,.07); border:1px solid rgba(0,212,170,.22); border-left:3px solid var(--teal); }
   .box-orange { background:rgba(244,124,32,.07); border:1px solid rgba(244,124,32,.22); border-left:3px solid var(--orange); }
@@ -365,7 +383,7 @@
 
   /* sub heading */
   .sub-heading {
-    font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700;
+    font-family: var(--font); font-size:.95rem; font-weight:700;
     color:var(--white); margin:24px 0 10px;
     display:flex; align-items:center; gap:8px;
   }
@@ -376,7 +394,7 @@
     flex-shrink:0;
   }
 
-  /* retention table visual */
+  /* retention list */
   .retention-list {
     display:flex; flex-direction:column; gap:10px; margin:16px 0;
   }
@@ -391,11 +409,13 @@
   }
   .ret-label {
     font-weight:600; font-size:.85rem; flex:1;
+    font-family: var(--font);
   }
   .ret-period {
     font-size:.75rem; color:var(--gray);
     background:rgba(255,255,255,.06); padding:3px 12px;
     border-radius:20px; border:1px solid var(--border);
+    font-family: var(--font);
   }
 
   /* rights grid */
@@ -415,12 +435,12 @@
   }
   .right-icon { font-size:1.6rem; margin-bottom:10px; }
   .right-title {
-    font-family:'Syne',sans-serif; font-size:.85rem;
+    font-family: var(--font); font-size:.85rem;
     font-weight:700; margin-bottom:6px;
   }
-  .right-desc { font-size:.75rem; color:var(--gray); line-height:1.5; }
+  .right-desc { font-size:.75rem; color:var(--gray); line-height:1.5; font-family: var(--font); font-weight: 400; }
 
-  /* contact card */
+  /* contact cards */
   .contact-cards {
     display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:16px; margin-top:20px;
@@ -436,16 +456,16 @@
   }
   .contact-card-icon { font-size:1.8rem; margin-bottom:12px; }
   .contact-card-title {
-    font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem;
+    font-family: var(--font); font-weight:700; font-size:.9rem;
     margin-bottom:6px;
   }
   .contact-card-val {
     font-size:.82rem; color:var(--teal);
     text-decoration:none; display:block;
-    margin-bottom:4px;
+    margin-bottom:4px; font-family: var(--font);
   }
   .contact-card-val:hover { text-decoration:underline; }
-  .contact-card-sub { font-size:.75rem; color:var(--gray); }
+  .contact-card-sub { font-size:.75rem; color:var(--gray); font-family: var(--font); }
 
   /* divider */
   hr.divider {
@@ -469,17 +489,18 @@
   }
   .acceptance h3 {
     font-size:1.2rem; font-weight:800; margin-bottom:10px;
-    position:relative;
+    position:relative; font-family: var(--font); letter-spacing: -0.5px;
   }
   .acceptance p {
     font-size:.88rem; color:var(--gray); max-width:520px;
     margin:0 auto 28px; line-height:1.7; position:relative;
+    font-family: var(--font); font-weight: 400;
   }
   .btn-teal {
     background:linear-gradient(135deg,var(--teal),#009977);
     color:var(--navy); border:none;
     padding:13px 32px; border-radius:12px;
-    font-family:'Syne',sans-serif; font-weight:800; font-size:.87rem;
+    font-family: var(--font); font-weight:800; font-size:.87rem;
     cursor:pointer; transition:all .2s; margin:5px;
     box-shadow:0 8px 24px rgba(0,212,170,.25);
   }
@@ -488,7 +509,7 @@
     background:transparent; color:var(--gray);
     border:1.5px solid var(--border); padding:13px 28px;
     border-radius:12px;
-    font-family:'Syne',sans-serif; font-weight:600; font-size:.87rem;
+    font-family: var(--font); font-weight:600; font-size:.87rem;
     cursor:pointer; transition:all .2s; margin:5px;
   }
   .btn-outline:hover { border-color:rgba(255,255,255,.25); color:var(--white); }
@@ -500,15 +521,16 @@
     display:flex; justify-content:space-between;
     align-items:center; flex-wrap:wrap; gap:16px;
   }
-  .footer-brand { font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; }
+  .footer-brand { font-family: var(--font); font-weight:800; font-size:1.05rem; letter-spacing: -0.5px; }
   .footer-brand span { color:var(--orange); }
   .footer-links { display:flex; gap:20px; }
   .footer-links a {
     font-size:.75rem; color:var(--gray);
     text-decoration:none; transition:color .2s;
+    font-family: var(--font);
   }
   .footer-links a:hover { color:var(--white); }
-  .footer-text { font-size:.75rem; color:var(--gray); }
+  .footer-text { font-size:.75rem; color:var(--gray); font-family: var(--font); }
 
   /* scroll reveal */
   .reveal {
@@ -667,7 +689,6 @@
   <!-- CONTENT -->
   <main class="content">
 
-    <!-- Summary banner -->
     <div class="summary-banner reveal">
       <h3>Privacy at a Glance</h3>
       <div class="summary-grid">
@@ -682,7 +703,7 @@
       </div>
     </div>
 
-    <!-- S1: Introduction -->
+    <!-- S1 -->
     <div class="pp-section reveal" id="s1">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">ℹ️</div>
@@ -703,7 +724,7 @@
       <p>This policy applies to the WakaSafe Android application and all associated services operated by Voddic LTD. It does not apply to third-party services integrated into WakaSafe, such as Paystack, which have their own separate privacy policies.</p>
     </div>
 
-    <!-- S2: Information We Collect -->
+    <!-- S2 -->
     <div class="pp-section reveal" id="s2">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">📋</div>
@@ -713,7 +734,6 @@
         </div>
       </div>
       <p>We collect only the information necessary to deliver WakaSafe's core safety services. Below is a complete breakdown of every category of data we may collect.</p>
-
       <h3 class="sub-heading">Account Information</h3>
       <p>When you create a WakaSafe account, we collect the following to identify you and manage your access to the service:</p>
       <table class="data-table">
@@ -727,7 +747,6 @@
           <tr><td>Google account info</td><td>Alternative sign-in method via Google Sign-In</td><td>Optional</td></tr>
         </tbody>
       </table>
-
       <h3 class="sub-heading">Emergency Contacts</h3>
       <p>To enable journey safety notifications, WakaSafe stores the following information about your emergency contacts:</p>
       <ul class="clause-list">
@@ -741,7 +760,6 @@
           You must obtain prior consent from every individual before adding them as an emergency contact. By adding a number, you confirm that person has agreed to receive location SMS updates from WakaSafe on your behalf.
         </div>
       </div>
-
       <h3 class="sub-heading">Location Information</h3>
       <p>WakaSafe collects your GPS location under the following specific circumstances only:</p>
       <ul class="clause-list">
@@ -757,7 +775,6 @@
           Advertising, profiling, behaviour analysis, marketing, or any purpose other than providing real-time safety updates to your designated emergency contacts.
         </div>
       </div>
-
       <h3 class="sub-heading">SMS Information</h3>
       <p>WakaSafe sends SMS messages directly from your device. The application uses your device's SMS capability to dispatch the following types of messages:</p>
       <table class="data-table">
@@ -770,7 +787,6 @@
         </tbody>
       </table>
       <p><strong>WakaSafe does not read, access, or process any personal SMS conversations or messages</strong> unrelated to WakaSafe's own operations. SMS permission is strictly one-directional — outbound only.</p>
-
       <h3 class="sub-heading">Device Information</h3>
       <p>For security, fraud prevention, and service improvement purposes, we may collect limited technical information about your device, including:</p>
       <ul class="clause-list">
@@ -781,7 +797,7 @@
       </ul>
     </div>
 
-    <!-- S3: How We Use Information -->
+    <!-- S3 -->
     <div class="pp-section reveal" id="s3">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">⚙️</div>
@@ -807,7 +823,7 @@
       </table>
     </div>
 
-    <!-- S4: Background Location -->
+    <!-- S4 -->
     <div class="pp-section reveal" id="s4">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">📍</div>
@@ -840,7 +856,7 @@
       <p>Background location access automatically ceases when a journey is ended (via end PIN or distress PIN) or if the application is manually closed during a non-active state.</p>
     </div>
 
-    <!-- S5: SMS Permission -->
+    <!-- S5 -->
     <div class="pp-section reveal" id="s5">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">📱</div>
@@ -856,18 +872,14 @@
             <div class="perm-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">✅</div>
             <div class="perm-name">Permitted SMS Uses</div>
           </div>
-          <div class="perm-desc">
-            Journey start notifications · Periodic location updates · Journey completion messages · SOS emergency alerts to designated contacts
-          </div>
+          <div class="perm-desc">Journey start notifications · Periodic location updates · Journey completion messages · SOS emergency alerts to designated contacts</div>
         </div>
         <div class="perm-card">
           <div class="perm-header">
             <div class="perm-icon" style="background:rgba(229,57,53,.1);border:1px solid rgba(229,57,53,.2)">🚫</div>
             <div class="perm-name">Prohibited SMS Uses</div>
           </div>
-          <div class="perm-desc">
-            Advertising · Promotions · Marketing · Reading personal messages · Mass communications · Any purpose outside safety notifications
-          </div>
+          <div class="perm-desc">Advertising · Promotions · Marketing · Reading personal messages · Mass communications · Any purpose outside safety notifications</div>
         </div>
       </div>
       <div class="box box-orange">
@@ -879,7 +891,7 @@
       </div>
     </div>
 
-    <!-- S6: Contact Permission -->
+    <!-- S6 -->
     <div class="pp-section reveal" id="s6">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2)">👥</div>
@@ -898,7 +910,7 @@
       </ul>
     </div>
 
-    <!-- S7: Subscription & Payments -->
+    <!-- S7 -->
     <div class="pp-section reveal" id="s7">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">💳</div>
@@ -923,7 +935,7 @@
       </div>
     </div>
 
-    <!-- S8: Data Sharing -->
+    <!-- S8 -->
     <div class="pp-section reveal" id="s8">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">🤝</div>
@@ -953,7 +965,7 @@
       <p>Any third-party service providers we engage are contractually required to process your data only for the purposes we specify and in accordance with applicable data protection law.</p>
     </div>
 
-    <!-- S9: Data Retention -->
+    <!-- S9 -->
     <div class="pp-section reveal" id="s9">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">🗃️</div>
@@ -998,7 +1010,7 @@
       <p>Upon account deletion, all personal data associated with your account will be permanently removed from our active systems within <strong>30 days</strong>, except where retention is required by law. Backups may retain data for up to <strong>90 additional days</strong> before being purged from archival systems.</p>
     </div>
 
-    <!-- S10: Security -->
+    <!-- S10 -->
     <div class="pp-section reveal" id="s10">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">🔒</div>
@@ -1047,7 +1059,7 @@
       </div>
     </div>
 
-    <!-- S11: Your Rights -->
+    <!-- S11 -->
     <div class="pp-section reveal" id="s11">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2)">⚖️</div>
@@ -1092,7 +1104,7 @@
       <p>To exercise any of these rights, contact us at <strong>support@wakasafe.com</strong>. We will respond to all verifiable requests within <strong>30 days</strong>. We may need to verify your identity before processing certain requests.</p>
     </div>
 
-    <!-- S12: Children's Privacy -->
+    <!-- S12 -->
     <div class="pp-section reveal" id="s12">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(244,124,32,.1);border:1px solid rgba(244,124,32,.2)">👶</div>
@@ -1112,7 +1124,7 @@
       </div>
     </div>
 
-    <!-- S13: Third-Party Services -->
+    <!-- S13 -->
     <div class="pp-section reveal" id="s13">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">🔗</div>
@@ -1140,7 +1152,7 @@
       </div>
     </div>
 
-    <!-- S14: Policy Changes -->
+    <!-- S14 -->
     <div class="pp-section reveal" id="s14">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)">🔄</div>
@@ -1159,7 +1171,7 @@
       </ul>
     </div>
 
-    <!-- S15: Contact -->
+    <!-- S15 -->
     <div class="pp-section reveal" id="s15">
       <div class="section-header">
         <div class="section-icon" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2)">✉️</div>
@@ -1199,7 +1211,6 @@
 
     <hr class="divider">
 
-    <!-- Acceptance -->
     <div class="acceptance reveal">
       <h3>You have reviewed our Privacy Policy</h3>
       <p>By using WakaSafe, you acknowledge that you have read and understood how we collect, use, and protect your personal data. Your trust means everything to us.</p>
@@ -1223,20 +1234,17 @@
 </footer>
 
 <script>
-  // Progress bar
   window.addEventListener('scroll', () => {
     const d = document.documentElement;
     const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
     document.getElementById('readProgress').style.width = pct + '%';
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Active TOC
   const sections = document.querySelectorAll('.pp-section');
   const tocLinks = document.querySelectorAll('.toc-link');
   const tocObs = new IntersectionObserver(entries => {
@@ -1250,7 +1258,6 @@
   }, { rootMargin: '-15% 0px -75% 0px' });
   sections.forEach(s => tocObs.observe(s));
 
-  // Accept button
   document.getElementById('acceptBtn').addEventListener('click', function () {
     this.textContent = '✓ Policy Accepted';
     this.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
