@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Disclaimer – WakaSafe</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy:   #0b1426;
@@ -20,6 +20,7 @@
     --gray:   #8a9bb5;
     --border: rgba(255,255,255,0.08);
     --card:   rgba(255,255,255,0.04);
+    --font:   'Inter', sans-serif;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -28,12 +29,12 @@
   body {
     background: var(--navy);
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font);
     line-height: 1.75;
     overflow-x: hidden;
   }
 
-  h1,h2,h3,h4 { font-family:'Syne',sans-serif; }
+  h1, h2, h3, h4 { font-family: var(--font); }
 
   /* ── PROGRESS BAR ── */
   #readProgress {
@@ -54,8 +55,9 @@
 
   .nav-logo {
     display:flex; align-items:center; gap:10px;
-    font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;
+    font-family: var(--font); font-size:1.2rem; font-weight:800;
     text-decoration:none; color:var(--white);
+    letter-spacing:-0.5px;
   }
   .nav-logo span { color:var(--orange); }
 
@@ -67,11 +69,12 @@
   }
 
   .nav-right { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-  .nav-date  { font-size:.72rem; color:var(--gray); }
+  .nav-date  { font-size:.72rem; color:var(--gray); font-family: var(--font); }
   .nav-badge {
     background:rgba(245,158,11,.15); border:1px solid rgba(245,158,11,.35);
     color:var(--amber); font-size:.65rem; font-weight:700;
     padding:3px 10px; border-radius:20px; letter-spacing:.5px;
+    font-family: var(--font);
   }
 
   /* ── HERO ── */
@@ -104,6 +107,7 @@
     border-radius:20px; padding:4px 14px;
     font-size:.72rem; font-weight:700; color:var(--amber);
     letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;
+    font-family: var(--font);
   }
   .hero-eyebrow::before {
     content:''; width:7px; height:7px;
@@ -118,18 +122,20 @@
 
   .hero h1 {
     font-size:clamp(2rem,4.5vw,3.2rem);
-    font-weight:800; letter-spacing:-1.2px; line-height:1.1;
+    font-weight:900; letter-spacing:-2px; line-height:1.1;
     margin-bottom:16px;
+    font-family: var(--font);
   }
   .hero h1 .accent { color:var(--amber); }
 
   .hero-sub {
     font-size:.97rem; color:var(--gray);
     max-width:600px; margin-bottom:30px; line-height:1.7;
+    font-family: var(--font); font-weight:400;
   }
 
   .hero-meta { display:flex; flex-wrap:wrap; gap:20px; }
-  .meta-item  { display:flex; align-items:center; gap:7px; font-size:.78rem; color:var(--gray); }
+  .meta-item  { display:flex; align-items:center; gap:7px; font-size:.78rem; color:var(--gray); font-family: var(--font); }
   .meta-dot   { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 
   /* ── ALERT BANNER ── */
@@ -142,13 +148,14 @@
   }
   .alert-icon { font-size:2rem; flex-shrink:0; margin-top:2px; }
   .alert-title {
-    font-family:'Syne',sans-serif; font-size:1rem; font-weight:800;
+    font-family: var(--font); font-size:1rem; font-weight:800;
     color:#ef5350; margin-bottom:6px;
   }
   .alert-text {
     font-size:.9rem; color:rgba(255,255,255,.8); line-height:1.65; max-width:860px;
+    font-family: var(--font); font-weight:400;
   }
-  .alert-text strong { color:var(--white); }
+  .alert-text strong { color:var(--white); font-weight:700; }
 
   /* ── NOT-LIST ── */
   .not-grid {
@@ -160,6 +167,7 @@
     background:rgba(229,57,53,.1); border:1px solid rgba(229,57,53,.25);
     border-radius:20px; padding:5px 14px;
     font-size:.75rem; color:#ef9a9a; font-weight:600;
+    font-family: var(--font);
   }
   .not-badge::before { content:'✗'; font-weight:800; color:var(--red); }
 
@@ -185,6 +193,7 @@
     color:var(--gray); letter-spacing:1.5px; text-transform:uppercase;
     margin-bottom:10px; padding-bottom:8px;
     border-bottom:1px solid var(--border);
+    font-family: var(--font);
   }
 
   .toc-list { list-style:none; display:flex; flex-direction:column; gap:2px; margin-bottom:28px; }
@@ -194,6 +203,7 @@
     font-size:.78rem; color:var(--gray);
     text-decoration:none; transition:all .2s;
     border-left:2px solid transparent;
+    font-family: var(--font);
   }
   .toc-list a:hover, .toc-list a.active {
     color:var(--white); background:var(--card);
@@ -201,6 +211,7 @@
   }
   .toc-list a .toc-num {
     font-size:.6rem; font-weight:800; color:var(--amber); min-width:16px;
+    font-family: var(--font);
   }
   .toc-list a .toc-emoji { font-size:.85rem; }
 
@@ -211,7 +222,7 @@
     border-radius:14px; padding:18px;
   }
   .reminder-title {
-    font-family:'Syne',sans-serif; font-size:.8rem; font-weight:700;
+    font-family: var(--font); font-size:.8rem; font-weight:700;
     color:var(--amber); margin-bottom:12px;
     display:flex; align-items:center; gap:7px;
   }
@@ -220,6 +231,7 @@
     font-size:.75rem; color:rgba(255,255,255,.7);
     line-height:1.5; margin-bottom:8px;
     padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.05);
+    font-family: var(--font); font-weight:400;
   }
   .reminder-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
   .reminder-item .ri { flex-shrink:0; font-size:.85rem; margin-top:1px; }
@@ -248,19 +260,21 @@
   .section-meta { flex:1; }
   .section-title {
     font-size:1.1rem; font-weight:700;
-    letter-spacing:-.3px; margin-bottom:2px;
+    letter-spacing:-.5px; margin-bottom:2px;
+    font-family: var(--font);
   }
-  .section-subtitle { font-size:.72rem; color:var(--gray); }
+  .section-subtitle { font-size:.72rem; color:var(--gray); font-family: var(--font); }
 
   .dis-section p {
     font-size:.92rem; color:rgba(255,255,255,.78);
     margin-bottom:14px; line-height:1.75;
+    font-family: var(--font); font-weight:400;
   }
   .dis-section p:last-child { margin-bottom:0; }
 
   /* sub heading */
   .sub-heading {
-    font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700;
+    font-family: var(--font); font-size:.95rem; font-weight:700;
     color:var(--white); margin:24px 0 10px;
     display:flex; align-items:center; gap:8px;
   }
@@ -280,6 +294,7 @@
     padding:12px 16px; background:var(--card);
     border-radius:10px; border:1px solid var(--border);
     line-height:1.6; transition:border-color .2s;
+    font-family: var(--font); font-weight:400;
   }
   .clause-list li:hover { border-color:rgba(255,255,255,.14); }
   .clause-list li .li-icon { flex-shrink:0; font-size:.9rem; margin-top:1px; }
@@ -287,6 +302,7 @@
   /* two-col list */
   .two-col {
     display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0;
+    list-style:none;
   }
   .two-col li {
     display:flex; gap:10px; align-items:flex-start;
@@ -294,6 +310,7 @@
     padding:11px 14px; background:var(--card);
     border-radius:10px; border:1px solid var(--border);
     line-height:1.5; transition:border-color .2s;
+    font-family: var(--font); font-weight:400;
   }
   .two-col li:hover { border-color:rgba(255,255,255,.14); }
   .two-col li .li-icon { flex-shrink:0; font-size:.85rem; }
@@ -304,11 +321,12 @@
     margin:18px 0; font-size:.88rem;
     color:rgba(255,255,255,.82); line-height:1.7;
     display:flex; gap:14px; align-items:flex-start;
+    font-family: var(--font); font-weight:400;
   }
   .box-icon { font-size:1.3rem; flex-shrink:0; margin-top:1px; }
   .box-body  { flex:1; }
   .box-title {
-    font-family:'Syne',sans-serif; font-weight:700;
+    font-family: var(--font); font-weight:700;
     font-size:.88rem; margin-bottom:5px;
   }
 
@@ -341,10 +359,10 @@
   }
   .limit-icon { font-size:1.7rem; margin-bottom:10px; }
   .limit-title {
-    font-family:'Syne',sans-serif; font-size:.88rem;
+    font-family: var(--font); font-size:.88rem;
     font-weight:700; margin-bottom:6px;
   }
-  .limit-desc { font-size:.78rem; color:var(--gray); line-height:1.55; }
+  .limit-desc { font-size:.78rem; color:var(--gray); line-height:1.55; font-family: var(--font); font-weight:400; }
 
   /* liability table */
   .data-table {
@@ -355,7 +373,7 @@
   .data-table thead th {
     background:rgba(255,255,255,.06);
     padding:12px 16px; text-align:left;
-    font-family:'Syne',sans-serif; font-size:.7rem;
+    font-family: var(--font); font-size:.7rem;
     font-weight:700; color:var(--gray);
     letter-spacing:.8px; text-transform:uppercase;
     border-bottom:1px solid var(--border);
@@ -369,6 +387,7 @@
   .data-table td {
     padding:12px 16px; color:rgba(255,255,255,.75);
     vertical-align:top; line-height:1.55;
+    font-family: var(--font); font-weight:400;
   }
   .data-table td:first-child { font-weight:600; color:var(--white); }
   .data-table .status-no  { color:#ef5350; font-weight:700; }
@@ -389,11 +408,11 @@
     width:28px; height:28px; border-radius:8px;
     background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.25);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Syne',sans-serif; font-size:.7rem; font-weight:800;
+    font-family: var(--font); font-size:.7rem; font-weight:800;
     color:var(--amber); flex-shrink:0;
   }
-  .resp-title { font-weight:600; font-size:.88rem; margin-bottom:3px; }
-  .resp-desc  { font-size:.8rem; color:var(--gray); line-height:1.5; }
+  .resp-title { font-weight:600; font-size:.88rem; margin-bottom:3px; font-family: var(--font); }
+  .resp-desc  { font-size:.8rem; color:var(--gray); line-height:1.5; font-family: var(--font); font-weight:400; }
 
   /* acceptance section */
   .acc-section {
@@ -402,7 +421,7 @@
     border-radius:18px; padding:28px 30px; margin:18px 0;
   }
   .acc-title {
-    font-family:'Syne',sans-serif; font-size:1rem; font-weight:800;
+    font-family: var(--font); font-size:1rem; font-weight:800;
     margin-bottom:14px;
     display:flex; align-items:center; gap:10px;
   }
@@ -412,6 +431,7 @@
   .acc-item {
     display:flex; align-items:flex-start; gap:12px;
     font-size:.9rem; color:rgba(255,255,255,.8); line-height:1.6;
+    font-family: var(--font); font-weight:400;
   }
   .acc-check {
     width:22px; height:22px; border-radius:6px;
@@ -419,9 +439,10 @@
     display:flex; align-items:center; justify-content:center;
     font-size:.75rem; color:var(--amber); font-weight:700;
     flex-shrink:0; margin-top:1px;
+    font-family: var(--font);
   }
 
-  /* contact card */
+  /* contact cards */
   .contact-strip {
     display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px;
   }
@@ -436,14 +457,15 @@
   }
   .contact-card-icon { font-size:1.8rem; margin-bottom:12px; }
   .contact-card-title {
-    font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; margin-bottom:6px;
+    font-family: var(--font); font-weight:700; font-size:.9rem; margin-bottom:6px;
   }
   .contact-card-val {
     font-size:.82rem; color:var(--teal);
     text-decoration:none; display:block; margin-bottom:4px;
+    font-family: var(--font);
   }
   .contact-card-val:hover { text-decoration:underline; }
-  .contact-card-sub { font-size:.75rem; color:var(--gray); }
+  .contact-card-sub { font-size:.75rem; color:var(--gray); font-family: var(--font); }
 
   /* divider */
   hr.divider { border:none; border-top:1px solid var(--border); margin:52px 0; }
@@ -464,16 +486,18 @@
   }
   .final-cta h3 {
     font-size:1.25rem; font-weight:800; margin-bottom:10px; position:relative;
+    font-family: var(--font); letter-spacing:-0.5px;
   }
   .final-cta p {
     font-size:.88rem; color:var(--gray); max-width:520px;
     margin:0 auto 28px; line-height:1.7; position:relative;
+    font-family: var(--font); font-weight:400;
   }
   .btn-amber {
     background:linear-gradient(135deg, var(--amber), #d97706);
     color:var(--navy); border:none;
     padding:13px 32px; border-radius:12px;
-    font-family:'Syne',sans-serif; font-weight:800; font-size:.87rem;
+    font-family: var(--font); font-weight:800; font-size:.87rem;
     cursor:pointer; transition:all .2s; margin:5px;
     box-shadow:0 8px 24px rgba(245,158,11,.25);
   }
@@ -482,7 +506,7 @@
     background:transparent; color:var(--gray);
     border:1.5px solid var(--border); padding:13px 28px;
     border-radius:12px;
-    font-family:'Syne',sans-serif; font-weight:600; font-size:.87rem;
+    font-family: var(--font); font-weight:600; font-size:.87rem;
     cursor:pointer; transition:all .2s; margin:5px;
   }
   .btn-outline:hover { border-color:rgba(255,255,255,.25); color:var(--white); }
@@ -494,15 +518,16 @@
     display:flex; justify-content:space-between;
     align-items:center; flex-wrap:wrap; gap:16px;
   }
-  .footer-brand { font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; }
+  .footer-brand { font-family: var(--font); font-weight:800; font-size:1.05rem; letter-spacing:-0.5px; }
   .footer-brand span { color:var(--orange); }
   .footer-links { display:flex; gap:20px; }
   .footer-links a {
     font-size:.75rem; color:var(--gray);
     text-decoration:none; transition:color .2s;
+    font-family: var(--font);
   }
   .footer-links a:hover { color:var(--white); }
-  .footer-text { font-size:.75rem; color:var(--gray); }
+  .footer-text { font-size:.75rem; color:var(--gray); font-family: var(--font); }
 
   /* scroll reveal */
   .reveal {
@@ -670,7 +695,6 @@
       </div>
       <p>While WakaSafe is designed to send location updates, journey notifications, and SOS emergency alerts to your emergency contacts, Voddic LTD makes <strong>no guarantee</strong> of any outcome resulting from those communications.</p>
       <p>The following outcomes are explicitly outside the scope of what WakaSafe guarantees or can control:</p>
-
       <table class="data-table">
         <thead><tr><th>Outcome</th><th>Guaranteed?</th><th>Why Not</th></tr></thead>
         <tbody>
@@ -683,7 +707,6 @@
           <tr><td>Journey tracking will be uninterrupted</td><td class="status-no">✗ No</td><td>Device battery, signal, or app state may interrupt the process</td></tr>
         </tbody>
       </table>
-
       <div class="box box-amber">
         <div class="box-icon">⚠️</div>
         <div class="box-body">
@@ -704,7 +727,6 @@
       </div>
       <p>WakaSafe relies on a combination of mobile network infrastructure, device hardware, GPS satellite availability, and in some features, internet connectivity. Many of these dependencies are outside Voddic LTD's control.</p>
       <p>Delays, failures, or interruptions to WakaSafe's core functions may occur due to the following:</p>
-
       <div class="limit-grid">
         <div class="limit-card">
           <div class="limit-icon">📶</div>
@@ -756,7 +778,6 @@
         </div>
       </div>
       <p>By using WakaSafe, you accept full responsibility for ensuring the application is configured correctly and used appropriately. The effectiveness of WakaSafe's safety features depends significantly on how well you manage the following:</p>
-
       <div class="resp-list">
         <div class="resp-item">
           <div class="resp-num">01</div>
@@ -904,7 +925,6 @@
         </div>
       </div>
       <p>To the maximum extent permitted by applicable Nigerian law, WakaSafe, its owners (Voddic LTD), directors, developers, employees, agents, and partners expressly disclaim liability for any harm, loss, or damage of any kind arising from your use of or inability to use the application.</p>
-
       <h3 class="sub-heading">Voddic LTD shall NOT be held liable for:</h3>
       <ul class="two-col">
         <li><span class="li-icon">❌</span>Personal injury or bodily harm</li>
@@ -920,7 +940,6 @@
         <li><span class="li-icon">❌</span>Indirect, special, or consequential damages</li>
         <li><span class="li-icon">❌</span>Any outcome resulting from reliance on the app</li>
       </ul>
-
       <div class="box box-red">
         <div class="box-icon">⚖️</div>
         <div class="box-body">
@@ -941,7 +960,6 @@
         </div>
       </div>
       <p>By creating a WakaSafe account, activating a journey, using the SOS emergency feature, or accessing any other feature of the application, you confirm and acknowledge the following:</p>
-
       <div class="acc-section">
         <div class="acc-title">✅ Your Acknowledgements</div>
         <div class="acc-items">
@@ -1017,7 +1035,6 @@
 
     <hr class="divider">
 
-    <!-- Final CTA -->
     <div class="final-cta reveal">
       <h3>I have read and understand this Disclaimer</h3>
       <p>By continuing to use WakaSafe, you confirm that you have read, understood, and accepted all terms of this Disclaimer. Stay safe — and waka safe.</p>
@@ -1042,20 +1059,17 @@
 </footer>
 
 <script>
-  // Progress bar
   window.addEventListener('scroll', () => {
     const d = document.documentElement;
     const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
     document.getElementById('readProgress').style.width = pct + '%';
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Active TOC
   const sections = document.querySelectorAll('.dis-section');
   const tocLinks = document.querySelectorAll('.toc-link');
   const tocObs = new IntersectionObserver(entries => {
@@ -1069,7 +1083,6 @@
   }, { rootMargin: '-15% 0px -75% 0px' });
   sections.forEach(s => tocObs.observe(s));
 
-  // Accept button
   document.getElementById('acceptBtn').addEventListener('click', function () {
     this.textContent = '✓ Disclaimer Accepted';
     this.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
