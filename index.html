@@ -1494,8 +1494,158 @@
     .footer-links { justify-content:center; }
   } 
   
+  /* Container button setup */
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #111111; /* Sleek dark background */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Spaces out the icon from the text */
+.store-icon {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* Tiny subtext above the store name */
+.store-sub {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #a0a0a0;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+/* Bold, prominent app store name */
+.store-name {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
   
-  
+
+
+/* App Store Button Styling */
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #111111;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: pointer;
+}
+.store-icon { margin-right: 12px; display: flex; align-items: center; }
+.store-sub { display: block; font-size: 10px; color: #a0a0a0; }
+.store-name { display: block; font-size: 18px; font-weight: 600; }
+
+/* Modal Overlay (Blurs background) */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* The Box Itself */
+.modal-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  font-family: sans-serif;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+/* Reveal State */
+.modal-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+.modal-overlay.show .modal-box {
+  transform: translateY(0);
+}
+
+/* Close Button (X) */
+.close-btn {
+  position: absolute;
+  top: 15px; right: 20px;
+  background: none; border: none;
+  font-size: 24px; cursor: pointer; color: #aaa;
+}
+.close-btn:hover { color: #333; }
+
+/* Giant Paw Graphic */
+.paw-icon-container {
+  font-size: 50px;
+  margin-bottom: 15px;
+  animation: pulse 2s infinite;
+}
+
+.modal-box h2 { margin: 0 0 10px 0; color: #222; }
+.modal-box p { color: #666; font-size: 15px; margin-bottom: 25px; line-height: 1.4; }
+
+/* Interactive Paw Button */
+.paw-action-btn {
+  background-color: #5ce1e6; /* Matching your light blue theme */
+  color: #111;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(92, 225, 230, 0.3);
+}
+.paw-action-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(92, 225, 230, 0.5);
+}
+
+/* Tiny animation for flavor */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
+
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-image {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
   
   
 </style>
@@ -1505,12 +1655,13 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <div class="logo-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.25C17.25 23.15 21 18.25 21 13V7L12 2z" fill="#f47c20" opacity="0.9"/>
-        <circle cx="12" cy="9" r="2" fill="white"/>
-        <path d="M8 18c1-2 2-3 4-3s3 1 4 3" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      </svg>
+<div class="logo-icon">
+    
+    <img src="file_0000000082a871f4a3e63bed8728810f.png" alt="WakaSafe Logo" class="logo-image">
+    
+    
+    
+
     </div>
     Waka<span>Safe</span>
   </div>
@@ -1764,6 +1915,10 @@
       <div class="offline-badge-title">Auto-Intervals</div>
       <div class="offline-badge-sub">5, 10, 15, 30 min cycles</div>
     </div>
+    
+
+    </div>
+    
   </div>
 </div>
 
@@ -1778,7 +1933,7 @@
       <div class="step-number">01</div>
       <div class="step-icon-wrap" style="background:rgba(0,212,170,0.12)">📝</div>
       <div class="step-title">Fill Journey Details</div>
-      <div class="step-desc">Enter your origin, destination, vehicle type, plate number, and how often you want your location sent — every 5, 10, 15, or 30 minutes.</div>
+      <div class="step-desc">Enter your origin, destination, vehicle type, number plate, and how often you want your location sent — every 5, 10, 15, or 30 minutes.</div>
     </div>
 
     <div class="step-card reveal reveal-delay-1">
@@ -1821,12 +1976,12 @@
     <div class="flow-step">
       <div class="flow-circle" style="border-color:#3b82f6;color:#3b82f6">📋</div>
       <div class="flow-step-title">Fill Details</div>
-      <div class="flow-step-desc">Enter origin, destination, vehicle, plate, and SMS interval.</div>
+      <div class="flow-step-desc">Enter origin, destination, vehicle, number plate, and scheldule your SMS in minutes.</div>
     </div>
     <div class="flow-step">
       <div class="flow-circle" style="border-color:var(--orange);color:var(--orange)">🔐</div>
       <div class="flow-step-title">Start PIN</div>
-      <div class="flow-step-desc">Punch your 4-digit start PIN. Journey is now ACTIVE.</div>
+      <div class="flow-step-desc">Punch your 4-digit start PIN. To personally activate Journey.</div>
     </div>
     <div class="flow-step">
       <div class="flow-circle" style="border-color:#22c55e;color:#22c55e">📡</div>
@@ -1919,7 +2074,7 @@
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(244,124,32,0.1);border:1px solid rgba(244,124,32,0.2);display:flex;align-items:center;justify-content:center">🚌</div>
-          <span style="font-size:0.88rem;color:var(--gray);font-family:var(--font)">Vehicle type and plate number included</span>
+          <span style="font-size:0.88rem;color:var(--gray);font-family:var(--font)">Vehicle type and number plate included</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);display:flex;align-items:center;justify-content:center">⏱</div>
@@ -1945,7 +2100,7 @@
         <strong>WAKASAFE UPDATE</strong>
         Journey: Ogbomosoho → Abeokuta<br>
         Vehicle: Bus<br>
-        Plate Number: ADSEWDF<br>
+        Number Plate: ADSEWDF<br>
         ETA: 15 minutes<br>
         Time elapsed: 2hrs<br>
         Current Location:<br>
@@ -2015,14 +2170,14 @@
 
     <div class="feat-card reveal reveal-delay-2">
       <div class="feat-icon">🌙</div>
-      <div class="feat-title">Dark Mode UI</div>
-      <div class="feat-desc">Designed for night travel with a deep dark interface that's easy on the eyes whether it's 6 AM or midnight.</div>
+      <div class="feat-title">Language Selection</div>
+      <div class="feat-desc">Designed for Nigerians Safety, so you can choose your preffered language from : English, Yoruba, Igbo, Hausa, Pigin, and French.</div>
     </div>
 
     <div class="feat-card reveal reveal-delay-3">
       <div class="feat-icon">🔒</div>
       <div class="feat-title">Subscription Gated</div>
-      <div class="feat-desc">Affordable subscription plans via Paystack keep the service running. Active subscription verified before each journey.</div>
+      <div class="feat-desc">Affordable subscription plans via secured gateway keep the service running. Active subscription verified before each journey.</div>
     </div>
   </div>
 </section>
@@ -2033,20 +2188,42 @@
   <h2 class="section-title">Start traveling<br><span style="color:var(--orange)">with confidence.</span></h2>
   <p class="section-sub">Available now for Android. Download WakaSafe and give your family the gift of peace of mind on every journey.</p>
   <div class="store-btns">
-    <a href="#" class="store-btn">
-      <div class="store-icon">▶️</div>
-      <div>
-        <span class="store-sub">GET IT ON</span>
-        <span class="store-name">Google Play</span>
-      </div>
-    </a>
-    <a href="#" class="store-btn">
-      <div class="store-icon">🍎</div>
-      <div>
-        <span class="store-sub">Download on the</span>
-        <span class="store-name">App Store</span>
-      </div>
-    </a>
+<a href="#" class="store-btn">
+  <div class="store-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+      <path fill="#00e5ff" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 11.5 24 31.7 24 58v396c0 26.3 10 46.5 23 58l243-243L47 0zm338.4 336.5L104.6 499l220.7-121.3 60.1-61.2zM480 256c0-11.5-6.7-22.3-17.4-28.5L364.3 271l32.2 32.2 66.1-38.7c10.7-6.2 17.4-17 17.4-28.5z"/>
+    </svg>
+  </div>
+  <div>
+    <span class="store-sub">GET IT ON</span>
+    <span class="store-name">Google Play</span>
+  </div>
+</a>
+
+<!-- The App Store Button -->
+<a href="#" class="store-btn" id="appStoreBtn">
+  <div class="store-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24" fill="currentColor">
+      <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-48.7-19.3-77.5-18.8-37.6.6-72.5 21.8-91.8 55.3-39.1 67.4-10 166.7 28.2 221.9 18.7 27 41.2 57.1 70.3 56 28.1-1.1 38.7-18.1 70.8-18.1 32 0 41.8 18.1 70.8 17.5 29.5-.5 49.3-27.4 67.9-54.4 21.4-31.2 30.1-61.5 30.4-63.1-1-1.2-58.5-22.6-58.8-86.2zM287.9 79.2c16.1-19.6 26.9-46.7 23.9-74-23.4 1-52.1 15.6-68.8 35.2-14.5 16.7-27.2 44-23.8 70.9 26.2 2 52.6-12.5 68.7-32.1z"/>
+    </svg>
+  </div>
+  <div>
+    <span class="store-sub">Download on the</span>
+    <span class="store-name">App Store</span>
+  </div>
+</a>
+
+<!-- The Coming Soon Modal Box -->
+<div id="comingSoonModal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="close-btn" id="closeModal">&times;</button>
+    <div class="paw-icon-container">🐾</div>
+    <h2>Coming Soon!</h2>
+    <p>We are currently putting the finishing touches on our iOS app. Stay tuned!</p>
+    <button class="paw-action-btn" id="pawBtn">🐾 Awesome!</button>
+  </div>
+</div>
+
   </div>
 </section>
 
@@ -2199,6 +2376,39 @@
     clearInterval(autoCycle);
   });
 </script>
+
+
+
+<script>
+  const btn = document.getElementById('appStoreBtn');
+  const modal = document.getElementById('comingSoonModal');
+  const closeX = document.getElementById('closeModal');
+  const pawBtn = document.getElementById('pawBtn');
+
+  // Open Box
+  btn.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevents page reload
+    modal.classList.add('show');
+  });
+
+  // Close Box via "X"
+  closeX.addEventListener('click', () => modal.classList.remove('show'));
+
+  // Close Box via Paw Button
+  pawBtn.addEventListener('click', () => {
+    // Optional: Add a visual effect or message before closing
+    modal.classList.remove('show');
+  });
+
+  // Close Box if clicking background overlay
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('show');
+  });
+</script>
+
+
+
+
 
 </body>
 </html>
