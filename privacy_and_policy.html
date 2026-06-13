@@ -521,7 +521,7 @@
     display:flex; justify-content:space-between;
     align-items:center; flex-wrap:wrap; gap:16px;
   }
-  .footer-brand { font-family: var(--font); font-weight:800; font-size:1.05rem; letter-spacing: -0.5px; }
+  .footer-brand { font-family: var(--font); font-weight:800; font-size:1.05rem; letter-spacing:-0.5px; }
   .footer-brand span { color:var(--orange); }
   .footer-links { display:flex; gap:20px; }
   .footer-links a {
@@ -548,14 +548,13 @@
     .sidebar { position:static; padding-right:0; margin-bottom:36px; }
     .toc-list { flex-direction:row; flex-wrap:wrap; }
     .toc-list a { padding:5px 10px; border-left:none; border-bottom:2px solid transparent; font-size:.72rem; }
-    .toc-list a:hover,.toc-list a.active { border-left-color:transparent; border-bottom-color:var(--teal); padding-left:10px; }
-    .perm-grid,.summary-grid { grid-template-columns:1fr; }
-    .trust-strip { flex-wrap:wrap; }
-    .trust-item { min-width:50%; }
+    .toc-list a:hover,.toc-list a.active { border-left-color:transparent; border-bottom-color:var(--amber); padding-left:10px; }
+    .two-col, .contact-strip { grid-template-columns:1fr; }
   }
   @media(max-width:600px){
     .hero { padding:52px 5% 40px; }
-    .acceptance { padding:28px 18px; }
+    .not-grid { gap:7px; }
+    .limit-grid { grid-template-columns:1fr 1fr; }
     footer { flex-direction:column; text-align:center; }
     .footer-links { justify-content:center; }
   }
