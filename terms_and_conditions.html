@@ -393,7 +393,41 @@
 
   .back-btn:hover { border-color: rgba(255,255,255,.25); color: var(--white); }
 
-   /* footer */
+
+
+  /* ── PROGRESS BAR ── */
+  .read-progress {
+    position: fixed; top: 0; left: 0;
+    height: 3px; background: linear-gradient(90deg, var(--teal), var(--orange));
+    z-index: 999; transition: width .1s;
+    width: 0%;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: all .6s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; padding: 32px 5% 60px; }
+    .sidebar { position: static; padding-right: 0; margin-bottom: 36px; }
+    .toc-list { flex-direction: row; flex-wrap: wrap; }
+    .toc-list a { padding: 5px 12px; border-left: none; border-bottom: 2px solid transparent; }
+    .toc-list a:hover, .toc-list a.active { border-left-color: transparent; border-bottom-color: var(--teal); padding-left: 12px; }
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 5% 44px; }
+    .acceptance { padding: 28px 20px; }
+    footer { flex-direction: column; text-align: center; }
+  }
+  
+  
+  
+    /* footer */
   footer {
     border-top:1px solid var(--border);
     padding:32px 5%;
@@ -436,30 +470,11 @@
     .limit-grid { grid-template-columns:1fr 1fr; }
     footer { flex-direction:column; text-align:center; }
     .footer-links { justify-content:center; }
-  } 
+  }
   
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0; transform: translateY(20px);
-    transition: all .6s cubic-bezier(.16,1,.3,1);
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 860px) {
-    .layout { grid-template-columns: 1fr; padding: 32px 5% 60px; }
-    .sidebar { position: static; padding-right: 0; margin-bottom: 36px; }
-    .toc-list { flex-direction: row; flex-wrap: wrap; }
-    .toc-list a { padding: 5px 12px; border-left: none; border-bottom: 2px solid transparent; }
-    .toc-list a:hover, .toc-list a.active { border-left-color: transparent; border-bottom-color: var(--teal); padding-left: 12px; }
-  }
-
-  @media (max-width: 600px) {
-    .hero { padding: 56px 5% 44px; }
-    .acceptance { padding: 28px 20px; }
-    footer { flex-direction: column; text-align: center; }
-  }
+  
+  
+  
 </style>
 </head>
 <body>
