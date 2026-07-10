@@ -596,6 +596,23 @@
   
   
   
+  
+  
+  
+  
+  .store-btn {
+  text-decoration: none;
+  color: inherit;
+}
+
+.store-btn:hover div {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+  
+  
+  
+  
 
 </style>
 </head>
@@ -1424,8 +1441,40 @@
 
 
 
+
+
+
   </div>
 </section>
+
+
+
+<!-- APP STORE BUTTONS -->
+<div style="margin-top: 32px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" class="store-buttons">
+  <a href="#" onclick="showComingSoonModal(event, 'Google Play')" class="store-btn">
+    <div style="display:flex; align-items:center; gap:12px; background: #000; color: white; padding: 14px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.25s;">
+      <div style="font-size: 2rem;">▶️</div>
+      <div>
+        <span style="font-size: 0.65rem; opacity: 0.8; display: block;">GET IT ON</span>
+        <span style="font-weight: 700; font-size: 1.1rem;">Google Play</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" onclick="showComingSoonModal(event, 'App Store')" class="store-btn">
+    <div style="display:flex; align-items:center; gap:12px; background: #000; color: white; padding: 14px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.25s;">
+      <div style="font-size: 2.1rem;"></div>
+      <div>
+        <span style="font-size: 0.65rem; opacity: 0.8; display: block;">Download on the</span>
+        <span style="font-weight: 700; font-size: 1.1rem;">App Store</span>
+      </div>
+    </div>
+  </a>
+</div>
+
+
+
+
 
 <!-- FOOTER -->
 <footer>
@@ -1440,6 +1489,12 @@
   <div class="footer-text">© 2026 <a href="https://voddic.com.ng" target="_blank" rel="noopener" style="color:#5ce1e6;text-decoration:none">Voddic LTD</a> · All rights reserved.</div>
 </footer>
 
+
+
+
+
+
+
 <script>
 // ================================================================
 // WAKASAFE DOWNLOAD SYSTEM
@@ -1449,43 +1504,45 @@ const APK_URL = 'wakasafe-v1.apk';            // Replace with real APK URL or CD
 const YOUTUBE_VIDEO_ID = 'YOUR_VIDEO_ID_HERE'; // Replace with your YouTube video ID
 const DOWNLOAD_BASE = 847;                     // Update this as real downloads grow
 const DOWNLOAD_BASE_TODAY = 23;                // Update daily or fetch from analytics
-// Email notifications via FormSubmit.co — FIRST SUBMISSION triggers verification email
-// to voddic28@gmail.com. Click the link in that email to activate.
+
+// FIXED REFERRAL BONUS CODE
+const REFERRAL_BONUS_CODE = "WAKASAFE2026";   // ← Change this to your desired fixed code
+
 // ================================================================
 
-// ── REFERRAL CODE ──────────────────────────────────────────────
-function getOrCreateReferralCode() {
-  let code = localStorage.getItem('wks_ref_code');
-  if (!code) {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    code = 'WKS';
-    for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
-    localStorage.setItem('wks_ref_code', code);
-  }
-  return code;
+// ── REFERRAL CODE FUNCTIONS ─────────────────────────────────────
+function getReferralCode() {
+  return REFERRAL_BONUS_CODE;
 }
 
-function displayReferralCodes(code) {
-  ['heroRefCode','midRefCode','mainRefCode'].forEach(id => {
+function displayReferralCodes() {
+  const code = getReferralCode();
+  ['heroRefCode', 'midRefCode', 'mainRefCode'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = code;
   });
 }
 
 function copyCode() {
-  const code = localStorage.getItem('wks_ref_code') || '';
-  if (!code) return;
+  const code = getReferralCode();
+  
   navigator.clipboard.writeText(code).then(() => {
     document.querySelectorAll('.copy-code-btn, #mainCopyBtn').forEach(btn => {
       const orig = btn.textContent;
       btn.textContent = '✓ Copied!';
       btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+      setTimeout(() => { 
+        btn.textContent = orig; 
+        btn.classList.remove('copied'); 
+      }, 2000);
     });
   }).catch(() => {
     const ta = document.createElement('textarea');
-    ta.value = code; document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); document.body.removeChild(ta);
+    ta.value = code;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
   });
 }
 
@@ -1519,9 +1576,11 @@ function updateCountdowns() {
   const ms = getRemaining();
   const t = formatRemaining(ms);
 
-  // Main countdown blocks
   const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-  setEl('cdDays', t.d); setEl('cdHours', t.h); setEl('cdMins', t.m); setEl('cdSecs', t.s);
+  setEl('cdDays', t.d); 
+  setEl('cdHours', t.h); 
+  setEl('cdMins', t.m); 
+  setEl('cdSecs', t.s);
 
   if (t.expired) {
     const row = document.getElementById('mainCountdownRow');
@@ -1530,16 +1589,14 @@ function updateCountdowns() {
     if (exp) exp.style.display = 'block';
   }
 
-  // Hero mini countdown
   const heroEl = document.getElementById('heroCountdown');
   if (heroEl) {
-    heroEl.textContent = t.expired ? 'offer expired' : t.d + 'd ' + t.h + 'h ' + t.m + 'm ' + t.s + 's';
+    heroEl.textContent = t.expired ? 'offer expired' : `${t.d}d ${t.h}h ${t.m}m ${t.s}s`;
   }
 
-  // Mid-page countdown
   const midEl = document.getElementById('midCountdown');
   if (midEl) {
-    midEl.textContent = t.expired ? 'expired' : t.d + 'd ' + t.h + 'h ' + t.m + 'm';
+    midEl.textContent = t.expired ? 'expired' : `${t.d}d ${t.h}h ${t.m}m`;
   }
 }
 
@@ -1564,19 +1621,19 @@ function updateCountDisplays(count) {
   });
   const ud = document.getElementById('analyticsUniqueDevices');
   if (ud) ud.textContent = Math.floor(count * 0.82).toLocaleString();
+  
   const td = document.getElementById('analyticsTodayCount');
   if (td) td.textContent = DOWNLOAD_BASE_TODAY + parseInt(localStorage.getItem('wks_dl_count') || '0');
+  
   const ar = document.getElementById('analyticsActiveRefs');
   if (ar) ar.textContent = Math.floor(count * 0.65).toLocaleString();
 }
 
-// ── EMAIL NOTIFICATION (FormSubmit.co) ────────────────────────
-// NOTE: voddic28@gmail.com will receive an activation email on FIRST submission.
-// Click the link in that email to activate download notifications.
+// ── EMAIL NOTIFICATION ─────────────────────────────────────────
 async function sendDownloadNotification(referralCode, source) {
   try {
     const payload = {
-      _subject: '\uD83D\uDE80 New WakaSafe APK Download! [' + referralCode + ']',
+      _subject: '🚀 New WakaSafe APK Download! [' + referralCode + ']',
       _template: 'table',
       _captcha: 'false',
       Download_Time: new Date().toLocaleString('en-NG', { timeZone: 'Africa/Lagos' }),
@@ -1592,36 +1649,30 @@ async function sendDownloadNotification(referralCode, source) {
       body: JSON.stringify(payload)
     });
   } catch (e) {
-    // Fail silently — don't interrupt the download
+    // Fail silently
   }
 }
 
 // ── APK DOWNLOAD HANDLER ───────────────────────────────────────
 async function handleAPKDownload(event, source) {
   event.preventDefault();
-  const referralCode = localStorage.getItem('wks_ref_code') || 'UNKNOWN';
+  const referralCode = getReferralCode();   // Use fixed code
 
-  // 1. Show feedback on clicked button
   const btn = event.currentTarget;
   const origContent = btn.innerHTML;
+  
   btn.innerHTML = '<span>⏳</span> Preparing download...';
   btn.style.opacity = '0.8';
 
-  // 2. Track download
-  const isNew = incrementLocalCount();
-
-  // 3. Send email notification
+  incrementLocalCount();
   sendDownloadNotification(referralCode, source);
-
-  // 4. Update display counts
   updateCountDisplays(getDisplayCount());
 
-  // 5. Brief delay then trigger download
   await new Promise(r => setTimeout(r, 800));
+  
   btn.innerHTML = '<span>✅</span> Download Starting...';
   btn.style.opacity = '1';
 
-  // Trigger APK download
   const a = document.createElement('a');
   a.href = APK_URL;
   a.download = 'WakaSafe-v1.apk';
@@ -1629,7 +1680,6 @@ async function handleAPKDownload(event, source) {
   a.click();
   document.body.removeChild(a);
 
-  // Reset button after 3s
   setTimeout(() => { btn.innerHTML = origContent; }, 3000);
 }
 
@@ -1703,9 +1753,15 @@ let pinDemoActivated = false;
 function demoActivate() {
   if (pinDemoActivated) {
     document.querySelectorAll('#pinBoxes .pin-box').forEach((b, i) => {
-      b.classList.remove('active'); b.textContent = '●';
-      b.style.borderColor = 'var(--teal)'; b.style.color = 'var(--teal)'; b.style.background = 'rgba(0,212,170,0.06)';
-      if (i === 3) { b.classList.add('active'); b.textContent = '_'; }
+      b.classList.remove('active'); 
+      b.textContent = '●';
+      b.style.borderColor = 'var(--teal)'; 
+      b.style.color = 'var(--teal)'; 
+      b.style.background = 'rgba(0,212,170,0.06)';
+      if (i === 3) { 
+        b.classList.add('active'); 
+        b.textContent = '_'; 
+      }
     });
     document.getElementById('demoResult').textContent = '';
     document.getElementById('demoActivateBtn').textContent = '🚀 Activate Journey';
@@ -1713,13 +1769,16 @@ function demoActivate() {
     return;
   }
   const box4 = document.querySelectorAll('#pinBoxes .pin-box')[3];
-  box4.classList.remove('active'); box4.textContent = '●';
+  box4.classList.remove('active'); 
+  box4.textContent = '●';
   setTimeout(() => {
     document.getElementById('demoResult').textContent = '✓ Journey Activated! SMS sent to contacts.';
     document.getElementById('demoActivateBtn').textContent = '↩ Reset Demo';
     pinDemoActivated = true;
     document.querySelectorAll('#pinBoxes .pin-box').forEach(b => {
-      b.style.borderColor = 'var(--teal)'; b.style.background = 'rgba(0,212,170,0.15)'; b.style.color = 'var(--teal)';
+      b.style.borderColor = 'var(--teal)'; 
+      b.style.background = 'rgba(0,212,170,0.15)'; 
+      b.style.color = 'var(--teal)';
     });
   }, 300);
 }
@@ -1747,14 +1806,50 @@ const flowObserver = new IntersectionObserver(entries => {
 const flowEl = document.getElementById('flowSteps');
 if (flowEl) flowObserver.observe(flowEl);
 
+// ── COMING SOON MODAL ───────────────────────────────────────────
+function showComingSoonModal(e, platform) {
+  e.preventDefault();
+  const existing = document.getElementById('comingSoonModal');
+  if (existing) existing.remove();
+
+  const modalHTML = `
+    <div id="comingSoonModal" style="position: fixed; inset: 0; background: rgba(11,20,38,0.95); backdrop-filter: blur(12px); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+      <div style="background: var(--navy3); border: 1px solid var(--border); border-radius: 20px; padding: 40px 32px; max-width: 380px; text-align: center; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.6);">
+        <button onclick="closeComingSoonModal()" 
+                style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.8rem; color: var(--gray); cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+          ×
+        </button>
+        <div style="font-size: 4rem; margin-bottom: 16px;">🚧</div>
+        <h3 style="font-size: 1.5rem; margin-bottom: 12px; color: var(--orange);">Coming Soon</h3>
+        <p style="color: var(--gray); line-height: 1.6; font-size: 1rem;">
+          ${platform} version will be available after this limited time offer.<br><br>
+          Stay tuned — we'll notify you as soon as it's ready!
+        </p>
+        <button onclick="closeComingSoonModal()" 
+                style="margin-top: 28px; background: linear-gradient(135deg, var(--teal), #009977); color: var(--navy); border: none; padding: 14px 36px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer;">
+          Got it, thanks!
+        </button>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function closeComingSoonModal() {
+  const modal = document.getElementById('comingSoonModal');
+  if (modal) modal.remove();
+}
+
 // ── INIT ────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-  const code = getOrCreateReferralCode();
-  displayReferralCodes(code);
+  displayReferralCodes();
   updateCountdowns();
   updateCountDisplays(getDisplayCount());
   setInterval(updateCountdowns, 1000);
 });
 </script>
+
+
+
 </body>
 </html>
