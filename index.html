@@ -1530,7 +1530,7 @@ a[href*="wa.me"]:hover {
 // ================================================================
 // CONFIGURATION — update these values:
 //const APK_URL = 'wakasafe-v1.apk';   
-const APK_URL = '/wakasafe-v1.apk';
+const APK_URL = './wakasafe-v1.apk';
 // Replace with real APK URL or CDN link
 const YOUTUBE_VIDEO_ID = 'YOUR_VIDEO_ID_HERE'; // Replace with your YouTube video ID
 const DOWNLOAD_BASE = 847;                     // Update this as real downloads grow
@@ -1685,35 +1685,87 @@ async function sendDownloadNotification(referralCode, source) {
 }
 
 // ── APK DOWNLOAD HANDLER ───────────────────────────────────────
+// ── APK DOWNLOAD HANDLER with Progress ───────────────────────
 async function handleAPKDownload(event, source) {
   event.preventDefault();
-  const referralCode = getReferralCode();   // Use fixed code
 
   const btn = event.currentTarget;
-  const origContent = btn.innerHTML;
-  
-  btn.innerHTML = '<span>⏳</span> Preparing download...';
-  btn.style.opacity = '0.8';
+  const originalHTML = btn.innerHTML;
+  const referralCode = getReferralCode();
+
+  // Disable button to prevent double clicks
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '0.7';
+
+  // Show initial feedback
+  btn.innerHTML = `
+    <span>⏳</span> Preparing download...
+  `;
 
   incrementLocalCount();
   sendDownloadNotification(referralCode, source);
   updateCountDisplays(getDisplayCount());
 
-  await new Promise(r => setTimeout(r, 800));
-  
-  btn.innerHTML = '<span>✅</span> Download Starting...';
-  btn.style.opacity = '1';
+  // Create progress UI
+  const progressContainer = document.createElement('div');
+  progressContainer.style.cssText = `
+    margin-top: 12px; font-size: 0.85rem; color: var(--teal);
+    display: flex; align-items: center; gap: 10px; justify-content: center;
+  `;
+  progressContainer.innerHTML = `
+    <div style="width: 180px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+      <div id="downloadProgressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), #00ffcc); transition: width 0.3s;"></div>
+    </div>
+    <span id="downloadPercent">0%</span>
+  `;
 
-  const a = document.createElement('a');
-  a.href = APK_URL;
-  a.download = 'WakaSafe-v1.apk';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  btn.parentNode.appendChild(progressContainer);
 
-  setTimeout(() => { btn.innerHTML = origContent; }, 3000);
+  const progressBar = document.getElementById('downloadProgressBar');
+  const percentText = document.getElementById('downloadPercent');
+
+  let progress = 0;
+
+  // Simulate realistic download progress
+  const progressInterval = setInterval(() => {
+    progress += Math.random() * 12 + 5;
+    if (progress > 92) progress = 92;
+    
+    progressBar.style.width = progress + '%';
+    percentText.textContent = Math.floor(progress) + '%';
+  }, 180);
+
+  // Start actual download
+  try {
+    await new Promise(resolve => setTimeout(resolve, 900)); // small delay
+
+    const a = document.createElement('a');
+    a.href = APK_URL;
+    a.download = 'WakaSafe-v1.apk';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Finish progress
+    clearInterval(progressInterval);
+    progressBar.style.width = '100%';
+    percentText.textContent = '100%';
+
+    btn.innerHTML = `<span>✅</span> Download Started!`;
+
+  } catch (err) {
+    clearInterval(progressInterval);
+    btn.innerHTML = `<span>❌</span> Download Failed`;
+  }
+
+  // Cleanup after 4 seconds
+  setTimeout(() => {
+    progressContainer.remove();
+    btn.innerHTML = originalHTML;
+    btn.style.pointerEvents = 'auto';
+    btn.style.opacity = '1';
+  }, 4000);
 }
-
 // ── VIDEO PLAYER ───────────────────────────────────────────────
 function playDemoVideo() {
   const overlay = document.getElementById('playOverlay');
