@@ -611,6 +611,18 @@
 }
   
   
+
+
+/* WhatsApp customer care hover */
+a[href*="wa.me"] {
+  transition: all 0.2s ease;
+}
+a[href*="wa.me"]:hover {
+  transform: translateY(-2px);
+  color: #20ba5c !important;
+  text-decoration: underline;
+}
+
   
   
 
@@ -1437,15 +1449,32 @@
         <div class="analytics-item"><div class="analytics-dot" style="background:#22c55e"></div> <span id="analyticsActiveRefs">--</span> active referral codes</div>
       </div>
     </div>
-
-
-
-
-
-
-
   </div>
 </section>
+
+
+
+
+
+
+<!-- CUSTOMER CARE WHATSAPP -->
+<div style="margin: 32px 0 24px; text-align: center;">
+  <div style="display: inline-flex; align-items: center; gap: 12px; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 16px; padding: 14px 24px;">
+    <span style="font-size: 1.1rem; color: var(--gray);">If you have any issue using the app,</span>
+    <a href="https://wa.me/2348127633556" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       style="display: inline-flex; align-items: center; gap: 8px; color: #25D366; font-weight: 700; text-decoration: none; font-size: 1rem;">
+      <span style="font-size: 1.5rem;">💬</span>
+      Talk to Voddic Customer Care
+    </a>
+  </div>
+  <div style="margin-top: 8px; font-size: 0.75rem; color: var(--gray);">
+    Fast response on WhatsApp
+  </div>
+</div>
+
+
 
 
 
@@ -1501,7 +1530,7 @@
 // ================================================================
 // CONFIGURATION — update these values:
 //const APK_URL = 'wakasafe-v1.apk';   
-const APK_URL = './wakasafe-v1.apk';
+const APK_URL = '/wakasafe-v1.apk';
 // Replace with real APK URL or CDN link
 const YOUTUBE_VIDEO_ID = 'YOUR_VIDEO_ID_HERE'; // Replace with your YouTube video ID
 const DOWNLOAD_BASE = 847;                     // Update this as real downloads grow
