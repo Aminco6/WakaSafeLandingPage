@@ -1976,6 +1976,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 // ── ENQUIRY MODAL ───────────────────────────────────────────────
+// ── ENQUIRY MODAL with AJAX Submission ─────────────────────────
+// ── ENQUIRY MODAL with AJAX Submission ─────────────────────────
 function showEnquiryModal() {
   const existing = document.getElementById('enquiryModal');
   if (existing) existing.remove();
@@ -1992,10 +1994,11 @@ function showEnquiryModal() {
         <h3 style="color: var(--orange); margin-bottom: 8px;">Submit Enquiry / Complaint</h3>
         <p style="color: var(--gray); margin-bottom: 24px;">We'll respond as soon as possible.</p>
 
-        <form action="https://formsubmit.co/ajax/voddic28@gmail.com" method="POST" id="enquiryForm">
+        <form id="enquiryForm">
           <input type="hidden" name="_subject" value="WakaSafe Enquiry / Complaint">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value=""> <!-- Prevent redirect -->
 
           <div style="margin-bottom: 16px;">
             <label style="display: block; font-size: 0.8rem; color: var(--gray); margin-bottom: 6px;">Your Name</label>
@@ -2015,7 +2018,7 @@ function showEnquiryModal() {
                       style="width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white; resize: vertical;"></textarea>
           </div>
 
-          <button type="submit"
+          <button type="submit" id="submitBtn"
                   style="width: 100%; background: linear-gradient(135deg, var(--orange), #e06010); color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer;">
             Submit Enquiry
           </button>
@@ -2026,13 +2029,42 @@ function showEnquiryModal() {
 
   document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-  // Handle form submission feedback
   const form = document.getElementById('enquiryForm');
-  form.addEventListener('submit', function() {
-    setTimeout(() => {
-      closeEnquiryModal();
-      alert("✅ Your message has been sent successfully. We'll get back to you soon!");
-    }, 800);
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    submitBtn.innerHTML = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/voddic28@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        form.innerHTML = `
+          <div style="text-align:center; padding: 40px 20px;">
+            <div style="font-size: 3.5rem; margin-bottom: 16px;">✅</div>
+            <h3 style="color: var(--teal);">Message Sent Successfully!</h3>
+            <p style="color: var(--gray);">Thank you. We will reply to you soon.</p>
+            <button onclick="closeEnquiryModal()" 
+                    style="margin-top: 24px; background: var(--teal); color: var(--navy); border: none; padding: 12px 32px; border-radius: 12px; font-weight: 700;">
+              Close
+            </button>
+          </div>
+        `;
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      alert("Connection error. Please check your internet and try again.");
+    }
   });
 }
 
@@ -2040,8 +2072,6 @@ function closeEnquiryModal() {
   const modal = document.getElementById('enquiryModal');
   if (modal) modal.remove();
 }
-
-
 </script>
 
 </body>
