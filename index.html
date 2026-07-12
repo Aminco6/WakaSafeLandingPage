@@ -1457,7 +1457,7 @@ a[href*="wa.me"]:hover {
 
 
 
-<!-- CUSTOMER CARE WHATSAPP -->
+<!-- CUSTOMER CARE WHATSAPP
 <div style="margin: 32px 0 24px; text-align: center;">
   <div style="display: inline-flex; align-items: center; gap: 12px; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 16px; padding: 14px 24px;">
     <span style="font-size: 1.1rem; color: var(--gray);">If you have any issue using the app,</span>
@@ -1473,6 +1473,41 @@ a[href*="wa.me"]:hover {
     Fast response on WhatsApp
   </div>
 </div>
+
+-->
+
+
+
+<!-- SUPPORT SECTION -->
+<div style="margin: 32px 0 28px; text-align: center;">
+  <div style="display: inline-flex; align-items: center; gap: 14px; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 16px; padding: 16px 28px;">
+    
+    <!-- Telegram Group -->
+    <a href="https://t.me/+2OZk5GhSm1E3OTc0" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       style="display: inline-flex; align-items: center; gap: 8px; color: #229ED9; font-weight: 700; text-decoration: none;">
+      <span style="font-size: 1.6rem;">📬</span>
+      Join Telegram Group
+    </a>
+
+    <div style="width: 1px; height: 28px; background: rgba(255,255,255,0.15);"></div>
+
+    <!-- Enquiry Button -->
+    <button onclick="showEnquiryModal()" 
+            style="background: transparent; border: 1px solid var(--teal); color: var(--teal); padding: 10px 20px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.25s;">
+      <span style="font-size: 1.2rem;">✉️</span>
+      Submit Complaint / Enquiry
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 
 
@@ -1930,9 +1965,84 @@ window.addEventListener('DOMContentLoaded', () => {
   updateCountDisplays(getDisplayCount());
   setInterval(updateCountdowns, 1000);
 });
+
+
+
+
+
+
+
+
+
+
+// ── ENQUIRY MODAL ───────────────────────────────────────────────
+function showEnquiryModal() {
+  const existing = document.getElementById('enquiryModal');
+  if (existing) existing.remove();
+
+  const modalHTML = `
+    <div id="enquiryModal" style="position: fixed; inset: 0; background: rgba(11,20,38,0.95); backdrop-filter: blur(12px); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+      <div style="background: var(--navy3); border: 1px solid var(--border); border-radius: 20px; padding: 32px; max-width: 460px; width: 90%; position: relative;">
+        
+        <button onclick="closeEnquiryModal()" 
+                style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.8rem; color: var(--gray); cursor: pointer;">
+          ×
+        </button>
+
+        <h3 style="color: var(--orange); margin-bottom: 8px;">Submit Enquiry / Complaint</h3>
+        <p style="color: var(--gray); margin-bottom: 24px;">We'll respond as soon as possible.</p>
+
+        <form action="https://formsubmit.co/ajax/voddic28@gmail.com" method="POST" id="enquiryForm">
+          <input type="hidden" name="_subject" value="WakaSafe Enquiry / Complaint">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 0.8rem; color: var(--gray); margin-bottom: 6px;">Your Name</label>
+            <input type="text" name="Name" required 
+                   style="width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white;">
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 0.8rem; color: var(--gray); margin-bottom: 6px;">Phone Number</label>
+            <input type="tel" name="Phone" required 
+                   style="width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white;">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 0.8rem; color: var(--gray); margin-bottom: 6px;">Message</label>
+            <textarea name="Message" rows="5" required 
+                      style="width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white; resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit"
+                  style="width: 100%; background: linear-gradient(135deg, var(--orange), #e06010); color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+            Submit Enquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+  // Handle form submission feedback
+  const form = document.getElementById('enquiryForm');
+  form.addEventListener('submit', function() {
+    setTimeout(() => {
+      closeEnquiryModal();
+      alert("✅ Your message has been sent successfully. We'll get back to you soon!");
+    }, 800);
+  });
+}
+
+function closeEnquiryModal() {
+  const modal = document.getElementById('enquiryModal');
+  if (modal) modal.remove();
+}
+
+
 </script>
-
-
 
 </body>
 </html>
