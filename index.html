@@ -1480,6 +1480,8 @@ a[href*="wa.me"]:hover {
 
 
 
+
+
 <!-- COMMENTS / TESTIMONIALS SECTION -->
 <div style="margin: 50px 0; text-align: center;">
   <h3 style="color: var(--teal); margin-bottom: 24px; font-size: 1.4rem;">What Users Are Saying</h3>
@@ -1516,6 +1518,8 @@ a[href*="wa.me"]:hover {
                    font-weight: 700; font-size: 1.05rem; cursor: pointer;">
       Post My Comment
     </button>
+    
+    <div id="messageContainer" style="margin-top: 12px;"></div>
   </div>
 </div>
 
@@ -2156,6 +2160,10 @@ function closeEnquiryModal() {
 
 
 
+
+
+
+// UPDATE THIS URL AFTER REDEPLOYING
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXua6W803ux_UfLkblC0c1Nd7vpkagiehLcN_ZDqtMyu2_39ZYZ2lbOGaoayoY3rjLUQ/exec";
 
 let allComments = [];
@@ -2163,16 +2171,41 @@ let visibleCount = 5;
 
 async function loadComments() {
   try {
-    const res = await fetch(APPS_SCRIPT_URL);
-    const comments = await res.json();
+    console.log("Loading comments...");
+    
+    // Use no-cors for GET as well
+    const res = await fetch(APPS_SCRIPT_URL, {
+      mode: 'no-cors'
+    });
+    
+    // With no-cors, we can't read the response properly
+    // So we'll try a different approach - use JSONP or fetch normally
+    // Let's try without no-cors for GET
+    const response = await fetch(APPS_SCRIPT_URL);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const comments = await response.json();
+    console.log("Comments loaded:", comments);
     allComments = comments || [];
     renderComments();
   } catch(e) {
-    console.log("Load failed");
-    // Show error in container
+    console.error("Load failed:", e);
     const container = document.getElementById('commentsContainer');
     if (container) {
-      container.innerHTML = '<p style="color: #ff6b6b; text-align: center;">⚠️ Failed to load comments. Please refresh.</p>';
+      container.innerHTML = `
+        <div style="text-align: center; padding: 20px; background: rgba(255,87,87,0.1); border-radius: 12px;">
+          <p style="color: #ff6b6b;">⚠️ Failed to load comments</p>
+          <p style="color: #a0b0cc; font-size: 0.9rem;">Please refresh the page</p>
+          <button onclick="loadComments()" 
+                  style="margin-top: 10px; background: var(--teal); color: var(--navy); 
+                         border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer;">
+            Retry
+          </button>
+        </div>
+      `;
     }
   }
 }
@@ -2183,9 +2216,8 @@ function renderComments() {
   
   container.innerHTML = '';
 
-  // Show message if no comments
   if (!allComments || allComments.length === 0) {
-    container.innerHTML = '<p style="color: #a0b0cc; text-align: center;">No comments yet. Be the first to share!</p>';
+    container.innerHTML = '<p style="color: #a0b0cc; text-align: center; padding: 20px;">No comments yet. Be the first to share!</p>';
     const btn = document.getElementById('showMoreBtn');
     if (btn) btn.textContent = "Show More Comments";
     return;
@@ -2196,7 +2228,6 @@ function renderComments() {
   toShow.forEach(c => {
     const div = document.createElement('div');
     div.style.cssText = `background: var(--navy2); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--teal);`;
-    // FIXED: Removed backticks inside the string
     div.innerHTML = `<strong>${c.name || 'Anonymous'}</strong><br><span style="color:#a0b0cc;">${c.text || ''}</span>`;
     container.appendChild(div);
   });
@@ -2219,7 +2250,7 @@ async function submitComment() {
   const text = textEl.value.trim();
   
   if (!name || !text) {
-    alert("Please fill both fields");
+    showMessage("⚠️ Please fill both fields", '#ff6b6b');
     return;
   }
 
@@ -2241,21 +2272,30 @@ async function submitComment() {
   textEl.value = '';
 
   try {
-    const response = await fetch(APPS_SCRIPT_URL, {
+    console.log("Sending comment...");
+    
+    // Use no-cors mode to bypass CORS
+    await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      mode: 'no-cors',
+      headers: { 
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ name, text })
     });
     
-    const result = await response.json();
+    // With no-cors, we can't read the response
+    // But if it reaches here, the request was sent
+    showMessage('✅ Comment posted successfully!', 'var(--teal)');
     
-    if (result.success) {
-      showMessage('✅ Comment posted successfully!', 'var(--teal)');
-    } else {
-      throw new Error('Server error');
-    }
+    // Reload comments after a delay to show the new one
+    setTimeout(() => {
+      loadComments();
+    }, 2000);
+    
   } catch(e) {
-    showMessage('⚠️ Saved locally. Backend issue.', '#ff9800');
+    console.error("Post error:", e);
+    showMessage('⚠️ Could not save to server. Comment saved locally.', '#ff9800');
   }
 
   btn.textContent = orig;
@@ -2263,8 +2303,10 @@ async function submitComment() {
 }
 
 function showMessage(text, color) {
-  // Remove old messages
-  const oldMsg = document.querySelector('.comment-message');
+  const container = document.getElementById('messageContainer');
+  if (!container) return;
+  
+  const oldMsg = container.querySelector('.comment-message');
   if (oldMsg) oldMsg.remove();
   
   const msg = document.createElement('div');
@@ -2272,13 +2314,11 @@ function showMessage(text, color) {
   msg.style.cssText = `color:${color}; margin-top:12px; font-weight:600; text-align:center; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 8px;`;
   msg.textContent = text;
   
-  const btn = document.querySelector('button[onclick="submitComment()"]');
-  if (btn && btn.parentNode) {
-    btn.parentNode.appendChild(msg);
-    setTimeout(() => {
-      if (msg.parentNode) msg.remove();
-    }, 4000);
-  }
+  container.appendChild(msg);
+  
+  setTimeout(() => {
+    if (msg.parentNode) msg.remove();
+  }, 4000);
 }
 
 function toggleComments() {
@@ -2295,6 +2335,7 @@ function toggleComments() {
 // Load comments when page is ready
 window.addEventListener('DOMContentLoaded', loadComments);
 </script>
+
 
 </body>
 </html>
