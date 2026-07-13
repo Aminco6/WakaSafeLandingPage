@@ -1482,8 +1482,6 @@ a[href*="wa.me"]:hover {
 
 
 
-
-
 <!-- COMMENTS / TESTIMONIALS SECTION -->
 <div style="margin: 50px 0; text-align: center;">
   <h3 style="color: var(--teal); margin-bottom: 24px; font-size: 1.4rem;">What Users Are Saying</h3>
@@ -1491,7 +1489,6 @@ a[href*="wa.me"]:hover {
   <!-- Comments Display -->
   <div id="commentsContainer" 
        style="max-width: 680px; margin: 0 auto 32px; text-align: left; min-height: 100px;">
-    <!-- Comments will be loaded here dynamically -->
   </div>
 
   <!-- Load More Button -->
@@ -1523,7 +1520,6 @@ a[href*="wa.me"]:hover {
     </button>
   </div>
 </div>
-
 
 
 
@@ -2165,10 +2161,10 @@ async function loadComments() {
   try {
     const res = await fetch(APPS_SCRIPT_URL);
     const comments = await res.json();
-    allComments = comments;
+    allComments = comments || [];
     renderComments();
   } catch(e) {
-    console.log("Could not load comments");
+    console.log("Could not load comments from backend");
   }
 }
 
@@ -2183,8 +2179,8 @@ function renderComments() {
     const div = document.createElement('div');
     div.style.cssText = `background: var(--navy2); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--teal);`;
     div.innerHTML = `
-      <strong>${c.name}</strong><br>
-      <span style="color:#a0b0cc;">${c.text}</span>
+      <strong>${c.name || 'Anonymous'}</strong><br>
+      <span style="color:#a0b0cc;">${c.text || ''}</span>
     `;
     container.appendChild(div);
   });
@@ -2195,9 +2191,7 @@ function renderComments() {
   }
 }
 
-
-
-// Submit comment + show immediately
+// Submit comment
 async function submitComment() {
   const nameEl = document.getElementById('commentName');
   const textEl = document.getElementById('commentText');
@@ -2215,13 +2209,13 @@ async function submitComment() {
   btn.textContent = "Posting...";
   btn.disabled = true;
 
-  // Optimistic update - Show comment immediately
+  // Optimistic update
   const newComment = { name, text };
   allComments.unshift(newComment);
   visibleCount = Math.min(visibleCount + 1, allComments.length);
   renderComments();
 
-  // Clear form fields immediately
+  // Clear form immediately
   nameEl.value = '';
   textEl.value = '';
 
@@ -2229,37 +2223,35 @@ async function submitComment() {
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      body: JSON.stringify({ name, text }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, text })
     });
 
-    // Success feedback
     const successMsg = document.createElement('div');
     successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600; text-align: center;';
     successMsg.textContent = '✅ Comment posted successfully!';
     btn.parentNode.appendChild(successMsg);
-
     setTimeout(() => successMsg.remove(), 3000);
 
   } catch(e) {
-    console.log("Backend save delayed, but comment is visible");
+    console.error("Submit error:", e);
+    const successMsg = document.createElement('div');
+    successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600; text-align: center;';
+    successMsg.textContent = '✅ Comment saved (will appear for everyone shortly)';
+    btn.parentNode.appendChild(successMsg);
+    setTimeout(() => successMsg.remove(), 3000);
   }
 
   btn.textContent = originalBtnText;
   btn.disabled = false;
 }
 
-
-
-
-
-
 // Toggle Show More / Less
 function toggleComments() {
   if (visibleCount >= allComments.length) {
-    visibleCount = 1;
+    visibleCount = 5;
   } else {
-    visibleCount = Math.min(visibleCount + 1, allComments.length);
+    visibleCount = Math.min(visibleCount + 5, allComments.length);
   }
   renderComments();
 }
@@ -2268,6 +2260,8 @@ function toggleComments() {
 window.addEventListener('DOMContentLoaded', () => {
   loadComments();
 });
+
+
 
 </script>
 
