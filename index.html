@@ -2182,7 +2182,10 @@ function renderComments() {
   toShow.forEach(c => {
     const div = document.createElement('div');
     div.style.cssText = `background: var(--navy2); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--teal);`;
-    div.innerHTML = `<strong>\( {c.name}</strong><br><span style="color:#a0b0cc;"> \){c.text}</span>`;
+    div.innerHTML = `
+      <strong>${c.name}</strong><br>
+      <span style="color:#a0b0cc;">${c.text}</span>
+    `;
     container.appendChild(div);
   });
 
@@ -2191,6 +2194,8 @@ function renderComments() {
     btn.textContent = visibleCount >= allComments.length ? "Show Less" : `Show More (${allComments.length - visibleCount})`;
   }
 }
+
+
 
 // Submit comment + show immediately
 async function submitComment() {
@@ -2212,7 +2217,7 @@ async function submitComment() {
 
   // Optimistic update - Show comment immediately
   const newComment = { name, text };
-  allComments.unshift(newComment);   // Add to top
+  allComments.unshift(newComment);
   visibleCount = Math.min(visibleCount + 1, allComments.length);
   renderComments();
 
@@ -2227,6 +2232,15 @@ async function submitComment() {
     // Clear form
     nameEl.value = '';
     textEl.value = '';
+
+    // Success message
+    const successMsg = document.createElement('div');
+    successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600;';
+    successMsg.textContent = '✅ Comment posted successfully!';
+    btn.parentNode.appendChild(successMsg);
+
+    setTimeout(() => successMsg.remove(), 3000);
+
   } catch(e) {
     console.log("Backend save delayed, but comment is visible");
   }
@@ -2234,6 +2248,9 @@ async function submitComment() {
   btn.textContent = originalBtnText;
   btn.disabled = false;
 }
+
+
+
 
 // Toggle Show More / Less
 function toggleComments() {
