@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs - WakaSafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0b1426;
+      --navy2: #0e1c35;
+      --teal: #00d4aa;
+      --orange: #f47c20;
+    }
+    body { 
+      background: var(--navy); 
+      color: white; 
+      font-family: 'Inter', sans-serif; 
+      padding: 40px 5%; 
+      max-width: 800px; 
+      margin: 0 auto;
+    }
+    h1 { text-align: center; margin-bottom: 40px; color: var(--orange); }
+    .faq-item {
+      background: var(--navy2);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 18px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: #a0b0cc;
+    }
+    .faq-answer.open { max-height: 300px; padding-bottom: 20px; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--teal); text-decoration: none; margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Back to Home</a>
+  <h1>Frequently Asked Questions</h1>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFAQ(this)">How does WakaSafe work offline? <span>▼</span></div>
+    <div class="faq-answer">It uses native SMS to send your location. No internet or data is required after setup.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFAQ(this)">Is my location shared with everyone? <span>▼</span></div>
+    <div class="faq-answer">No. Only your selected emergency contacts receive the SMS updates.</div>
+  </div>
+
+  <!-- Add more FAQs as needed -->
+
+  <script>
+    function toggleFAQ(el) {
+      const answer = el.nextElementSibling;
+      answer.classList.toggle('open');
+      const icon = el.querySelector('span');
+      icon.textContent = answer.classList.contains('open') ? '▲' : '▼';
+    }
+  </script>
+</body>
+</html>

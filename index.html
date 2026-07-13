@@ -1478,6 +1478,60 @@ a[href*="wa.me"]:hover {
 
 
 
+
+
+
+
+
+
+<!-- COMMENTS / TESTIMONIALS SECTION -->
+<div style="margin: 40px 0; text-align: center;">
+  <h3 style="color: var(--teal); margin-bottom: 16px;">User Feedback</h3>
+  
+  <div id="commentsContainer" style="max-width: 600px; margin: 0 auto 20px; text-align: left;"></div>
+
+  <!-- Add Comment Form -->
+  <div style="background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 16px; padding: 20px; max-width: 500px; margin: 0 auto;">
+    <input type="text" id="commentName" placeholder="Your Name" 
+           style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white;">
+    
+    <textarea id="commentText" rows="3" placeholder="Share your experience..." 
+              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white; resize: vertical;"></textarea>
+    
+    <button onclick="submitComment()" 
+            style="margin-top: 12px; background: var(--teal); color: var(--navy); border: none; padding: 12px 28px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+      Post Comment
+    </button>
+  </div>
+</div>
+
+
+
+
+<div style="margin: 40px 0; text-align: center;">
+  <button onclick="window.location.href='faqs.html'" 
+          style="background: transparent; 
+                 border: 2px solid var(--teal); 
+                 color: var(--teal); 
+                 padding: 16px 36px; 
+                 border-radius: 50px; 
+                 font-weight: 700; 
+                 font-size: 1.05rem; 
+                 cursor: pointer; 
+                 display: inline-flex; 
+                 align-items: center; 
+                 gap: 12px; 
+                 box-shadow: 0 0 20px rgba(0, 212, 170, 0.3); 
+                 transition: all 0.3s ease;">
+    ❓ Frequently Asked Questions
+  </button>
+</div>
+
+
+
+
+
+
 <!-- SUPPORT SECTION -->
 <div style="margin: 32px 0 28px; text-align: center;">
   <div style="display: inline-flex; align-items: center; gap: 14px; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 16px; padding: 16px 28px;">
@@ -1535,6 +1589,11 @@ a[href*="wa.me"]:hover {
     </div>
   </a>
 </div>
+
+
+
+
+
 
 
 
@@ -2072,6 +2131,84 @@ function closeEnquiryModal() {
   const modal = document.getElementById('enquiryModal');
   if (modal) modal.remove();
 }
+
+
+
+
+
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwbkyaJTMGU4eSYyLkcMn46QWTIXtMfStEB74bxy1qoro5itRQBfjMHiFc3rULQLuE/exec"; // ← Paste your URL here
+
+let allComments = [];
+
+// Load comments from Google Sheet
+async function loadComments() {
+  try {
+    const res = await fetch(APPS_SCRIPT_URL);
+    const comments = await res.json();
+    allComments = comments;
+    renderComments();
+  } catch(e) {
+    console.log("Could not load comments");
+  }
+}
+
+function renderComments() {
+  const container = document.getElementById('commentsContainer');
+  container.innerHTML = '';
+
+  const toShow = allComments.slice(0, visibleCount);
+
+  toShow.forEach(c => {
+    const div = document.createElement('div');
+    div.style.cssText = `background: var(--navy2); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--teal);`;
+    div.innerHTML = `<strong>\( {c.name}</strong><br><span style="color:#a0b0cc;"> \){c.text}</span>`;
+    container.appendChild(div);
+  });
+
+  document.getElementById('showMoreBtn').textContent = 
+    visibleCount >= allComments.length ? "Show Less" : `Show More (${allComments.length - visibleCount})`;
+}
+
+async function submitComment() {
+  const nameEl = document.getElementById('commentName');
+  const textEl = document.getElementById('commentText');
+  
+  const name = nameEl.value.trim();
+  const text = textEl.value.trim();
+  
+  if (!name || !text) {
+    alert("Please enter both name and comment.");
+    return;
+  }
+
+  const btn = document.querySelector('button[onclick="submitComment()"]');
+  btn.textContent = "Posting...";
+  btn.disabled = true;
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ name, text }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    nameEl.value = '';
+    textEl.value = '';
+    
+    alert("✅ Comment submitted successfully!");
+    await loadComments(); // Refresh comments
+  } catch(e) {
+    alert("Failed to submit. Please try again.");
+  }
+
+  btn.textContent = "Post Comment";
+  btn.disabled = false;
+}
+
+
+
+
+
 </script>
 
 </body>
