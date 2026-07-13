@@ -2161,8 +2161,8 @@ function closeEnquiryModal() {
 
 
 
-
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwkXlRCVWco8_BgFs2kr4H61r2tzScFu4jadAIlDONQp0cvBdBWloamF-tz8d2PYT5/exec";
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqVXDxsqOeo9Qa1NXAYkwzPKRgY6QxNpC02ezkl_kcH0Po6NENM-CDTBR60zfAwK7w/exec";
 
 let allComments = [];
 let visibleCount = 5;
@@ -2175,24 +2175,46 @@ async function loadComments() {
     renderComments();
   } catch(e) {
     console.log("Load failed");
+    // Show error in container
+    const container = document.getElementById('commentsContainer');
+    if (container) {
+      container.innerHTML = '<p style="color: #ff6b6b; text-align: center;">⚠️ Failed to load comments. Please refresh.</p>';
+    }
   }
 }
 
 function renderComments() {
   const container = document.getElementById('commentsContainer');
+  if (!container) return;
+  
   container.innerHTML = '';
+
+  // Show message if no comments
+  if (!allComments || allComments.length === 0) {
+    container.innerHTML = '<p style="color: #a0b0cc; text-align: center;">No comments yet. Be the first to share!</p>';
+    const btn = document.getElementById('showMoreBtn');
+    if (btn) btn.textContent = "Show More Comments";
+    return;
+  }
 
   const toShow = allComments.slice(0, visibleCount);
 
   toShow.forEach(c => {
     const div = document.createElement('div');
     div.style.cssText = `background: var(--navy2); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--teal);`;
-    div.innerHTML = `<strong>\( {c.name || 'Anonymous'}</strong><br><span style="color:#a0b0cc;"> \){c.text || ''}</span>`;
+    // FIXED: Removed backticks inside the string
+    div.innerHTML = `<strong>${c.name || 'Anonymous'}</strong><br><span style="color:#a0b0cc;">${c.text || ''}</span>`;
     container.appendChild(div);
   });
 
   const btn = document.getElementById('showMoreBtn');
-  if (btn) btn.textContent = visibleCount >= allComments.length ? "Show Less" : `Show More (${allComments.length - visibleCount})`;
+  if (btn) {
+    if (visibleCount >= allComments.length) {
+      btn.textContent = "Show Less";
+    } else {
+      btn.textContent = `Show More (${allComments.length - visibleCount})`;
+    }
+  }
 }
 
 async function submitComment() {
@@ -2202,29 +2224,42 @@ async function submitComment() {
   const name = nameEl.value.trim();
   const text = textEl.value.trim();
   
-  if (!name || !text) return alert("Please fill both fields");
+  if (!name || !text) {
+    alert("Please fill both fields");
+    return;
+  }
 
   const btn = document.querySelector('button[onclick="submitComment()"]');
+  if (!btn) return;
+  
   const orig = btn.textContent;
   btn.textContent = "Posting...";
   btn.disabled = true;
 
-  // Optimistic
-  allComments.unshift({ name, text });
+  // Optimistic update
+  const newComment = { name, text };
+  allComments.unshift(newComment);
   visibleCount = Math.min(visibleCount + 1, allComments.length);
   renderComments();
 
+  // Clear form
   nameEl.value = '';
   textEl.value = '';
 
   try {
-    await fetch(APPS_SCRIPT_URL, {
+    const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, text })
     });
-
-    showMessage('✅ Comment posted successfully!', 'var(--teal)');
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      showMessage('✅ Comment posted successfully!', 'var(--teal)');
+    } else {
+      throw new Error('Server error');
+    }
   } catch(e) {
     showMessage('⚠️ Saved locally. Backend issue.', '#ff9800');
   }
@@ -2234,28 +2269,38 @@ async function submitComment() {
 }
 
 function showMessage(text, color) {
+  // Remove old messages
+  const oldMsg = document.querySelector('.comment-message');
+  if (oldMsg) oldMsg.remove();
+  
   const msg = document.createElement('div');
-  msg.style.cssText = `color:${color}; margin-top:12px; font-weight:600; text-align:center;`;
+  msg.className = 'comment-message';
+  msg.style.cssText = `color:${color}; margin-top:12px; font-weight:600; text-align:center; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 8px;`;
   msg.textContent = text;
-  document.querySelector('button[onclick="submitComment()"]').parentNode.appendChild(msg);
-  setTimeout(() => msg.remove(), 4000);
+  
+  const btn = document.querySelector('button[onclick="submitComment()"]');
+  if (btn && btn.parentNode) {
+    btn.parentNode.appendChild(msg);
+    setTimeout(() => {
+      if (msg.parentNode) msg.remove();
+    }, 4000);
+  }
 }
 
 function toggleComments() {
-  if (visibleCount >= allComments.length) visibleCount = 5;
-  else visibleCount = Math.min(visibleCount + 5, allComments.length);
+  if (!allComments || allComments.length === 0) return;
+  
+  if (visibleCount >= allComments.length) {
+    visibleCount = 5;
+  } else {
+    visibleCount = Math.min(visibleCount + 5, allComments.length);
+  }
   renderComments();
 }
 
+// Load comments when page is ready
 window.addEventListener('DOMContentLoaded', loadComments);
-
-
-
-
-
-
-
-
+</script>
 
 
 </script>
