@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQs - WakaSafe</title>
+  <title>FAQs – WakaSafe</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -12,27 +12,77 @@
       --navy3: #132040;
       --teal: #00d4aa;
       --orange: #f47c20;
+      --orange2: #ff9844;
       --gray: #8a9bb5;
       --border: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.04);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      background: var(--navy); 
-      color: white; 
-      font-family: 'Inter', sans-serif; 
+    body {
+      background: var(--navy);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
       line-height: 1.7;
+      padding: 30px 20px 60px;
     }
-    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-    header { text-align: center; margin-bottom: 50px; }
-    h1 { color: var(--orange); font-size: 2.8rem; margin-bottom: 12px; }
-    .back { color: var(--teal); text-decoration: none; font-weight: 600; margin-bottom: 30px; display: inline-block; }
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
 
+    /* header & back */
+    .back-link {
+      display: inline-block;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 30px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      border: 1px solid rgba(0,212,170,0.2);
+      padding: 6px 18px;
+      border-radius: 30px;
+    }
+    .back-link:hover {
+      background: rgba(0,212,170,0.08);
+      border-color: var(--teal);
+      transform: translateX(-4px);
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .faq-header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--orange), var(--orange2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .faq-header p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    /* FAQ accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
     .faq-item {
       background: var(--navy2);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      margin-bottom: 16px;
+      border-radius: 18px;
       overflow: hidden;
+      transition: border 0.2s;
+    }
+    .faq-item:hover {
+      border-color: rgba(0,212,170,0.25);
     }
     .faq-question {
       padding: 20px 24px;
@@ -41,93 +91,527 @@
       justify-content: space-between;
       align-items: center;
       font-weight: 600;
+      font-size: 1.05rem;
+      gap: 16px;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .faq-question:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .faq-question .q-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      color: var(--teal);
+      font-weight: 400;
+    }
+    .faq-question .arrow {
+      flex-shrink: 0;
       font-size: 1.1rem;
+      color: var(--gray);
+      transition: 0.25s;
     }
     .faq-answer {
       padding: 0 24px 24px;
       max-height: 0;
       overflow: hidden;
-      transition: all 0.4s ease;
+      transition: max-height 0.45s ease, padding 0.3s ease;
       color: var(--gray);
+      line-height: 1.75;
     }
-    .faq-answer.open { max-height: 800px; }
+    .faq-answer.open {
+      max-height: 800px;
+      padding: 0 24px 24px;
+    }
+    .faq-answer strong {
+      color: #e0e8f5;
+    }
+    .faq-answer ul, .faq-answer ol {
+      padding-left: 24px;
+      margin: 8px 0 12px;
+    }
+    .faq-answer li {
+      margin-bottom: 4px;
+    }
+    .faq-answer img {
+      max-width: 100%;
+      border-radius: 14px;
+      margin: 16px 0 8px;
+      border: 1px solid var(--border);
+      max-height: 220px;
+      object-fit: cover;
+    }
+    .faq-answer .badge {
+      display: inline-block;
+      background: rgba(0,212,170,0.12);
+      color: var(--teal);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+      margin-right: 6px;
+    }
 
-    img { max-width: 100%; border-radius: 12px; margin: 12px 0; }
+    /* small divider */
+    .faq-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 8px 0 4px;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .faq-header h1 { font-size: 2.2rem; }
+      .faq-question { font-size: 0.95rem; padding: 16px 18px; }
+      .faq-answer { font-size: 0.92rem; }
+    }
   </style>
 </head>
 <body>
+<div class="container">
 
-  <div class="container">
-    <a href="index.html" class="back">← Back to Home</a>
-    
-    <header>
-      <h1>Frequently Asked Questions</h1>
-      <p style="color:var(--gray); font-size:1.1rem;">Everything you need to know about WakaSafe</p>
-    </header>
+  <!-- back link -->
+  <a href="index.html" class="back-link">← Back to WakaSafe</a>
 
-    <!-- FAQ 1 -->
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">How does WakaSafe work without internet? <span>▼</span></div>
-      <div class="faq-answer">
-        WakaSafe uses native SMS to send your live location. Once set up, it works completely offline on any network (MTN, Airtel, Glo, 9mobile).
-      </div>
-    </div>
-
-    <!-- FAQ 2 -->
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">How do I activate a journey? <span>▼</span></div>
-      <div class="faq-answer">
-        1. Fill your journey details<br>
-        2. Enter your 4-digit Start PIN<br>
-        3. The app will automatically start sending SMS updates to your emergency contacts.
-        <img src="wakasafeMockup/startJourneyPin.png" alt="Start Journey PIN Screen">
-      </div>
-    </div>
-
-    <!-- FAQ 3 -->
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">What are the three PINs? <span>▼</span></div>
-      <div class="faq-answer">
-        <strong>Start PIN:</strong> Activates the journey<br>
-        <strong>End PIN:</strong> Safely ends the journey and sends final SMS<br>
-        <strong>Distress PIN:</strong> Silent SOS — sends emergency alert without showing anything unusual on screen.
-      </div>
-    </div>
-
-    <!-- FAQ 4 -->
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">How do I turn on SMS Settings? <span>▼</span></div>
-      <div class="faq-answer">
-        Go to Settings → SMS Settings → Enable SMS Alerts and choose your preferred interval (10, 15, 30, or 60 minutes).
-        <img src="wakasafeMockup/smsSsettings.png" alt="SMS Settings Screen">
-      </div>
-    </div>
-
-    <!-- Add more FAQs below as needed -->
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">Can my family track me in real-time? <span>▼</span></div>
-      <div class="faq-answer">
-        Yes. Every SMS contains a Google Maps link with your exact location. Your contacts don’t need the app to view it.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">What happens if I lose my phone? <span>▼</span></div>
-      <div class="faq-answer">
-        As long as the journey is active and the phone has battery and network, it will continue sending location updates using the last known PIN.
-      </div>
-    </div>
-
+  <!-- header -->
+  <div class="faq-header">
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about WakaSafe — from PINs to offline SMS</p>
   </div>
 
-  <script>
-    function toggleFAQ(el) {
-      const answer = el.nextElementSibling;
-      answer.classList.toggle('open');
-      const icon = el.querySelector('span');
-      icon.textContent = answer.classList.contains('open') ? '▲' : '▼';
+  <!-- FAQ list (35 items) -->
+  <div class="faq-list" id="faqContainer">
+    <!-- 1 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How does WakaSafe work without internet?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        WakaSafe uses native SMS (text messages) to send your live GPS location. Once you set up your journey and grant SMS permission, it works completely offline on any Nigerian network — MTN, Airtel, Glo, 9mobile. No data, Wi-Fi, or internet connection required.
+      </div>
+    </div>
+    <!-- 2 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How do I activate a journey?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        <strong>Steps to activate:</strong><br>
+        1. Fill in your journey details: origin, destination, vehicle type, and number plate.<br>
+        2. Set your preferred SMS interval (e.g., every 15 minutes).<br>
+        3. Enter your 4-digit <strong>Start PIN</strong> to begin the journey.<br>
+        4. A confirmation SMS is sent to all emergency contacts.<br>
+        <img src="wakasafeMockup/startJourneyPin.png" alt="Start journey PIN screen">
+      </div>
+    </div>
+    <!-- 3 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What are the three PINs used for?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        <strong>🟢 Start PIN</strong> – activates the journey and sends the first location broadcast.<br>
+        <strong>🔵 End PIN</strong> – safely ends the journey and sends a final “arrived safely” SMS with your location and duration.<br>
+        <strong>🔴 Distress PIN</strong> – a secret PIN used under threat. It looks like a normal end journey but silently sends an SOS emergency alert to all contacts without showing anything on screen.
+      </div>
+    </div>
+    <!-- 4 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How do I turn on SMS settings?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Go to <strong>Settings → SMS Settings</strong> inside the app. From there you can:<br>
+        • Enable/disable SMS alerts<br>
+        • Choose your preferred interval (10, 15, 30, or 60 minutes)<br>
+        • Manage which contacts receive updates<br>
+        <img src="wakasafeMockup/smsSsettings.png" alt="SMS settings screen">
+      </div>
+    </div>
+    <!-- 5 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Can my family track me in real-time?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes! Every SMS update contains a live Google Maps link with your exact latitude/longitude. Your contacts can click the link and see your location in real-time. They do NOT need to install any app — it works on any phone with a web browser.
+      </div>
+    </div>
+    <!-- 6 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What happens if I lose my phone during a journey?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        As long as the journey is active, the phone has battery, and there is network coverage, WakaSafe will continue sending location updates at your chosen interval using the last known PIN. Your contacts will still receive updates until the battery dies or the journey times out.
+      </div>
+    </div>
+    <!-- 7 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Is WakaSafe free to use?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        WakaSafe is currently in a <strong>pre-launch free offer</strong>. You can download the APK and use it for free for a limited time. After the offer expires, the app will be subscription-based (affordable plans) — but your first 7 days are completely free when you sign up with the referral code <span class="badge">VOD46427</span>.
+      </div>
+    </div>
+    <!-- 8 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What is the referral code for?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        The referral code <strong>VOD46427</strong> is your personal code to claim <strong>7 days free subscription</strong> when you sign up. Enter it during registration to unlock the free trial. You can also share your code with friends.
+      </div>
+    </div>
+    <!-- 9 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How many emergency contacts can I add?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        You can add as many emergency contacts as you want. Every SMS update is sent to all contacts simultaneously. Add family, friends, or colleagues — anyone you trust to monitor your journey.
+      </div>
+    </div>
+    <!-- 10 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What information is included in the SMS?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Each SMS includes:<br>
+        • Journey origin and destination<br>
+        • Vehicle type and number plate<br>
+        • Estimated time of arrival (ETA)<br>
+        • Elapsed time<br>
+        • Live Google Maps link with GPS coordinates<br>
+        • Timestamp<br>
+        • Final “arrived safely” message when journey ends.
+      </div>
+    </div>
+    <!-- 11 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Does the receiver need the app?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        No! The SMS is a plain text message with a Google Maps link. The receiver only needs a phone that can receive SMS and open a web link. No app installation required.
+      </div>
+    </div>
+    <!-- 12 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What are the SMS interval options?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        You can choose from:<br>
+        • Every 10 minutes<br>
+        • Every 15 minutes (default)<br>
+        • Every 30 minutes<br>
+        • Every 60 minutes<br>
+        Pick the interval that matches your journey length and comfort level.
+      </div>
+    </div>
+    <!-- 13 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How do I end a journey safely?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        When you arrive at your destination, open the app and enter your 4-digit <strong>End PIN</strong>. This will:<br>
+        • Stop all automatic SMS updates<br>
+        • Send a final “arrived safely” SMS to all contacts with your exact location and total journey duration<br>
+        • Save the journey in your history.
+      </div>
+    </div>
+    <!-- 14 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What is the Distress PIN and how does it work?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        The <strong>Distress PIN</strong> is a secret 4-digit code you set. If you are under threat, enter this PIN instead of the end PIN. The app will:<br>
+        • End the journey (looks normal)<br>
+        • Silently send an SOS emergency alert to all contacts<br>
+        • Include your current location and a distress message<br>
+        • Show no indication on the screen that an emergency alert was sent.
+      </div>
+    </div>
+    <!-- 15 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Can I use WakaSafe on any Android phone?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes, WakaSafe works on Android 8.0 (Oreo) and above. The APK size is approximately 30.35 MB. It works on all major Nigerian networks and requires SMS permission to send location updates.
+      </div>
+    </div>
+    <!-- 16 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Where can I download WakaSafe?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        You can download the APK directly from the WakaSafe website (wakasafe.voddic.com.ng). Look for the “Download WakaSafe APK” button on the homepage. The app is not yet on Google Play — it will be available after the limited free offer.
+      </div>
+    </div>
+    <!-- 17 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Is my location shared with anyone else?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        No. Your location is only sent to the emergency contacts you have explicitly added. WakaSafe does not share your data with third parties. Your privacy is protected.
+      </div>
+    </div>
+    <!-- 18 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What happens if I enter the wrong PIN?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        If you enter an incorrect PIN, the app will not proceed. You can try again. After multiple failed attempts, the app may temporarily lock for security. Always set a PIN you can easily remember.
+      </div>
+    </div>
+    <!-- 19 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Can I change my PIN later?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes. You can reset your PIN at any time from the app settings. You will need to confirm your current PIN before setting a new one. This adds an extra layer of security.
+      </div>
+    </div>
+    <!-- 20 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Does WakaSafe work in areas with no network?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        WakaSafe requires a cellular network to send SMS. In areas with no network at all, SMS cannot be delivered. However, the app will retry when network becomes available. The app itself works offline.
+      </div>
+    </div>
+    <!-- 21 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What languages does WakaSafe support?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        WakaSafe is designed for Nigerians and supports multiple languages: English, Yoruba, Igbo, Hausa, Pidgin, and French. You can select your preferred language in the app settings.
+      </div>
+    </div>
+    <!-- 22 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How do I add emergency contacts?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        From the dashboard, tap the “Emergency Contacts” section and select “Add Contact.” You can manually enter a phone number or pick from your device contacts. Each contact will receive all journey updates.
+        <img src="wakasafeMockup/addContact.png" alt="Add contact screen">
+      </div>
+    </div>
+    <!-- 23 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Will I be charged for the SMS sent?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes, standard SMS charges from your network provider apply for each message sent. WakaSafe does not charge you for the SMS itself. The app sends SMS using your phone’s native SMS service — you will be billed by your network provider.
+      </div>
+    </div>
+    <!-- 24 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Can I see my journey history?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes. All past journeys are saved in the app. You can view details like route, vehicle, duration, number of SMS sent, and timestamps. You also have the option to back up your history to the cloud.
+      </div>
+    </div>
+    <!-- 25 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What is the “Safe at Base” status?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        “Safe at Base” means you have successfully ended your journey and are no longer in transit. It indicates that you have arrived safely and no active tracking is in progress.
+      </div>
+    </div>
+    <!-- 26 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How do I activate the silent SOS?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        To activate the silent SOS, simply enter your <strong>Distress PIN</strong> when prompted to end a journey. The app will process it as an end journey, but secretly sends an emergency alert to all your contacts. No visual alert appears on your phone.
+      </div>
+    </div>
+    <!-- 27 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Is WakaSafe available on iOS?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Not yet. WakaSafe is currently available only for Android. An iOS version is planned and will be released after the Android launch. Stay tuned for updates on the website.
+      </div>
+    </div>
+    <!-- 28 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What if I don’t have the referral code?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        You can still download and use WakaSafe, but you will not get the 7-day free subscription. The referral code <strong>VOD46427</strong> is available on the website — use it during sign-up to claim your free trial.
+      </div>
+    </div>
+    <!-- 29 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How do I change the SMS interval?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        You can change the SMS interval before starting a journey. In the “Plan Journey” screen, choose your preferred interval from the dropdown: 10, 15, 30, or 60 minutes. The interval cannot be changed after the journey has started.
+      </div>
+    </div>
+    <!-- 30 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Can I use WakaSafe for inter-state travel?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Absolutely. WakaSafe is designed for journeys of any length — from within the same city to long inter-state trips. The app works everywhere in Nigeria as long as there is network coverage for SMS.
+      </div>
+    </div>
+    <!-- 31 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What permissions does WakaSafe require?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        WakaSafe requires:<br>
+        • SMS permission (to send location updates)<br>
+        • Location permission (to get your GPS coordinates)<br>
+        • Contacts permission (optional, to select emergency contacts from your phone)<br>
+        • Notification permission (for alerts).
+      </div>
+    </div>
+    <!-- 32 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How is the app different from other safety apps?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        WakaSafe works <strong>offline via SMS</strong> — no internet required. It is built for Nigerian roads where data is often unreliable. It uses a three-PIN system (start, end, distress) and sends detailed location updates with vehicle information, making it uniquely suited for the Nigerian travel experience.
+      </div>
+    </div>
+    <!-- 33 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> Can I share my journey with multiple people?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes. You can add as many emergency contacts as you like. Every SMS update is sent to all of them simultaneously. This way, your entire family or close friends can monitor your journey together.
+      </div>
+    </div>
+    <!-- 34 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> What should I do if I encounter a bug?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        If you find a bug or have any issue, please reach out to our support team via:<br>
+        • WhatsApp: <a href="https://wa.me/2348127633556" style="color:var(--teal);">+234 812 763 3556</a><br>
+        • Or use the “Submit Enquiry” button on the website. We respond quickly.
+      </div>
+    </div>
+    <!-- 35 -->
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="q-icon">🔹</span> How do I get the latest version of WakaSafe?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">
+        The latest version is always available for download from the official website (wakasafe.voddic.com.ng). Check the website regularly for updates. The app will also notify you when a new version is available.
+      </div>
+    </div>
+  </div>
+
+  <!-- footer note -->
+  <div style="margin-top: 50px; text-align: center; color: var(--gray); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 30px;">
+    <p>💬 Still have questions? <a href="https://wa.me/2348127633556" style="color:var(--teal); font-weight:600;">Chat with us on WhatsApp</a></p>
+    <p style="margin-top: 6px; font-size:0.8rem;">© 2026 <a href="https://voddic.com.ng" target="_blank" style="color:#5ce1e6; text-decoration:none;">Voddic LTD</a> — All rights reserved.</p>
+  </div>
+</div>
+
+<script>
+  // Toggle FAQ accordion
+  function toggleFAQ(el) {
+    const answer = el.nextElementSibling;
+    const arrow = el.querySelector('.arrow');
+    const isOpen = answer.classList.contains('open');
+    
+    // Close all other FAQs (optional — uncomment for accordion style)
+    // document.querySelectorAll('.faq-answer').forEach(a => {
+    //   if (a !== answer) a.classList.remove('open');
+    // });
+    // document.querySelectorAll('.faq-question .arrow').forEach(a => {
+    //   if (a !== arrow) a.textContent = '▼';
+    // });
+
+    if (isOpen) {
+      answer.classList.remove('open');
+      arrow.textContent = '▼';
+    } else {
+      answer.classList.add('open');
+      arrow.textContent = '▲';
     }
-  </script>
+  }
+
+  // Auto-open first FAQ (optional)
+  document.addEventListener('DOMContentLoaded', function() {
+    // open first item by default
+    const firstQuestion = document.querySelector('.faq-question');
+    if (firstQuestion) {
+      // uncomment below to auto-open first
+      // toggleFAQ(firstQuestion);
+    }
+  });
+</script>
 </body>
 </html>
