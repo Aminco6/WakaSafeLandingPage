@@ -2157,20 +2157,42 @@ function closeEnquiryModal() {
 
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwbkyaJTMGU4eSYyLkcMn46QWTIXtMfStEB74bxy1qoro5itRQBfjMHiFc3rULQLuE/exec";
 
-// Load comments
+let allComments = [];
+let visibleCount = 5;
+
+// Load comments from backend
 async function loadComments() {
   try {
     const res = await fetch(APPS_SCRIPT_URL);
-    if (!res.ok) throw new Error("Failed to load");
     const comments = await res.json();
     allComments = comments;
     renderComments();
   } catch(e) {
-    console.log("Could not load comments from backend");
+    console.log("Could not load comments");
   }
 }
 
-// Submit comment
+// Render comments
+function renderComments() {
+  const container = document.getElementById('commentsContainer');
+  container.innerHTML = '';
+
+  const toShow = allComments.slice(0, visibleCount);
+
+  toShow.forEach(c => {
+    const div = document.createElement('div');
+    div.style.cssText = `background: var(--navy2); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--teal);`;
+    div.innerHTML = `<strong>\( {c.name}</strong><br><span style="color:#a0b0cc;"> \){c.text}</span>`;
+    container.appendChild(div);
+  });
+
+  const btn = document.getElementById('showMoreBtn');
+  if (btn) {
+    btn.textContent = visibleCount >= allComments.length ? "Show Less" : `Show More (${allComments.length - visibleCount})`;
+  }
+}
+
+// Submit comment + show immediately
 async function submitComment() {
   const nameEl = document.getElementById('commentName');
   const textEl = document.getElementById('commentText');
@@ -2184,37 +2206,49 @@ async function submitComment() {
   }
 
   const btn = document.querySelector('button[onclick="submitComment()"]');
-  const originalText = btn.textContent;
+  const originalBtnText = btn.textContent;
   btn.textContent = "Posting...";
   btn.disabled = true;
 
+  // Optimistic update - Show comment immediately
+  const newComment = { name, text };
+  allComments.unshift(newComment);   // Add to top
+  visibleCount = Math.min(visibleCount + 1, allComments.length);
+  renderComments();
+
+  // Send to backend
   try {
-    const response = await fetch(APPS_SCRIPT_URL, {
+    await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',           // Important for Apps Script
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, text })
+      body: JSON.stringify({ name, text }),
+      headers: { 'Content-Type': 'application/json' }
     });
 
+    // Clear form
     nameEl.value = '';
     textEl.value = '';
-    
-    alert("✅ Comment submitted successfully! It may take a few seconds to appear.");
-    
-    // Refresh comments after submission
-    setTimeout(loadComments, 1500);
   } catch(e) {
-    alert("✅ Comment submitted! (It will appear shortly)");
-    setTimeout(loadComments, 2000);
+    console.log("Backend save delayed, but comment is visible");
   }
 
-  btn.textContent = originalText;
+  btn.textContent = originalBtnText;
   btn.disabled = false;
 }
 
+// Toggle Show More / Less
+function toggleComments() {
+  if (visibleCount >= allComments.length) {
+    visibleCount = 5;
+  } else {
+    visibleCount = Math.min(visibleCount + 5, allComments.length);
+  }
+  renderComments();
+}
 
+// Initialize
+window.addEventListener('DOMContentLoaded', () => {
+  loadComments();
+});
 
 </script>
 
