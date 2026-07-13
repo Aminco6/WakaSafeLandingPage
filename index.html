@@ -2191,7 +2191,7 @@ function renderComments() {
   }
 }
 
-// Submit comment
+// Submit comment + show immediately
 async function submitComment() {
   const nameEl = document.getElementById('commentName');
   const textEl = document.getElementById('commentText');
@@ -2221,11 +2221,14 @@ async function submitComment() {
 
   // Send to backend
   try {
-    await fetch(APPS_SCRIPT_URL, {
+    const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, text })
     });
+
+    console.log("✅ Response Status:", response.status);
+    console.log("Response OK:", response.ok);
 
     const successMsg = document.createElement('div');
     successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600; text-align: center;';
@@ -2234,33 +2237,18 @@ async function submitComment() {
     setTimeout(() => successMsg.remove(), 3000);
 
   } catch(e) {
-    console.error("Submit error:", e);
+    console.error("❌ Submit Error:", e);
+
     const successMsg = document.createElement('div');
-    successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600; text-align: center;';
-    successMsg.textContent = '✅ Comment saved (will appear for everyone shortly)';
+    successMsg.style.cssText = 'color: #ff9800; margin-top: 12px; font-weight: 600; text-align: center;';
+    successMsg.textContent = '⚠️ Saved locally only. Check Apps Script deployment.';
     btn.parentNode.appendChild(successMsg);
-    setTimeout(() => successMsg.remove(), 3000);
+    setTimeout(() => successMsg.remove(), 4000);
   }
 
   btn.textContent = originalBtnText;
   btn.disabled = false;
 }
-
-// Toggle Show More / Less
-function toggleComments() {
-  if (visibleCount >= allComments.length) {
-    visibleCount = 5;
-  } else {
-    visibleCount = Math.min(visibleCount + 5, allComments.length);
-  }
-  renderComments();
-}
-
-// Initialize
-window.addEventListener('DOMContentLoaded', () => {
-  loadComments();
-});
-
 
 
 
