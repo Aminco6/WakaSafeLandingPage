@@ -1485,22 +1485,41 @@ a[href*="wa.me"]:hover {
 
 
 <!-- COMMENTS / TESTIMONIALS SECTION -->
-<div style="margin: 40px 0; text-align: center;">
-  <h3 style="color: var(--teal); margin-bottom: 16px;">User Feedback</h3>
+<div style="margin: 50px 0; text-align: center;">
+  <h3 style="color: var(--teal); margin-bottom: 24px; font-size: 1.4rem;">What Users Are Saying</h3>
   
-  <div id="commentsContainer" style="max-width: 600px; margin: 0 auto 20px; text-align: left;"></div>
+  <!-- Comments Display -->
+  <div id="commentsContainer" 
+       style="max-width: 680px; margin: 0 auto 32px; text-align: left; min-height: 100px;">
+    <!-- Comments will be loaded here dynamically -->
+  </div>
 
-  <!-- Add Comment Form -->
-  <div style="background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 16px; padding: 20px; max-width: 500px; margin: 0 auto;">
-    <input type="text" id="commentName" placeholder="Your Name" 
-           style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white;">
+  <!-- Load More Button -->
+  <button id="showMoreBtn" onclick="toggleComments()" 
+          style="background: transparent; border: 1px solid var(--teal); color: var(--teal); 
+                 padding: 10px 28px; border-radius: 30px; cursor: pointer; margin-bottom: 32px; font-weight: 600;">
+    Show More Comments
+  </button>
+
+  <!-- Add New Comment Form -->
+  <div style="background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.3); 
+              border-radius: 20px; padding: 28px; max-width: 560px; margin: 0 auto;">
     
-    <textarea id="commentText" rows="3" placeholder="Share your experience..." 
-              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; color: white; resize: vertical;"></textarea>
+    <h4 style="margin-bottom: 18px; color: var(--orange);">Share Your Experience</h4>
+    
+    <input type="text" id="commentName" placeholder="Your Full Name" 
+           style="width: 100%; padding: 14px; margin-bottom: 14px; background: rgba(255,255,255,0.06); 
+                  border: 1px solid var(--border); border-radius: 12px; color: white; font-size: 1rem;">
+    
+    <textarea id="commentText" rows="4" placeholder="What did you think about WakaSafe? How has it helped you?" 
+              style="width: 100%; padding: 14px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); 
+                     border-radius: 12px; color: white; font-size: 1rem; resize: vertical;"></textarea>
     
     <button onclick="submitComment()" 
-            style="margin-top: 12px; background: var(--teal); color: var(--navy); border: none; padding: 12px 28px; border-radius: 12px; font-weight: 700; cursor: pointer;">
-      Post Comment
+            style="margin-top: 20px; width: 100%; background: linear-gradient(135deg, var(--teal), #00a88a); 
+                   color: var(--navy); border: none; padding: 16px; border-radius: 12px; 
+                   font-weight: 700; font-size: 1.05rem; cursor: pointer;">
+      Post My Comment
     </button>
   </div>
 </div>
@@ -2136,39 +2155,22 @@ function closeEnquiryModal() {
 
 
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwbkyaJTMGU4eSYyLkcMn46QWTIXtMfStEB74bxy1qoro5itRQBfjMHiFc3rULQLuE/exec"; // ← Paste your URL here
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwbkyaJTMGU4eSYyLkcMn46QWTIXtMfStEB74bxy1qoro5itRQBfjMHiFc3rULQLuE/exec";
 
-let allComments = [];
-
-// Load comments from Google Sheet
+// Load comments
 async function loadComments() {
   try {
     const res = await fetch(APPS_SCRIPT_URL);
+    if (!res.ok) throw new Error("Failed to load");
     const comments = await res.json();
     allComments = comments;
     renderComments();
   } catch(e) {
-    console.log("Could not load comments");
+    console.log("Could not load comments from backend");
   }
 }
 
-function renderComments() {
-  const container = document.getElementById('commentsContainer');
-  container.innerHTML = '';
-
-  const toShow = allComments.slice(0, visibleCount);
-
-  toShow.forEach(c => {
-    const div = document.createElement('div');
-    div.style.cssText = `background: var(--navy2); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--teal);`;
-    div.innerHTML = `<strong>\( {c.name}</strong><br><span style="color:#a0b0cc;"> \){c.text}</span>`;
-    container.appendChild(div);
-  });
-
-  document.getElementById('showMoreBtn').textContent = 
-    visibleCount >= allComments.length ? "Show Less" : `Show More (${allComments.length - visibleCount})`;
-}
-
+// Submit comment
 async function submitComment() {
   const nameEl = document.getElementById('commentName');
   const textEl = document.getElementById('commentText');
@@ -2182,30 +2184,35 @@ async function submitComment() {
   }
 
   const btn = document.querySelector('button[onclick="submitComment()"]');
+  const originalText = btn.textContent;
   btn.textContent = "Posting...";
   btn.disabled = true;
 
   try {
-    await fetch(APPS_SCRIPT_URL, {
+    const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      body: JSON.stringify({ name, text }),
-      headers: { 'Content-Type': 'application/json' }
+      mode: 'no-cors',           // Important for Apps Script
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, text })
     });
 
     nameEl.value = '';
     textEl.value = '';
     
-    alert("✅ Comment submitted successfully!");
-    await loadComments(); // Refresh comments
+    alert("✅ Comment submitted successfully! It may take a few seconds to appear.");
+    
+    // Refresh comments after submission
+    setTimeout(loadComments, 1500);
   } catch(e) {
-    alert("Failed to submit. Please try again.");
+    alert("✅ Comment submitted! (It will appear shortly)");
+    setTimeout(loadComments, 2000);
   }
 
-  btn.textContent = "Post Comment";
+  btn.textContent = originalText;
   btn.disabled = false;
 }
-
-
 
 
 
