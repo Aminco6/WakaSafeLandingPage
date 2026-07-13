@@ -2151,12 +2151,24 @@ function closeEnquiryModal() {
 
 
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwbkyaJTMGU4eSYyLkcMn46QWTIXtMfStEB74bxy1qoro5itRQBfjMHiFc3rULQLuE/exec";
+
+
+
+
+
+
+
+
+
+
+
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzfjqJim9fEEW5_9K0HYd0IyjYOIMGcHSFmwKXQiUhazaxqrrfQ9i-VIKw-xnA6ojPY/exec"; 
+// ← Replace with your latest deployment URL
 
 let allComments = [];
 let visibleCount = 5;
 
-// Load comments from backend
+// Load comments
 async function loadComments() {
   try {
     const res = await fetch(APPS_SCRIPT_URL);
@@ -2164,11 +2176,11 @@ async function loadComments() {
     allComments = comments || [];
     renderComments();
   } catch(e) {
-    console.log("Could not load comments from backend");
+    console.log("Could not load comments");
   }
 }
 
-// Render comments
+// Render
 function renderComments() {
   const container = document.getElementById('commentsContainer');
   container.innerHTML = '';
@@ -2186,12 +2198,10 @@ function renderComments() {
   });
 
   const btn = document.getElementById('showMoreBtn');
-  if (btn) {
-    btn.textContent = visibleCount >= allComments.length ? "Show Less" : `Show More (${allComments.length - visibleCount})`;
-  }
+  if (btn) btn.textContent = visibleCount >= allComments.length ? "Show Less" : `Show More (${allComments.length - visibleCount})`;
 }
 
-// Submit comment + show immediately
+// Submit
 async function submitComment() {
   const nameEl = document.getElementById('commentName');
   const textEl = document.getElementById('commentText');
@@ -2205,52 +2215,56 @@ async function submitComment() {
   }
 
   const btn = document.querySelector('button[onclick="submitComment()"]');
-  const originalBtnText = btn.textContent;
+  const originalText = btn.textContent;
   btn.textContent = "Posting...";
   btn.disabled = true;
 
   // Optimistic update
-  const newComment = { name, text };
-  allComments.unshift(newComment);
+  allComments.unshift({ name, text });
   visibleCount = Math.min(visibleCount + 1, allComments.length);
   renderComments();
 
-  // Clear form immediately
+  // Clear form
   nameEl.value = '';
   textEl.value = '';
 
-  // Send to backend
   try {
-    const response = await fetch(APPS_SCRIPT_URL, {
+    await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, text })
     });
 
-    console.log("✅ Response Status:", response.status);
-    console.log("Response OK:", response.ok);
-
-    const successMsg = document.createElement('div');
-    successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600; text-align: center;';
-    successMsg.textContent = '✅ Comment posted successfully!';
-    btn.parentNode.appendChild(successMsg);
-    setTimeout(() => successMsg.remove(), 3000);
+    const msg = document.createElement('div');
+    msg.style.cssText = 'color:var(--teal); margin:12px 0; text-align:center; font-weight:600;';
+    msg.textContent = '✅ Comment posted successfully!';
+    btn.parentNode.appendChild(msg);
+    setTimeout(() => msg.remove(), 3000);
 
   } catch(e) {
-    console.error("❌ Submit Error:", e);
-
-    const successMsg = document.createElement('div');
-    successMsg.style.cssText = 'color: #ff9800; margin-top: 12px; font-weight: 600; text-align: center;';
-    successMsg.textContent = '⚠️ Saved locally only. Check Apps Script deployment.';
-    btn.parentNode.appendChild(successMsg);
-    setTimeout(() => successMsg.remove(), 4000);
+    console.error(e);
+    const msg = document.createElement('div');
+    msg.style.cssText = 'color:#ff9800; margin:12px 0; text-align:center;';
+    msg.textContent = '⚠️ Saved locally (check Apps Script deployment)';
+    btn.parentNode.appendChild(msg);
+    setTimeout(() => msg.remove(), 4000);
   }
 
-  btn.textContent = originalBtnText;
+  btn.textContent = originalText;
   btn.disabled = false;
 }
 
+function toggleComments() {
+  if (visibleCount >= allComments.length) {
+    visibleCount = 5;
+  } else {
+    visibleCount = Math.min(visibleCount + 5, allComments.length);
+  }
+  renderComments();
+}
 
+// Initialize
+window.addEventListener('DOMContentLoaded', loadComments);
 
 
 </script>
