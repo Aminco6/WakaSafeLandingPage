@@ -2221,6 +2221,10 @@ async function submitComment() {
   visibleCount = Math.min(visibleCount + 1, allComments.length);
   renderComments();
 
+  // Clear form fields immediately
+  nameEl.value = '';
+  textEl.value = '';
+
   // Send to backend
   try {
     await fetch(APPS_SCRIPT_URL, {
@@ -2229,13 +2233,9 @@ async function submitComment() {
       headers: { 'Content-Type': 'application/json' }
     });
 
-    // Clear form
-    nameEl.value = '';
-    textEl.value = '';
-
-    // Success message
+    // Success feedback
     const successMsg = document.createElement('div');
-    successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600;';
+    successMsg.style.cssText = 'color: var(--teal); margin-top: 12px; font-weight: 600; text-align: center;';
     successMsg.textContent = '✅ Comment posted successfully!';
     btn.parentNode.appendChild(successMsg);
 
@@ -2252,12 +2252,14 @@ async function submitComment() {
 
 
 
+
+
 // Toggle Show More / Less
 function toggleComments() {
   if (visibleCount >= allComments.length) {
-    visibleCount = 5;
+    visibleCount = 1;
   } else {
-    visibleCount = Math.min(visibleCount + 5, allComments.length);
+    visibleCount = Math.min(visibleCount + 1, allComments.length);
   }
   renderComments();
 }
