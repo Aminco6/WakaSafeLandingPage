@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WakaSafe – How to Use the App</title>
+<meta name="description" content="Step-by-step video tutorials for WakaSafe: create an account, add emergency contacts, start a journey, send SOS, change SMS settings, subscribe and more.">
+<meta name="theme-color" content="#0b1426">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f47c20' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--navy:#0b1426;--navy2:#0e1c35;--navy3:#132040;--teal:#00d4aa;--orange:#f47c20;--red:#e53935;--blue:#4d8dff;--gray:#8a9bb5;--card:rgba(255,255,255,.045);--bd:rgba(255,255,255,.1);--f:'Inter',system-ui,-apple-system,"Segoe UI",sans-serif;--sw:290px;--th:60px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--navy);color:#fff;font-family:var(--f);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+/* top bar */
+.top{position:fixed;top:0;left:0;right:0;height:calc(var(--th) + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) 18px 0;z-index:100;display:flex;align-items:center;gap:14px;background:rgba(11,20,38,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.bg{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:#fff;font-size:1.3rem;cursor:pointer}
+.lg{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem;text-decoration:none;letter-spacing:-.4px;white-space:nowrap}
+.lg i{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#1a3a6e,#0e2552);border:1.5px solid rgba(244,124,32,.45);display:grid;place-items:center}
+.lg b{color:var(--orange)}
+.tag{font-size:.7rem;font-weight:800;letter-spacing:1.5px;color:var(--teal);border:1px solid rgba(0,212,170,.35);background:rgba(0,212,170,.08);border-radius:20px;padding:4px 12px}
+.sp{flex:1}
+.tl{display:flex;gap:10px}
+.tl a{text-decoration:none;font-weight:700;font-size:.82rem;padding:10px 16px;border-radius:10px;border:1px solid var(--bd);white-space:nowrap}
+.tl a.p{background:linear-gradient(135deg,var(--teal),#009977);color:var(--navy);border-color:transparent}
+
+/* sidebar */
+.side{position:fixed;top:calc(var(--th) + env(safe-area-inset-top,0px));bottom:0;left:0;width:var(--sw);overflow:auto;background:var(--navy2);border-right:1px solid var(--bd);padding:16px 12px 40px;z-index:90;transition:transform .3s}
+.sr{width:100%;min-height:44px;border-radius:10px;border:1px solid var(--bd);background:var(--navy);color:#fff;padding:0 14px;font:inherit;font-size:.88rem;margin-bottom:14px}
+.sr:focus{outline:2px solid var(--teal)}
+.gt{font-size:.68rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gray);padding:14px 10px 6px}
+.side a.it{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;font-size:.9rem;font-weight:600;color:#cdd6e6;border-left:3px solid transparent;line-height:1.35}
+.side a.it:hover{background:var(--card)}
+.side a.it.on{background:rgba(0,212,170,.1);border-left-color:var(--teal);color:#fff}
+.side a.it em{font-style:normal;font-size:.7rem;opacity:.7;margin-left:auto}
+.ov{display:none;position:fixed;inset:0;background:rgba(5,9,18,.7);z-index:80}
+
+/* content */
+.main{margin-left:var(--sw);padding:calc(var(--th) + env(safe-area-inset-top,0px) + 34px) 5% 80px;min-width:0}
+.art{max-width:1000px;margin:0 auto}
+.bc{font-size:.78rem;color:var(--gray);font-weight:600;margin-bottom:10px}
+.bc b{color:var(--teal)}
+h1{font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-1.4px;line-height:1.12;margin-bottom:14px;font-weight:900}
+.in{color:#c3cde0;line-height:1.75;font-size:1.02rem;max-width:720px;margin-bottom:26px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:40px;align-items:start;margin-bottom:10px}
+.row.nop{grid-template-columns:minmax(0,1fr)}
+h2{font-size:1.05rem;margin:0 0 12px;letter-spacing:-.2px}
+h2.sc{margin-top:26px}
+.st{list-style:none;counter-reset:s;display:grid;gap:10px;margin-bottom:22px}
+.st li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;line-height:1.6;color:#dbe3f1;font-size:.96rem}
+.st li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:rgba(0,212,170,.15);border:1px solid rgba(0,212,170,.4);display:grid;place-items:center;font-size:.78rem;font-weight:800;margin-top:1px;color:var(--teal)}
+.tip{background:rgba(244,124,32,.08);border:1px solid rgba(244,124,32,.3);border-radius:14px;padding:14px 18px;line-height:1.65;font-size:.92rem;color:#ffd9b8;margin-bottom:26px}
+.tip b{color:var(--orange)}
+.tip a{color:var(--orange);font-weight:700}
+.warn{background:rgba(229,57,53,.08);border:1px solid rgba(229,57,53,.3);border-radius:14px;padding:14px 18px;line-height:1.65;font-size:.92rem;color:#ffc9c7;margin-bottom:26px}
+.warn b{color:#ef5350}
+
+/* screenshots */
+.phs{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.ph{width:170px;background:#0a0f1e;border:2px solid rgba(255,255,255,.14);border-radius:22px;padding:5px;box-shadow:0 20px 50px rgba(0,0,0,.45);transition:.25s}
+.ph:hover{transform:translateY(-4px);border-color:rgba(0,212,170,.4)}
+.ph img{display:block;width:100%;height:auto;border-radius:17px;background:#0a0f1e}
+
+/* video (vertical Shorts) */
+.vcol{position:sticky;top:calc(var(--th) + 24px)}
+.vid{position:relative;aspect-ratio:9/16;width:100%;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#12264a,#0a1428);border:1px solid var(--bd);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.vp{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;font-weight:700;font-size:.88rem;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.6))}
+.vp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;z-index:-1}
+.play{width:68px;height:68px;border-radius:50%;border:0;background:var(--teal);color:var(--navy);font-size:1.5rem;cursor:pointer;box-shadow:0 10px 30px rgba(0,212,170,.45);padding-left:5px;transition:.2s}
+.play:hover{transform:scale(1.08)}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vl{font-size:.82rem;color:var(--gray);margin:10px 0 0;text-align:center}
+.vl a{color:var(--blue);font-weight:600}
+
+/* prev / next */
+.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;border-top:1px solid var(--bd);padding-top:26px;margin-top:30px}
+.pn a,.pn span{display:block;border:1px solid var(--bd);background:var(--card);border-radius:14px;padding:14px 18px;text-decoration:none;transition:.2s}
+.pn a:hover{border-color:var(--teal);transform:translateY(-2px)}
+.pn small{display:block;color:var(--gray);font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.pn b{font-size:.95rem}
+.pn .nx{text-align:right}
+.pn span{opacity:.35}
+
+@media(max-width:1180px){
+  .row{grid-template-columns:minmax(0,1fr)}
+  .vcol{position:static;max-width:270px;order:-1;margin-bottom:10px}
+}
+@media(max-width:900px){
+  .bg{display:block}
+  .side{transform:translateX(-100%);width:min(310px,86vw)}
+  .side.open{transform:none;box-shadow:12px 0 40px rgba(0,0,0,.5)}
+  .ov.on{display:block}
+  .main{margin-left:0}
+  .tag,.tl a:not(.p){display:none}
+}
+@media(max-width:520px){
+  .pn{grid-template-columns:minmax(0,1fr)}
+  .pn .nx{text-align:left}
+  .ph{width:calc(50% - 8px)}
+  .tl a.p{padding:10px 12px;font-size:.76rem}
+  .lg{font-size:1rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <button class="bg" id="bg" aria-label="Open menu" aria-expanded="false">☰</button>
+  <a class="lg" href="index.html">
+    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.25C17.25 23.15 21 18.25 21 13V7L12 2z" fill="#f47c20" opacity=".9"/><circle cx="12" cy="9" r="2" fill="white"/><path d="M8 18c1-2 2-3 4-3s3 1 4 3" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></i>
+    <span>Waka<b>Safe</b></span>
+  </a>
+  <span class="tag">HOW TO USE</span>
+  <span class="sp"></span>
+  <nav class="tl" aria-label="Site links">
+    <a href="index.html">← Main site</a>
+    <a class="p" href="index.html#download">⬇ Download APK</a>
+  </nav>
+</header>
+
+<div class="ov" id="ov"></div>
+<aside class="side" id="side" aria-label="Tutorial menu">
+  <input class="sr" id="sr" type="search" placeholder="Search topics…" aria-label="Search topics">
+  <div id="menu"></div>
+</aside>
+
+<main class="main"><article class="art" id="art"><noscript>This tutorial needs JavaScript enabled.</noscript></article></main>
+
+<script>
+/* =====================================================================
+   SCREENSHOTS — edit file names here if yours are different.
+   All images are loaded from IMG folder + file name.
+   If a file is missing, that screenshot is simply hidden.
+   ===================================================================== */
+var IMG="wakasafeMockup/";
+var SHOTS={
+ language:"languageSelection.png", login:"login.png", signup:"signUp.png", dashboard:"dashboard.png",
+ contacts:"contactList.png", addManual:"manualAddContact.png", addPick:"autoEmergencyContact.png",
+ plan:"planYourJourney.png", startpin:"startJourneyPin.png", notif:"notificationPermission.png",
+ loc:"locationPermission.png", locOn:"turnOnLocation.png", active:"activeJourneyScreen.png",
+ sms:"manualSendSms.png", endpin:"endJourneyPin.png", sos:"sendSOS.png", log:"currentJourneyMessage.png",
+ history:"backup.png", settings:"settings.png", smsset:"smsSsettings.png", referral:"referral.png.png",
+ resetpin:"resetPin.png", resetpw:"resetPassword.png"
+};
+
+/* =====================================================================
+   HOW TO ADD A TOPIC (it appears in the side menu automatically):
+   Copy a topic block below and paste it inside TOPICS = [ ... ] with a comma after it.
+   - group: a NEW group name creates a NEW menu section
+   - id: unique, no spaces       - imgs: keys from SHOTS above ([] for none)
+   - video: any YouTube link (watch, youtu.be, shorts, embed). Use "" for no video.
+   - intro / steps / tip / warn may contain simple HTML: <b>bold</b> or a link to another
+     topic: <a href='#/sos'>Send SOS</a>  (use single quotes inside the text).
+   ===================================================================== */
+var TOPICS=[
+
+/* ---------------- GETTING STARTED ---------------- */
+{id:"welcome",group:"Getting Started",title:"Welcome to WakaSafe",imgs:["dashboard","active"],
+ intro:"WakaSafe protects your journey. It sends your live GPS location to the people you trust by SMS, so they always know where you are, even when the internet is weak or unavailable. Watch the one-minute overview, then follow the pages in order the first time you set up.",
+ steps:["Create your account and choose your language.","Add the emergency contacts who should receive your updates.","Check your SMS settings and allow the permissions the app asks for.","Subscribe so you can start journeys.","Start a journey, enter your PIN, and travel safely.","End the journey with your PIN when you arrive."],
+ tip:"<b>Tip:</b> Each page has a short video on the right. Watch it first, then use the steps as a checklist.",
+ video:"https://www.youtube.com/shorts/janIJF2B864"},
+
+{id:"create-account",group:"Getting Started",title:"Create your account",imgs:["language","signup","login"],
+ intro:"Sign up once with your name, phone number and a password. After that you only need your phone number and password to log in.",
+ steps:["Open WakaSafe and choose your language, then tap <b>Get Started</b>.","On the login screen, tap <b>Sign Up</b>.","Enter your <b>Full Name</b>, <b>Email Address</b> and <b>Phone Number</b>.","If a friend invited you, type their code in <b>Referral Code (Optional)</b>.","Choose a <b>Password</b>, type it again in <b>Confirm Password</b>, and tap the eye icon if you want to see what you typed.","Tick <b>I agree to the terms</b> and create your account.","Next time, log in with your phone number and password, or tap <b>Continue with Google</b>."],
+ tip:"<b>Forgot your password?</b> Tap <b>Forgot Password?</b> under the Login button and follow the prompts.",
+ video:"https://www.youtube.com/shorts/gm3qDeiRJv0"},
+
+{id:"dashboard",group:"Getting Started",title:"Dashboard tour",imgs:["dashboard"],
+ intro:"The dashboard is your home screen. It shows your status and everything you need to start a journey.",
+ steps:["The top shows a welcome with your name and your status, such as <b>SAFE AT BASE</b>.","The three cards show your <b>Current Journey</b>, number of <b>Emergency Contacts</b> and your <b>Last Check-in</b>.","The green bar shows how long your subscription has left.","<b>Emergency Contacts List</b> shows who will receive your updates. Tap <b>+ ADD</b> to add more.","Tap <b>START A JOURNEY</b> to begin.","The <b>MESSAGES</b> and <b>HISTORY</b> tabs show your broadcast log and past journeys.","Scroll down for <b>SOS Emergency</b>, <b>Subscribe to Service</b>, <b>Change Language</b>, <b>Reset PIN</b>, <b>SMS Settings</b> and <b>Logout</b>.","Tap <b>Referrals</b> at the top right to get your referral code."],
+ tip:"",video:""},
+
+{id:"language",group:"Getting Started",title:"Change language",imgs:["language","settings"],
+ intro:"WakaSafe speaks your language. Pick the one you are most comfortable with.",
+ steps:["From the dashboard, scroll down and tap <b>Change Language</b>.","Choose your language: English, Yoruba, Igbo, Hausa, Pidgin or French.","Confirm. The app switches straight away."],
+ tip:"<b>Tip:</b> You can also pick a language the first time you open the app, on the Welcome screen.",
+ video:"https://www.youtube.com/shorts/pGAG-a5XiiY"},
+
+/* ---------------- SET UP ---------------- */
+{id:"add-contact",group:"Set Up",title:"Add emergency contacts",imgs:["contacts","addManual","addPick"],
+ intro:"Emergency contacts are the people who receive your journey updates and SOS alerts. They only need a normal phone that can receive SMS. They do not need the app.",
+ steps:["On the dashboard, find <b>Emergency Contacts List</b> and tap <b>+ ADD</b>.","Type the contact’s <b>name</b>, <b>phone number</b> and <b>relationship</b> (for example Mother or Friend), then tap <b>Save</b>.","Or, if you allow access to your phone contacts, pick the person from your address book instead of typing.","The contact now appears in your list, and the Emergency Contacts card counts them.","To remove someone, tap the menu next to their name in the list."],
+ tip:"<b>Important:</b> Tell people before you add them. Add as many trusted contacts as you like. Every update goes to all of them.",
+ video:"https://www.youtube.com/shorts/1oUM8WXTgFM"},
+
+{id:"sms-settings",group:"Set Up",title:"SMS settings",imgs:["smsset","sms","plan"],
+ intro:"Choose how WakaSafe sends your messages. Automatic mode sends in the background. Manual mode opens your SMS app so you tap send yourself.",
+ steps:["On the dashboard, scroll down and tap <b>SMS Settings</b>.","The red or green line at the top shows whether SMS permission is granted. Tap <b>Check Permission</b> to test it, or <b>Open App Settings</b> to grant it.","Choose <b>Automatic Mode (Background)</b> to let WakaSafe send for you. This needs SMS permission.","Or choose <b>Manual Mode (Open SMS App)</b>. No permission is needed. Your SMS app opens with the message ready and you tap send.","Tap <b>Activate</b> to save your choice."],
+ tip:"<b>Note:</b> SMS messages are sent from your own SIM, so your network’s normal SMS charges apply. Keep airtime on your phone.",
+ video:"https://www.youtube.com/shorts/yUxOedbHUe8"},
+
+{id:"permissions",group:"Set Up",title:"Allow permissions",imgs:["notif","loc","locOn"],
+ intro:"WakaSafe needs a few permissions to keep protecting you when your phone is locked.",
+ steps:["When asked <b>Allow WakaSafe to send you notifications?</b>, tap <b>Allow</b>. Android needs this to keep tracking alive while your screen is off.","Allow <b>location access</b> so your GPS position can be sent to your contacts.","Make sure your phone’s <b>Location</b> switch is turned on.","In Automatic SMS mode, allow <b>SMS permission</b> when asked."],
+ tip:"<b>Tip:</b> If you tapped Don’t allow by mistake, open your phone’s App settings, choose WakaSafe, and enable the permission.",
+ video:""},
+
+{id:"reset-pin",group:"Set Up",title:"Reset your PIN",imgs:["resetpin","settings"],
+ intro:"Your 4-digit PIN starts and ends your journeys. You can change it whenever you want.",
+ steps:["On the dashboard, scroll down and tap <b>Reset PIN</b>.","Follow the prompts to set your new 4-digit PIN.","Choose numbers you will remember, and keep them private."],
+ tip:"<b>Tip:</b> Your distress PIN must be different from your normal PIN. Never share either one.",
+ video:"https://www.youtube.com/shorts/ugEGGy2oNTQ"},
+
+/* ---------------- YOUR JOURNEY ---------------- */
+{id:"start-journey",group:"Your Journey",title:"Start a journey",imgs:["plan","startpin","active"],
+ intro:"Tell WakaSafe where you are going, enter your PIN, and your contacts start receiving updates.",
+ steps:["On the dashboard, tap <b>START A JOURNEY</b>.","Enter where you are going <b>from</b> and <b>to</b>, and your vehicle’s number plate.","Pick the <b>Vehicle Type</b> and the <b>SMS Interval</b>, which is how often your location is sent (for example every 10 minutes).","Read the SMS notice. It tells you how many contacts will receive messages and that network charges apply.","Tap <b>Continue</b>, enter your 4-digit PIN, then tap <b>Activate Journey</b>.","Your contacts get a journey-start message. The Active Journey card shows the route, vehicle, interval and a timer.","In Manual mode your SMS app opens each time. Tap send to deliver the message."],
+ tip:"<b>Before you go:</b> check your <a href='#/sms-settings'>SMS settings</a> and that your subscription is active. WakaSafe will remind you if SMS is disabled.",
+ video:"https://www.youtube.com/shorts/I2k2OQ5f780"},
+
+{id:"end-journey",group:"Your Journey",title:"End a journey safely",imgs:["active","endpin","log"],
+ intro:"When you arrive, end the journey so your contacts know you are safe.",
+ steps:["On the Active Journey card, tap <b>END JOURNEY SAFELY</b>.","Enter your 4-digit PIN and tap <b>End Journey</b>.","WakaSafe sends a final “arrived safely” message with your last location and the total journey time.","Open the <b>MESSAGES</b> tab to see the broadcast log of everything that was sent."],
+ tip:"<b>Under threat?</b> Enter your <b>distress PIN</b> instead of your normal PIN. The screen looks like a normal ending, but a silent SOS goes to all your contacts.",
+ video:""},
+
+{id:"sos",group:"Your Journey",title:"Send an SOS",imgs:["sos","log"],
+ intro:"In an emergency, one action alerts all your contacts with your current location.",
+ steps:["Tap the red <b>SOS EMERGENCY</b> button on the dashboard.","Enter your 4-digit PIN.","Tap <b>Send SOS</b>. To back out, tap <b>Cancel</b>.","Your emergency contacts receive an SOS message with your GPS location.","The <b>MESSAGES</b> tab logs the SOS so you can see it was sent."],
+ warn:"<b>Call for help too.</b> WakaSafe alerts your own contacts only. It does not contact the police or ambulance. In a life-threatening emergency, call <b>199</b> or <b>112</b> if you can.",
+ tip:"",
+ video:"https://www.youtube.com/shorts/ba9PbyEdoIU"},
+
+{id:"history",group:"Your Journey",title:"Journey history",imgs:["history","log"],
+ intro:"Every journey is saved with its route, date, vehicle, duration and the contacts who were notified.",
+ steps:["On the dashboard, tap the <b>HISTORY</b> tab under the Start a Journey button.","Each card shows the route, date, vehicle and plate number, duration and who was notified.","Tap <b>Backup History</b> to save your history to the cloud.","Tap <b>Download PDF</b> to save a copy on your phone.","Or tap <b>Backup Messages and Download PDF</b> to do both at once.","Switch to <b>MESSAGES</b> to see the live broadcast log of the current journey."],
+ tip:"",
+ video:"https://www.youtube.com/shorts/hGENIRkTpOs"},
+
+/* ---------------- ACCOUNT ---------------- */
+{id:"subscribe",group:"Account",title:"Subscribe",imgs:["dashboard","settings"],
+ intro:"A subscription unlocks journey tracking. Your remaining time shows on the dashboard.",
+ steps:["Check the green bar on the dashboard. It counts down the time left on your plan.","Scroll down and tap <b>Subscribe to Service</b>.","Choose a plan: monthly, quarterly, semi-annual or annual.","Pay securely through the payment gateway.","When payment succeeds your subscription is active and the countdown updates."],
+ tip:"<b>Tip:</b> Subscribe before you travel. WakaSafe checks your subscription each time you start a journey.",
+ video:"https://www.youtube.com/shorts/SQWx_TOJg14"},
+
+{id:"referrals",group:"Account",title:"Referral program",imgs:["referral"],
+ intro:"Invite friends and earn bonus subscription time when they subscribe.",
+ steps:["Tap <b>Referrals</b> at the top right of the dashboard.","See your stats: total referrals, active referrals, bonus days and bonus months.","Your personal referral code is shown on the screen. Tap <b>Copy</b> or <b>Share</b> to send it.","Your friend enters your code in the <b>Referral Code (Optional)</b> box when they create their account.","You are rewarded after their successful subscription payment."],
+ tip:"",video:""},
+
+/* ---------------- HELP ---------------- */
+{id:"help-sms",group:"Help",title:"Messages are not sending",imgs:["smsset","log"],
+ intro:"Most SMS problems come from one of a few causes. Try these in order.",
+ steps:["Check you have <b>airtime or SMS credit</b> on your SIM.","Make sure you have <b>mobile network signal</b>. SMS needs at least a basic signal.","Open <a href='#/sms-settings'>SMS Settings</a> and confirm the mode you chose is activated.","In Automatic mode, tap <b>Check Permission</b>. If it says not granted, open App Settings and allow SMS.","Or switch to Manual mode, where your SMS app opens and you tap send.","Open the <b>MESSAGES</b> tab to see which messages were sent and which failed."],
+ tip:"",video:""},
+
+{id:"help-support",group:"Help",title:"Getting more help",imgs:[],
+ intro:"If something here doesn’t match what you see on your phone, or you are stuck, contact the WakaSafe team.",
+ steps:["Note the screen you were on and what you expected to happen.","Take a screenshot if you can.","Email <b>support@wakasafe.com</b> with both. We reply within 3 business days."],
+ tip:"<b>Tip:</b> You can also use <b>Contact Support</b> inside the app’s settings.",video:""}
+];
+/* ===================== END OF TOPICS ===================== */
+
+(function(){
+var $=function(s){return document.querySelector(s)};
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+function ytId(u){var m=(u||"").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);return m?m[1]:null}
+var groups=[];TOPICS.forEach(function(t){if(groups.indexOf(t.group)<0)groups.push(t.group)});
+
+function menu(q){
+  q=(q||"").toLowerCase().trim();var h="";
+  groups.forEach(function(g){
+    var it=TOPICS.filter(function(t){return t.group==g&&(!q||t.title.toLowerCase().indexOf(q)>-1||(t.intro||"").toLowerCase().indexOf(q)>-1)});
+    if(!it.length)return;
+    h+='<div class="gt">'+esc(g)+'</div>'+it.map(function(t){return '<a class="it" href="#/'+esc(t.id)+'" data-id="'+esc(t.id)+'">'+esc(t.title)+(ytId(t.video)?'<em>▶</em>':'')+'</a>'}).join("");
+  });
+  $("#menu").innerHTML=h||'<p class="gt">No topics found</p>';mark();
+}
+var cur=0;
+function mark(){document.querySelectorAll("#menu a.it").forEach(function(a){a.classList.toggle("on",a.dataset.id==TOPICS[cur].id)})}
+
+function show(){
+  var i=TOPICS.map(function(t){return t.id}).indexOf((location.hash.match(/^#\/(.+)$/)||[])[1]);
+  cur=i<0?0:i;
+  var t=TOPICS[cur],id=ytId(t.video);
+  var p=TOPICS[cur-1],n=TOPICS[cur+1];
+
+  var phs=(t.imgs&&t.imgs.length)?'<h2 class="sc">Screens</h2><div class="phs">'+t.imgs.map(function(k){
+    var f=SHOTS[k];if(!f)return"";
+    return '<div class="ph"><img src="'+esc(IMG+f)+'" alt="'+esc(t.title)+' screen" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>';
+  }).join("")+'</div>':"";
+
+  var vcol=id?'<aside class="vcol"><h2>Watch</h2><div class="vid" id="vid"><div class="vp"><img src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="" onerror="this.style.display=\'none\'"><button class="play" id="play" aria-label="Play video">▶</button><span>Watch the video</span></div></div><p class="vl"><a href="https://www.youtube.com/shorts/'+id+'" target="_blank" rel="noopener">Open on YouTube</a></p></aside>':"";
+
+  $("#art").innerHTML='<div class="bc"><b>'+esc(t.group)+'</b> › '+esc(t.title)+'</div><h1>'+esc(t.title)+'</h1><p class="in">'+t.intro+'</p>'+
+  '<div class="row'+(vcol?'':' nop')+'"><div>'+
+    (t.steps&&t.steps.length?'<h2>Steps</h2><ol class="st">'+t.steps.map(function(s){return '<li><span>'+s+'</span></li>'}).join("")+'</ol>':"")+
+    (t.warn?'<div class="warn">'+t.warn+'</div>':"")+
+    (t.tip?'<div class="tip">'+t.tip+'</div>':"")+
+  '</div>'+vcol+'</div>'+phs+
+  '<div class="pn">'+(p?'<a href="#/'+esc(p.id)+'"><small>← Previous</small><b>'+esc(p.title)+'</b></a>':'<span><small>← Previous</small><b>Start of tutorial</b></span>')+
+  (n?'<a class="nx" href="#/'+esc(n.id)+'"><small>Next →</small><b>'+esc(n.title)+'</b></a>':'<span class="nx"><small>Next →</small><b>End of tutorial</b></span>')+'</div>';
+
+  var pl=$("#play");
+  if(pl)pl.onclick=function(){$("#vid").innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="'+esc(t.title)+'" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'};
+
+  document.title=t.title+" – WakaSafe Tutorial";mark();closeM();window.scrollTo(0,0);
+  var a=document.querySelector("#menu a.on");if(a&&a.scrollIntoView)a.scrollIntoView({block:"nearest"});
+}
+function openM(){$("#side").classList.add("open");$("#ov").classList.add("on");$("#bg").setAttribute("aria-expanded","true")}
+function closeM(){$("#side").classList.remove("open");$("#ov").classList.remove("on");$("#bg").setAttribute("aria-expanded","false")}
+$("#bg").onclick=function(){$("#side").classList.contains("open")?closeM():openM()};
+$("#ov").onclick=closeM;
+document.addEventListener("keydown",function(e){if(e.key=="Escape")closeM()});
+$("#sr").addEventListener("input",function(){menu(this.value)});
+window.addEventListener("hashchange",show);menu();show();
+})();
+</script>
+</body>
+</html>
